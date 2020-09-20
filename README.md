@@ -53,8 +53,9 @@ And that's it. No more steps are needed.
 
 ## Authors
 
-* **Sergio Gavilán `sgavil'** - *Programmer* - [GitHub profile](https://github.com/sgavil)  
-* **Jesús Fermín Villar Ramírez `Pokoidev'** - *Programmer* - [GitHub profile](https://github.com/Pokoi)
+* **Ramón Arjona ** - *Programmer and Sound/Music* - [GitHub profile](https://github.com/ramonarj) 
+* **Sergio Gavilán ** - *Programmer* - [GitHub profile](https://github.com/sgavil)  
+* **Jesús Villar ** - *Programmer* - [GitHub profile](https://github.com/Pokoi)
 
 
 ## License
