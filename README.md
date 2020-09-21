@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Compile prerequisites
 
-The project is developed in Unity environment using C# scripting. [Unity](https://unity.com) must be installed to compile the project. Unity version used in the development process was ___.  
+The project is developed in Unity environment using C# scripting. [Unity](https://unity.com) must be installed to compile the project. Unity version used in the development process was 2020.1.6f1.  
 
 ### Builds prerequisites
 
