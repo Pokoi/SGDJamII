@@ -53,7 +53,7 @@ And that's it. No more steps are needed.
 
 ## Authors
 
-* **Sergio Trac** - *Programmer* - [GitHub profile](https://github.com/SergioTrac) 
+* **Sergio Eslava** - *Programmer* - [GitHub profile](https://github.com/SergioTrac) 
 * **Javier Cordero** - *Programmer* - [GitHub profile](https://github.com/JavierCordero) 
 * **Ramón Arjona** - *Programmer and Sound/Music* - [GitHub profile](https://github.com/ramonarj) 
 * **Sergio Gavilán** - *Programmer* - [GitHub profile](https://github.com/sgavil)  
