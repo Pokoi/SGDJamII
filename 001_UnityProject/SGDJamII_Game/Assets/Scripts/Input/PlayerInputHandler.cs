@@ -13,6 +13,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
     private PlayerMovement playerMovement;
+    private InteractionController interactionController;
+
 
     void Awake()
     {
@@ -28,6 +30,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (!playerMovement)
             playerMovement = new PlayerMovement();
+
+        if (!interactionController)
+            interactionController = GetComponent<InteractionController>();
     }
 
     void OnEnable()
@@ -39,6 +44,9 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputActions.PlayerControls.Run.performed += Run_Performed;
         playerInputActions.PlayerControls.Run.canceled += Run_Cancelled;
 
+        playerInputActions.PlayerControls.PickUpRelease.performed += Interaction_Performed;
+        playerInputActions.PlayerControls.PickUpRelease.canceled += Interaction_Canceled;
+
     }
 
     void OnDisable()
@@ -47,6 +55,9 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputActions.PlayerControls.Move.canceled -= Move_Cancelled;
         playerInputActions.PlayerControls.Run.performed -= Run_Performed;
         playerInputActions.PlayerControls.Run.canceled -= Run_Cancelled;
+
+        playerInputActions.PlayerControls.PickUpRelease.performed -= Interaction_Performed;
+        playerInputActions.PlayerControls.PickUpRelease.canceled -= Interaction_Canceled;
 
         playerInputActions.Disable();
     }
@@ -68,5 +79,15 @@ public class PlayerInputHandler : MonoBehaviour
     private void Run_Cancelled(InputAction.CallbackContext context)
     {
         playerMovement.running = false;
+    }
+
+    private void Interaction_Performed(InputAction.CallbackContext context)
+    {
+        interactionController.OnInteractionPress();
+    }
+
+    private void Interaction_Canceled(InputAction.CallbackContext context)
+    {
+        interactionController.OnInteractionUnpress();
     }
 }
