@@ -34,32 +34,52 @@ using UnityEngine;
 
 namespace ArtificialIntelligence
 {
-    [RequireComponent (typeof(Locomotion))]
+    [RequireComponent (typeof(ArtificialIntelligence.Locomotion))]
     public class IntelligentAgent : MonoBehaviour
     {
 
-        Room suspicionLocation;
-        Room currentRoom;
-        HiddingPlace currentHiddingPlace;
-        Locomotion locomotor;
-        DecisionMaker thinker;
+        ArtificialIntelligence.Room suspicionLocation;
+        ArtificialIntelligence.Room currentRoom;
+        ArtificialIntelligence.HiddingPlace currentHiddingPlace;
+        ArtificialIntelligence.Locomotion locomotor;
+        ArtificialIntelligence.DecisionMaker thinker;   
+
+        public struct Psychology
+        {
+            public float changeRoomWeight;
+            public float changeHiddingPlaceWeight;
+            public float waitingWeight;
+            public float searchingHiddingPlaceWeight;
+        }
+
+        private IntelligentAgent.Psychology psychology;    
+
 
         private void Start() 
         {
-            locomotor = GetComponent<Locomotion>();
-            thinker = GetComponent<DecisionMaker>();
+            locomotor = GetComponent<ArtificialIntelligence.Locomotion>();
+            thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
+
+            psychology.changeRoomWeight = Random.Range(0.0f, 1.0f);
+            psychology.changeHiddingPlaceWeight = Random.Range(0.0f, 1.0f);
+            psychology.waitingWeight = Random.Range(0.0f, 1.0f);
+            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);         
+
+
         }        
 
-        public void SetSuspicionLocation(Room room) => suspicionLocation = room;
-        public Room GetSuspicionLocation() => suspicionLocation;
+        public void SetSuspicionLocation(ArtificialIntelligence.Room room) => suspicionLocation = room;
+        public ArtificialIntelligence.Room GetSuspicionLocation() => suspicionLocation;
 
-        public void SetCurrentRoom(Room room) => currentRoom = room;
+        public void SetCurrentRoom(ArtificialIntelligence.Room room) => currentRoom = room;
 
-        public Room GetCurrentRoom() => currentRoom;
+        public ArtificialIntelligence.Room GetCurrentRoom() => currentRoom;
 
-        public void SetCurrentHiddingPlace(HiddingPlace hp) => currentHiddingPlace = hp;
+        public void SetCurrentHiddingPlace(ArtificialIntelligence.HiddingPlace hp) => currentHiddingPlace = hp;
 
-        public HiddingPlace GetCurrentHiddingPlace() => currentHiddingPlace;
+        public ArtificialIntelligence.HiddingPlace GetCurrentHiddingPlace() => currentHiddingPlace;        
+
+        public IntelligentAgent.Psychology GetPsychology() => psychology;
     
     }
 

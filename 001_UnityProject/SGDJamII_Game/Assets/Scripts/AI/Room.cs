@@ -38,18 +38,20 @@ namespace ArtificialIntelligence
     public class Room : MonoBehaviour
     {
         [SerializeField] private bool isGoal;
-        [SerializeField] private List<HiddingPlace> hiddingPlaces = new List<HiddingPlace>();
-        [SerializeField] private Door door;      
+        [SerializeField] private List<ArtificialIntelligence.HiddingPlace> hiddingPlaces = new List<ArtificialIntelligence.HiddingPlace>();
+        [SerializeField] private ArtificialIntelligence.Door door;      
 
         public float GetDistanceToGoal() => door.GetDistanceToGoal();
 
         public int GetHiddingPlacesCount() => hiddingPlaces.Count;  
 
-        public List<HiddingPlace> GetHiddingPlaces() => hiddingPlaces;  
+        public List<ArtificialIntelligence.HiddingPlace> GetHiddingPlaces() => hiddingPlaces;  
 
-        public void AddHiddingPlace(HiddingPlace hp) => hiddingPlaces.Add(hp);
+        public void AddHiddingPlace(ArtificialIntelligence.HiddingPlace hp) => hiddingPlaces.Add(hp);
 
-        public Door GetDoor() => door;
+        public ArtificialIntelligence.Door GetDoor() => door;
+
+        public bool GetIsGoal() => isGoal;
 
         private void OnTriggerEnter(Collider other) 
         {
@@ -62,10 +64,10 @@ namespace ArtificialIntelligence
         */
         private void PlayerAlert()
         {
-            foreach (HiddingPlace hp in hiddingPlaces)
+            foreach (ArtificialIntelligence.HiddingPlace hp in hiddingPlaces)
             {
                 var agents = hp.GetHiddenAgents();
-                foreach(IntelligentAgent agent in agents)
+                foreach(ArtificialIntelligence.IntelligentAgent agent in agents)
                 {
                     agent.SetSuspicionLocation(this);
                 }

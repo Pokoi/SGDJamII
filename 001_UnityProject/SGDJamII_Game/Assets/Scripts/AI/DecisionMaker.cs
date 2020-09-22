@@ -32,16 +32,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace ArtificialIntelligence
 {
     public class DecisionMaker : MonoBehaviour
     {
-        IntelligentAgent agent;
-        ChangeHiddingPlace  changeHiddingPlaceAction;
-        ChooseHiddingPlace  chooseHiddingPlaceAction;
-        ChangeRoom          changeRoomAction;
-        Wait                waitAction;
-        Goal                goalAction;
+        ArtificialIntelligence.IntelligentAgent agent;
+        ArtificialIntelligence.ChangeHiddingPlace  changeHiddingPlaceAction;
+        ArtificialIntelligence.ChooseHiddingPlace  chooseHiddingPlaceAction;
+        ArtificialIntelligence.ChangeRoom          changeRoomAction;
+        ArtificialIntelligence.Wait                waitAction;
+        ArtificialIntelligence.Goal                goalAction;
 
         private void Start()
         {
@@ -50,6 +51,51 @@ namespace ArtificialIntelligence
 
         public Vector3 MakeADecision()
         {
+            float changeHiddingPlaceHeuristic = 0.0f;
+            float chooseHiddingPlaceHeuristic = 0.0f;
+            float changeRoomHeuristic = 0.0f;
+            float waitinghHeuristic = 0.0f;       
+
+            // In case the AI is in the same room of the goal, the AI runs to the goal point
+            if(agent.GetCurrentRoom() != null && agent.GetCurrentRoom().GetIsGoal())
+            {
+                return Goal();
+            }
+
+            if (agent.GetCurrentHiddingPlace() == null)
+            {                            
+                changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
+                chooseHiddingPlaceHeuristic = agent.GetPsychology().searchingHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), agent.GetSuspicionLocation());           
+               
+                return changeRoomHeuristic < chooseHiddingPlaceHeuristic ? ChooseDestinyRoom() : ChooseDestinyHiddingPlace();              
+            }          
+            else
+            {
+                waitinghHeuristic = agent.GetPsychology().waitingWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), agent.GetSuspicionLocation());
+                changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
+                changeHiddingPlaceHeuristic = agent.GetPsychology().changeHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), agent.GetSuspicionLocation());
+
+                if(waitinghHeuristic < changeRoomHeuristic)
+                {
+                    if(waitinghHeuristic < changeHiddingPlaceHeuristic)
+                    {
+                        return Wait();
+                    }
+                    else
+                    {
+                        return  ChooseNewDestinyHiddingPlace();
+                    }
+                }
+                else if(changeRoomHeuristic < changeHiddingPlaceHeuristic)
+                {
+                    return ChooseDestinyRoom();
+                }
+                else
+                {
+                    return ChooseNewDestinyHiddingPlace();
+                }
+            }
+
             return Vector3.zero;
         }
 
@@ -60,12 +106,12 @@ namespace ArtificialIntelligence
         public Vector3 ChooseDestinyRoom()
         {
             var rooms = RoomManager.singletonInstance.GetRooms();
-            Room origin = agent.GetCurrentRoom();
+            ArtificialIntelligence.Room origin = agent.GetCurrentRoom();
             
             float bestHeuristic = float.MaxValue;
             Vector3 destiny = Vector3.zero;
 
-            foreach (Room r in rooms)
+            foreach (ArtificialIntelligence.Room r in rooms)
             {
                 if(r != origin)
                 {
@@ -95,7 +141,7 @@ namespace ArtificialIntelligence
             float bestHeuristic = float.MaxValue;
             Vector3 destiny = Vector3.zero;
 
-            foreach(HiddingPlace hp in hiddingPlaces)
+            foreach(ArtificialIntelligence.HiddingPlace hp in hiddingPlaces)
             {
                 if(hp.GetMaxOccupation() > hp.GetCurrentOccupation())
                 {
@@ -121,12 +167,12 @@ namespace ArtificialIntelligence
         public Vector3 ChooseNewDestinyHiddingPlace()
         {
             var hiddingPlaces = agent.GetCurrentRoom().GetHiddingPlaces();
-            HiddingPlace origin = agent.GetCurrentHiddingPlace();
+            ArtificialIntelligence.HiddingPlace origin = agent.GetCurrentHiddingPlace();
 
             float bestHeuristic = float.MaxValue;
             Vector3 destiny = Vector3.zero;
 
-            foreach (HiddingPlace hp in hiddingPlaces)
+            foreach (ArtificialIntelligence.HiddingPlace hp in hiddingPlaces)
             {
                 if(hp != origin && hp.GetMaxOccupation() > hp.GetCurrentOccupation())
                 {
@@ -177,6 +223,7 @@ namespace ArtificialIntelligence
                 destiny = new_destiny;
             }
         }
+
 
 
 

@@ -36,11 +36,11 @@ namespace ArtificialIntelligence
 {
     public class RoomManager : MonoBehaviour
     {
-        [SerializeField] private List<Room> rooms = new List<Room>(); 
+        [SerializeField] private List<ArtificialIntelligence.Room> rooms = new List<ArtificialIntelligence.Room>(); 
         [SerializeField] private List<List<float>> distanceMatrix;
         [SerializeField] private Transform goal;
 
-        public static RoomManager singletonInstance;
+        public static ArtificialIntelligence.RoomManager singletonInstance;
         
 
         private void Awake() 
@@ -75,7 +75,7 @@ namespace ArtificialIntelligence
         @param destiny The destiny room
         @return The distance
         */
-        public float GetDistanceBetween(Room origin, Room destiny)
+        public float GetDistanceBetween(ArtificialIntelligence.Room origin, ArtificialIntelligence.Room destiny)
         {
             if(origin != destiny)
             {                
@@ -85,7 +85,7 @@ namespace ArtificialIntelligence
                 int iterator = 0;
 
                 // Search the index of each room
-                foreach(Room r in rooms)
+                foreach(ArtificialIntelligence.Room r in rooms)
                 {
                     if(r == origin) originIndex = iterator;
                     else if (r == destiny) destinyIndex = iterator;
@@ -99,7 +99,7 @@ namespace ArtificialIntelligence
 
         }
 
-        public List<Room> GetRooms() => rooms;  
+        public List<ArtificialIntelligence.Room> GetRooms() => rooms;  
         public Transform GetGoal()=> goal;     
 
     }

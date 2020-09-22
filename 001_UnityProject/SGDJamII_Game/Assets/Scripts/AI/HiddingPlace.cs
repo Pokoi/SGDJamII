@@ -37,9 +37,9 @@ namespace ArtificialIntelligence
     public class HiddingPlace : MonoBehaviour
     {
         [SerializeField] private int maxOccupation;
-        private List<IntelligentAgent> hiddenAgents = new List<IntelligentAgent>();
+        private List<ArtificialIntelligence.IntelligentAgent> hiddenAgents = new List<ArtificialIntelligence.IntelligentAgent>();
         private int currentOccupation;
-        private Room ownerRoom;
+        private ArtificialIntelligence.Room ownerRoom;
 
         private float chanceToRevealPosition;
         private float distanceToExitRoom;
@@ -54,15 +54,15 @@ namespace ArtificialIntelligence
 
         public float GetDistanceToExitRoom() => distanceToExitRoom;
 
-        public void SetOwnerRoom(Room room) => ownerRoom = room;
+        public void SetOwnerRoom(ArtificialIntelligence.Room room) => ownerRoom = room;
 
-        public Room GetOwnerRoom() => ownerRoom;
+        public ArtificialIntelligence.Room GetOwnerRoom() => ownerRoom;
 
-        public void AddAgent(IntelligentAgent agent) => hiddenAgents.Add(agent);
+        public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) => hiddenAgents.Add(agent);
 
-        public void RemoveAgent(IntelligentAgent agent) => hiddenAgents.Remove(agent);
+        public void RemoveAgent(ArtificialIntelligence.IntelligentAgent agent) => hiddenAgents.Remove(agent);
 
-        public List<IntelligentAgent> GetHiddenAgents() => hiddenAgents;
+        public List<ArtificialIntelligence.IntelligentAgent> GetHiddenAgents() => hiddenAgents;
 
         public int GetMaxOccupation() => maxOccupation;
         public int GetCurrentOccupation() => currentOccupation;

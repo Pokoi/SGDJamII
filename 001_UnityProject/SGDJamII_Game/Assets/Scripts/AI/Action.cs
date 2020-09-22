@@ -36,17 +36,17 @@ namespace ArtificialIntelligence
 {
     public class Action : MonoBehaviour
     {      
-        protected IntelligentAgent agent;
+        protected ArtificialIntelligence.IntelligentAgent agent;
         public virtual float CalculateHeuristic()
         {
             return 0.0f;
         }
     }
 
-    public class ChangeRoom : Action
+    public class ChangeRoom : ArtificialIntelligence.Action
     {
-        [SerializeField] private Room origin;
-        [SerializeField] private Room destiny; 
+        [SerializeField] private ArtificialIntelligence.Room origin;
+        [SerializeField] private ArtificialIntelligence.Room destiny; 
 
         [SerializeField] private struct Weights
         {
@@ -66,7 +66,7 @@ namespace ArtificialIntelligence
         @param origin The origin room
         @param destiny The destiny room
         */
-        public void Reset(Room origin, Room destiny)
+        public void Reset(ArtificialIntelligence.Room origin, ArtificialIntelligence.Room destiny)
         {
             this.origin     = origin;
             this.destiny    = destiny;
@@ -97,8 +97,8 @@ namespace ArtificialIntelligence
 
     public class ChangeHiddingPlace : Action
     {
-        [SerializeField] private HiddingPlace origin;
-        [SerializeField] private HiddingPlace destiny;
+        [SerializeField] private ArtificialIntelligence.HiddingPlace origin;
+        [SerializeField] private ArtificialIntelligence.HiddingPlace destiny;
 
         [SerializeField] private struct Weights
         {
@@ -117,7 +117,7 @@ namespace ArtificialIntelligence
         @param origin The origin hidding place
         @param destiny The destiny hidding place
         */
-        public void Reset(HiddingPlace origin, HiddingPlace destiny)
+        public void Reset(ArtificialIntelligence.HiddingPlace origin, ArtificialIntelligence.HiddingPlace destiny)
         {
             this.origin     = origin;
             this.destiny    = destiny;
@@ -144,9 +144,9 @@ namespace ArtificialIntelligence
         public Vector3 GetDestination() => destiny.transform.position;
     }
 
-    public class ChooseHiddingPlace : Action
+    public class ChooseHiddingPlace : ArtificialIntelligence.Action
     {
-        [SerializeField] private HiddingPlace destiny;
+        [SerializeField] private ArtificialIntelligence.HiddingPlace destiny;
 
         [SerializeField] private struct Weights
         {     
@@ -160,7 +160,7 @@ namespace ArtificialIntelligence
         @brief Reset the action with the given params
         @param destiny The destiny hidding place
         */
-        public void Reset(HiddingPlace destiny)
+        public void Reset(ArtificialIntelligence.HiddingPlace destiny)
         {
             this.destiny    = destiny;
         }
@@ -182,7 +182,7 @@ namespace ArtificialIntelligence
         public Vector3 GetDestination() => destiny.transform.position;
     }
 
-    public class Wait : Action
+    public class Wait : ArtificialIntelligence.Action
     {
         /**
         @brief Gets the destination of the action
@@ -191,7 +191,7 @@ namespace ArtificialIntelligence
         public Vector3 GetDestination() => agent.transform.position;
     }
 
-    public class Goal : Action
+    public class Goal : ArtificialIntelligence.Action
     {
         /**
         @brief Gets the destination of the action
