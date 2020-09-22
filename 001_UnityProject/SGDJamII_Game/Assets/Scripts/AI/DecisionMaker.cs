@@ -38,8 +38,10 @@ namespace ArtificialIntelligence
     {
         IntelligentAgent agent;
         ChangeHiddingPlace  changeHiddingPlaceAction;
+        ChooseHiddingPlace  chooseHiddingPlaceAction;
         ChangeRoom          changeRoomAction;
         Wait                waitAction;
+        Goal                goalAction;
 
         private void Start()
         {
@@ -67,14 +69,14 @@ namespace ArtificialIntelligence
             {
                 if(r != origin)
                 {
-                    changeRoomAction.Reset(origin, r);
-                    float h = changeRoomAction.CalculateHeuristic();
-                    
-                    if(h < bestHeuristic)
-                    {
-                        bestHeuristic = h;
-                        destiny = changeRoomAction.GetDestination();
-                    }
+                    changeRoomAction.Reset(origin, r);                  
+                    ChangeDestinationWhenHeuristicImprovement
+                                                            (
+                                                                changeRoomAction.CalculateHeuristic(),
+                                                                ref bestHeuristic,
+                                                                changeRoomAction.GetDestination(),
+                                                                ref destiny
+                                                            );      
                 }
             }
 
@@ -83,10 +85,40 @@ namespace ArtificialIntelligence
         }
 
         /**
-        @brief Choose the best destiny hidding place and gets its destination coordinates
+        @brief Choose the best destiny hidding place in a room, not being hidden already, and gets its destinarion coordinates
         @return The destination coordinates of the desired hidding place
         */
         public Vector3 ChooseDestinyHiddingPlace()
+        {
+            var hiddingPlaces = agent.GetCurrentRoom().GetHiddingPlaces();
+            
+            float bestHeuristic = float.MaxValue;
+            Vector3 destiny = Vector3.zero;
+
+            foreach(HiddingPlace hp in hiddingPlaces)
+            {
+                if(hp.GetMaxOccupation() > hp.GetCurrentOccupation())
+                {
+                    chooseHiddingPlaceAction.Reset(hp);
+                    ChangeDestinationWhenHeuristicImprovement
+                                                            (
+                                                                chooseHiddingPlaceAction.CalculateHeuristic(),
+                                                                ref bestHeuristic,
+                                                                chooseHiddingPlaceAction.GetDestination(),
+                                                                ref destiny
+                                                            );           
+                }
+
+            }
+
+            return destiny;
+        }
+
+        /**
+        @brief Choose the best destiny hidding place and gets its destination coordinates
+        @return The destination coordinates of the desired hidding place
+        */
+        public Vector3 ChooseNewDestinyHiddingPlace()
         {
             var hiddingPlaces = agent.GetCurrentRoom().GetHiddingPlaces();
             HiddingPlace origin = agent.GetCurrentHiddingPlace();
@@ -98,19 +130,57 @@ namespace ArtificialIntelligence
             {
                 if(hp != origin && hp.GetMaxOccupation() > hp.GetCurrentOccupation())
                 {
-                    changeHiddingPlaceAction.Reset(origin, hp);
-                    float h = changeHiddingPlaceAction.CalculateHeuristic();
-
-                    if(h < bestHeuristic)
-                    {
-                        bestHeuristic = h;
-                        destiny = changeHiddingPlaceAction.GetDestination();
-                    }
+                    changeHiddingPlaceAction.Reset(origin, hp);                  
+                    ChangeDestinationWhenHeuristicImprovement
+                                                            (
+                                                                changeHiddingPlaceAction.CalculateHeuristic(),
+                                                                ref bestHeuristic,
+                                                                changeHiddingPlaceAction.GetDestination(),
+                                                                ref destiny
+                                                            );                    
                 }
             }
 
             return destiny;
-
         }
+
+        /**
+        @brief Gets the waiting position
+        @return The waiting position
+        */
+        public Vector3 Wait()
+        {
+            return waitAction.GetDestination();
+        }
+
+        /**
+        @brief Gets the coordinates of the goal destination
+        @return The goal destination coordinates
+        */
+        public Vector3 Goal()
+        {
+            return goalAction.GetDestination();
+        }
+
+        /**
+        @brief Change the destination if the new heuristic is better than the old one
+        @param new_heuristic The new heuristic obtained
+        @param best The best heuristic at the moment. This value will change if the new one is better
+        @param new_destiny The new destiny if the heuristic is better
+        @param destiny The destiny at the moment. This value will change if the new one is better
+        */
+        private void  ChangeDestinationWhenHeuristicImprovement(float new_heuristic, ref float best, Vector3 new_destiny, ref Vector3 destiny)
+        {
+            if(new_heuristic < best)
+            {
+                best = new_heuristic;
+                destiny = new_destiny;
+            }
+        }
+
+
+
+
+
     }
 }

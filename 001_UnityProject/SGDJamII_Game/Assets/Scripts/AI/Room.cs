@@ -39,7 +39,6 @@ namespace ArtificialIntelligence
     {
         [SerializeField] private bool isGoal;
         [SerializeField] private List<HiddingPlace> hiddingPlaces = new List<HiddingPlace>();
-        [SerializeField] private List<Room> neighboursRooms = new List<Room>();
         [SerializeField] private Door door;      
 
         public float GetDistanceToGoal() => door.GetDistanceToGoal();

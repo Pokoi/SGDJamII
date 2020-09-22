@@ -144,6 +144,44 @@ namespace ArtificialIntelligence
         public Vector3 GetDestination() => destiny.transform.position;
     }
 
+    public class ChooseHiddingPlace : Action
+    {
+        [SerializeField] private HiddingPlace destiny;
+
+        [SerializeField] private struct Weights
+        {     
+            public float destinyOccupation; 
+            public float chanceToRevealPositionDestiny;
+        } 
+
+        Weights weights;
+
+        /**
+        @brief Reset the action with the given params
+        @param destiny The destiny hidding place
+        */
+        public void Reset(HiddingPlace destiny)
+        {
+            this.destiny    = destiny;
+        }
+
+        /**
+        @brief Calculate the heuristic value of the action
+        @return The heuristic value
+        */
+        public override float CalculateHeuristic()
+        {
+            return  weights.destinyOccupation * destiny.GetOccupationRate() +              
+                    weights.chanceToRevealPositionDestiny * destiny.GetChanceToRevealPosition();
+        }
+
+        /**
+        @brief Gets the destination of the action
+        @return The destination coordinates
+        */
+        public Vector3 GetDestination() => destiny.transform.position;
+    }
+
     public class Wait : Action
     {
         /**
@@ -151,6 +189,15 @@ namespace ArtificialIntelligence
         @return The destination coordinates
         */
         public Vector3 GetDestination() => agent.transform.position;
+    }
+
+    public class Goal : Action
+    {
+        /**
+        @brief Gets the destination of the action
+        @return The destination coordinates
+        */
+        public Vector3 GetDestination() => RoomManager.singletonInstance.GetGoal().position;
     }
 
 }

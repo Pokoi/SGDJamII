@@ -38,6 +38,7 @@ namespace ArtificialIntelligence
     {
         [SerializeField] private List<Room> rooms = new List<Room>(); 
         [SerializeField] private List<List<float>> distanceMatrix;
+        [SerializeField] private Transform goal;
 
         public static RoomManager singletonInstance;
         
@@ -98,7 +99,8 @@ namespace ArtificialIntelligence
 
         }
 
-        public List<Room> GetRooms() => rooms;       
+        public List<Room> GetRooms() => rooms;  
+        public Transform GetGoal()=> goal;     
 
     }
 
