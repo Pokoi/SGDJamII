@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerInputHandler playerInput;
 
+    public float rotationSpeed = 1.2f;
+
     void Awake()
     {
         forward = Camera.main.transform.forward;
@@ -41,35 +43,45 @@ public class PlayerMovement : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         newMovementInput = playerInput.movementInput;
-        if (newMovementInput.magnitude < minInput)
-            newMovementInput = Vector2.zero;
+        //if (newMovementInput.magnitude < minInput)
+        //    newMovementInput = Vector2.zero;
 
         float realBuildUpSpeed = 1f - Mathf.Pow(1f - buildUpSpeed, Time.deltaTime * 60);
         movementInput = Vector2.Lerp(movementInput, newMovementInput, realBuildUpSpeed);
 
         // Movement ---------------------------------------------------
-        Vector3 hMovement;
-        Vector3 vMovement;
+        //Vector3 hMovement;
+        //Vector3 vMovement;
 
 
-        hMovement = right * movementInput.x;
-        vMovement = forward * movementInput.y;
+        // hMovement = transform.right * movementInput.x;
+        //vMovement = transform.forward * movementInput.y;
 
         if (running)
             currentSpeed = startSpeed * 1.5f;
 
 
 
-        Vector3 finalMovement = Vector3.ClampMagnitude((hMovement + vMovement), 1.0f) * currentSpeed * Time.deltaTime;
+        // Vector3 finalMovement = Vector3.ClampMagnitude((hMovement + vMovement), 1.0f) * currentSpeed * Time.deltaTime;
 
-        transform.position += finalMovement;
 
-        // Rotation ---------------------------------------------------
-        if (newMovementInput.magnitude > minInput)
-        {
-            Vector3 heading = (hMovement + vMovement);
-            transform.forward = heading;
-        }
+
+        //// Rotation ---------------------------------------------------
+        //if (newMovementInput.magnitude > minInput)
+        //{
+        //    //Vector3 heading = (hMovement + vMovement);
+        //    //transform.forward = heading;
+
+        //}
+        Vector3 heading = (Vector3.Normalize(Camera.main.transform.forward) * movementInput.y +
+            Vector3.Normalize(Camera.main.transform.right) * movementInput.x);
+
+        heading.y = 0.0f;
+
+        transform.forward = Vector3.Slerp(transform.forward, heading, rotationSpeed * Time.deltaTime);
+
+        transform.position += heading
+            * Time.deltaTime * currentSpeed;
 
         currentSpeed = startSpeed;
     }
