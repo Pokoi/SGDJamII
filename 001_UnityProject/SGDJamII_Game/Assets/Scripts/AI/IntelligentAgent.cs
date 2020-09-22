@@ -1,0 +1,66 @@
+﻿/*
+ * File: IntelligentAgent.cs
+ * File Created: Tuesday, 22nd September 2020 3:22:10 pm
+ * ––––––––––––––––––––––––
+ * Author: Jesus Fermin, 'Pokoi', Villar  (hello@pokoidev.com)
+ * ––––––––––––––––––––––––
+ * MIT License
+ * 
+ * Copyright (c) 2020 Pokoidev
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is furnished to do
+ * so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArtificialIntelligence
+{
+    [RequireComponent (typeof(Locomotion))]
+    public class IntelligentAgent : MonoBehaviour
+    {
+
+        Room suspicionLocation;
+        Room currentRoom;
+        HiddingPlace currentHiddingPlace;
+        Locomotion locomotor;
+        DecisionMaker thinker;
+
+        private void Start() 
+        {
+            locomotor = GetComponent<Locomotion>();
+            thinker = GetComponent<DecisionMaker>();
+        }        
+
+        public void SetSuspicionLocation(Room room) => suspicionLocation = room;
+        public Room GetSuspicionLocation() => suspicionLocation;
+
+        public void SetCurrentRoom(Room room) => currentRoom = room;
+
+        public Room GetCurrentRoom() => currentRoom;
+
+        public void SetCurrentHiddingPlace(HiddingPlace hp) => currentHiddingPlace = hp;
+
+        public HiddingPlace GetCurrentHiddingPlace() => currentHiddingPlace;
+    
+    }
+
+}
