@@ -101,12 +101,12 @@ public class LevelCreator : MonoBehaviour
 
     private void clearPath()
     {
-        for (int i = 0; i < matrixX; i++)
-            for (int j = 0; j < matrixY; j++)
-            {
-                if (!table[i, j].occupied)
-                    Destroy(table[i, j].mapCell);
-            }
+        //for (int i = 0; i < matrixX; i++)
+        //    for (int j = 0; j < matrixY; j++)
+        //    {
+        //        if (!table[i, j].occupied)
+        //            Destroy(table[i, j].mapCell);
+        //    }
     }
 
     private void createCorridors()
@@ -181,12 +181,32 @@ public class LevelCreator : MonoBehaviour
 
             int x = 0, y = 0;
             maxTries = 50;
-            while (maxTries-- >= 0 && ( x == 0 || y == 0 || x == matrixX - 1 || x == matrixY - 1) && 
-                (x != rndX || x != rndX + r.RoomSizeX - 1 || y != rndY || x != rndY + r.RoomSizeY - 1))
+
+            bool worked = false;
+
+            while (maxTries-- >= 0 && !worked)
+            {
                 createDoor(ref x, ref y, rndX, rndY, r);
 
-            r.roomDoorX = x;
-            r.roomDoorY = y;
+                if(x == rndX || x == rndX + r.RoomSizeX || y == rndY || y == r.roomDoorY)
+                {
+                    worked = true;
+                }
+            }
+
+            if (worked)
+            {
+                r.roomDoorX = x;
+                r.roomDoorY = y;
+                Debug.Log("Worked door creation");
+            }
+
+            else
+            {
+                r.roomDoorX = rndX;
+                r.roomDoorY = rndY;
+                Debug.Log("Didnt work door creation, default position");
+            }
 
             table[r.roomDoorX, r.roomDoorY].cell = Cells.Door;
             table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = DOORMATERIAL;
@@ -202,8 +222,6 @@ public class LevelCreator : MonoBehaviour
     {
         x = Random.Range(rndX, rndX + r.RoomSizeX);
         y = Random.Range(rndY, rndY + r.RoomSizeY);
-
-        
     }
 
     private void randomPosition(ref int x, ref int y)
@@ -218,7 +236,7 @@ public class LevelCreator : MonoBehaviour
         for (int i = 0; i < r.RoomSizeX; i++)
             for (int j = 0; j < r.RoomSizeY; j++)
             {
-                if (x + i > matrixX - 1 || y + j > matrixY - 1 || x + i < 0 || y + j < 0 || table[x + i, y + j].occupied)
+                if (x + i > matrixX - 2 || y + j > matrixY - 2 || x + i <= 0 || y + j <= 0 || table[x + i, y + j].occupied)
                 {
                     canConstruct = false;
                     break;
@@ -227,5 +245,4 @@ public class LevelCreator : MonoBehaviour
 
         return canConstruct;
     }
-
 }
