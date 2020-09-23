@@ -41,12 +41,13 @@ namespace ArtificialIntelligence
         private int currentOccupation;
         private ArtificialIntelligence.Room ownerRoom;
 
-        private float chanceToRevealPosition;
+        [SerializeField] private float chanceToRevealPosition;
         private float distanceToExitRoom;
 
         private void Awake() 
         {
-          transform.parent.GetComponent<ArtificialIntelligence.Room>().AddHiddingPlace(this);  
+          ownerRoom = transform.parent.GetComponent<ArtificialIntelligence.Room>();
+          ownerRoom.AddHiddingPlace(this); 
         }
 
         public bool IsAvailable() => currentOccupation < maxOccupation;
@@ -71,6 +72,29 @@ namespace ArtificialIntelligence
 
         public int GetMaxOccupation() => maxOccupation;
         public int GetCurrentOccupation() => currentOccupation;
+
+        /**
+        @brief Use the hidding place revealing the position or not
+        */
+        public void Use()
+        {
+          float random = Random.Range (0.0f, 1.0f);
+          if(random < chanceToRevealPosition)
+          {
+            var agents = HiveManager.singletonInstance.GetAgents();
+            
+            foreach (ArtificialIntelligence.IntelligentAgent agent in agents)
+            {
+              if(agent.GetCurrentRoom() != ownerRoom)
+              {
+                agent.SetSuspicionLocation(ownerRoom);
+              }
+            }
+
+            // TODO: Play Sound effect
+
+          }
+        }
     }
 
 }
