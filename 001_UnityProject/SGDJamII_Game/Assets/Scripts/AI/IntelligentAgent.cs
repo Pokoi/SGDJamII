@@ -59,6 +59,7 @@ namespace ArtificialIntelligence
         {
             locomotor = GetComponent<ArtificialIntelligence.Locomotion>();
             thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
+            transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
 
             psychology.changeRoomWeight = Random.Range(0.0f, 1.0f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.0f, 1.0f);
