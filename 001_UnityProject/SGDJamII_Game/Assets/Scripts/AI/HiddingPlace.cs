@@ -65,7 +65,11 @@ namespace ArtificialIntelligence
 
         public ArtificialIntelligence.Room GetOwnerRoom() => ownerRoom;
 
-        public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) => hiddenAgents.Add(agent);
+        public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) 
+        {
+          hiddenAgents.Add(agent);
+          ++currentOccupation;
+        }
 
         public void RemoveAgent(ArtificialIntelligence.IntelligentAgent agent) => hiddenAgents.Remove(agent);
 
