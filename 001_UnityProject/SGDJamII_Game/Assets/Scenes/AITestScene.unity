@@ -3835,7 +3835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117508762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.76015663, y: 2.74683, z: -0.9771099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7652,6 +7652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298401732}
+  - component: {fileID: 298401733}
   - component: {fileID: 298401731}
   m_Layer: 0
   m_Name: Hidding Place
@@ -7672,7 +7673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1288d0c172faa4a8fdb0a44a15ba39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOccupation: 3
+  maxOccupation: 0
   chanceToRevealPosition: 0
 --- !u!4 &298401732
 Transform:
@@ -7689,6 +7690,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &298401733
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298401730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8271177, y: 1, z: 2.6615748}
+  m_Center: {x: -0.043100476, y: 0, z: 0.25730062}
 --- !u!1 &299147868
 GameObject:
   m_ObjectHideFlags: 0

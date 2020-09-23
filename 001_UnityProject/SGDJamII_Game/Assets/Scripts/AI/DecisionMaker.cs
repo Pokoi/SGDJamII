@@ -37,12 +37,19 @@ namespace ArtificialIntelligence
 {
     public class DecisionMaker : MonoBehaviour
     {
-        ArtificialIntelligence.IntelligentAgent agent;
+
+        public enum ActionTypes { CHANGE_HIDDING_PLACE, CHOOSE_HIDDING_PLACE, CHANGE_ROOM, WAIT, GOAL};
+
+        private ActionTypes currentAction;
+
+        ArtificialIntelligence.IntelligentAgent     agent;
         ArtificialIntelligence.ChangeHiddingPlace  changeHiddingPlaceAction;
         ArtificialIntelligence.ChooseHiddingPlace  chooseHiddingPlaceAction;
         ArtificialIntelligence.ChangeRoom          changeRoomAction;
         ArtificialIntelligence.Wait                waitAction;
         ArtificialIntelligence.Goal                goalAction;
+
+        public ActionTypes GetCurrentAction() => currentAction;
 
         private void Start()
         {
@@ -126,6 +133,8 @@ namespace ArtificialIntelligence
                 }
             }
 
+            currentAction = ActionTypes.CHANGE_ROOM;
+
             return destiny;
 
         }
@@ -157,6 +166,8 @@ namespace ArtificialIntelligence
 
             }
 
+            currentAction = ActionTypes.CHOOSE_HIDDING_PLACE;
+
             return destiny;
         }
 
@@ -187,6 +198,8 @@ namespace ArtificialIntelligence
                 }
             }
 
+            currentAction = ActionTypes.CHANGE_HIDDING_PLACE;
+            agent.Unhide();
             return destiny;
         }
 
@@ -196,6 +209,7 @@ namespace ArtificialIntelligence
         */
         public Vector3 Wait()
         {
+            currentAction = ActionTypes.WAIT;
             return waitAction.GetDestination();
         }
 
@@ -205,6 +219,7 @@ namespace ArtificialIntelligence
         */
         public Vector3 Goal()
         {
+            currentAction = ActionTypes.GOAL;
             return goalAction.GetDestination();
         }
 
