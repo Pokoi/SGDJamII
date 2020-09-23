@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public enum Cells { Room, Corridor, Door, Empty }; // tipo de las celdas que utilizaremos
 
@@ -27,10 +27,14 @@ public class LevelCreator : MonoBehaviour
 
     private box[,] table;
 
+    private NavMeshSurface navigationSurface;
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject aux = new GameObject();
+
+        navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
 
         table = new box[matrixX, matrixY];
 
@@ -55,6 +59,10 @@ public class LevelCreator : MonoBehaviour
         createCorridors();
 
         wallsOnCorridors();
+
+        //Generate NavMesh
+        navigationSurface.BuildNavMesh();
+        
 
         clearPath();
 
