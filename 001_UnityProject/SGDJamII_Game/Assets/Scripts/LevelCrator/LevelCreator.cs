@@ -83,11 +83,9 @@ public class LevelCreator : MonoBehaviour
 
     private void CalculateRoomsDistances()
     {
-        List<Room> roomsList = roomManager.GetRooms();
+        List<ArtificialIntelligence.Room> roomsList = roomManager.GetRooms();
         int nRooms = roomsList.Count;
-        NavMeshAgent agent = new NavMeshAgent();
-
-
+        
         List<List<float>> distanceMatrix = roomManager.GetDistanceMatrix();
         for (int x = 0; x < nRooms; x++)
         {
@@ -101,24 +99,40 @@ public class LevelCreator : MonoBehaviour
                     continue;
                 }
 
-                float dist = GetDistanceBetweenPoints(agent, roomsList[x].transform.position, roomsList[y].transform.position);
+                float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position);
+                
+                Debug.Log(dist.ToString());
+
                 distanceMatrix[x].Add(dist);
+            }
+
+            var hiddingPlaces = roomsList[x].GetHiddingPlaces();
+
+            foreach(var hp in hiddingPlaces)
+            {
+                hp.SetDistanceToExitRoom(GetDistanceBetweenPoints(hp.transform.position, roomsList[x].GetDoor().transform.position));
             }
         }
     }
 
-    private float GetDistanceBetweenPoints(NavMeshAgent agent, Vector3 origin, Vector3 target)
+    private float GetDistanceBetweenPoints(Vector3 origin, Vector3 target)
     {
         NavMeshPath path = new NavMeshPath();
-
+        
         if (NavMesh.CalculatePath(origin, target, NavMesh.AllAreas, path))
         {
-            while (path.status != NavMeshPathStatus.PathComplete) ;
+            float distance = 0.0f;
+            Vector3[] corners = path.corners;
 
-            return agent.remainingDistance;
+            for (int k = 0; k < corners.Length -1; ++k)
+            {
+                distance += (corners[k] - corners[k + 1]).magnitude;                
+            }
+
+            return distance;
         }
-
-
+        
+        Debug.Log("Not path found");
         return -1.0f;
     }
 
