@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour
+public class WorldRoom : MonoBehaviour
 {
     public int RoomSizeX, RoomSizeY;
 

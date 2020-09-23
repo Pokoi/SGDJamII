@@ -53,10 +53,13 @@ namespace ArtificialIntelligence
 
         public bool GetIsGoal() => isGoal;
 
-        private void Awake() 
-        {
-            transform.parent.GetComponent<ArtificialIntelligence.RoomManager>().AddRoom(this);   
-        }
+        public void RegisterRoom() => transform.parent.GetComponent<ArtificialIntelligence.RoomManager>().AddRoom(this);
+
+        //private void Start() 
+        //{
+           
+        //    Debug.Log("Room added");
+        //}
 
         private void OnTriggerEnter(Collider other) 
         {

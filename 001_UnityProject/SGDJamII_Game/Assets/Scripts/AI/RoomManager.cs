@@ -36,8 +36,8 @@ namespace ArtificialIntelligence
 {
     public class RoomManager : MonoBehaviour
     {
-        [SerializeField] private List<ArtificialIntelligence.Room> rooms = new List<ArtificialIntelligence.Room>(); 
-        [SerializeField] private List<List<float>> distanceMatrix;
+        [SerializeField] private List<ArtificialIntelligence.Room> rooms = new List<ArtificialIntelligence.Room>();
+        [SerializeField] private List<List<float>> distanceMatrix = new List<List<float>>();
         [SerializeField] private Transform goal;
 
         public static ArtificialIntelligence.RoomManager singletonInstance;
@@ -103,6 +103,8 @@ namespace ArtificialIntelligence
         public Transform GetGoal()=> goal;     
 
         public void AddRoom(ArtificialIntelligence.Room room) => rooms.Add(room);
+
+        public List<List<float>> GetDistanceMatrix() => distanceMatrix;
 
     }
 
