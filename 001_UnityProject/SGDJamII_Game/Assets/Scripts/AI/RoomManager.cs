@@ -61,9 +61,7 @@ namespace ArtificialIntelligence
         @brief Genereate the nav mesh distances relevants in each room 
         */
         public void GenerateDistances()
-        {
-            
-            // TODO calculate distance from each room door to goal
+        {            
             // TODO calculate distance from each room hidding place to room door
             // TODO calculate distance between each room            
         }

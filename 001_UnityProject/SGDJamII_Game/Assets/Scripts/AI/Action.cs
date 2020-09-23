@@ -35,7 +35,8 @@ using UnityEngine;
 namespace ArtificialIntelligence
 {
     public class Action : MonoBehaviour
-    {      
+    {  
+            
         protected ArtificialIntelligence.IntelligentAgent agent;
         public virtual float CalculateHeuristic()
         {

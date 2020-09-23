@@ -37,12 +37,13 @@ namespace ArtificialIntelligence
     [RequireComponent (typeof(ArtificialIntelligence.Locomotion))]
     public class IntelligentAgent : MonoBehaviour
     {
-
         ArtificialIntelligence.Room suspicionLocation;
         ArtificialIntelligence.Room currentRoom;
         ArtificialIntelligence.HiddingPlace currentHiddingPlace;
         ArtificialIntelligence.Locomotion locomotor;
         ArtificialIntelligence.DecisionMaker thinker;   
+
+        MeshRenderer meshRenderer;
 
         public struct Psychology
         {
@@ -60,14 +61,16 @@ namespace ArtificialIntelligence
             locomotor = GetComponent<ArtificialIntelligence.Locomotion>();
             thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
             transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
+            meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
 
             psychology.changeRoomWeight = Random.Range(0.0f, 1.0f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.0f, 1.0f);
             psychology.waitingWeight = Random.Range(0.0f, 1.0f);
-            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);        
+            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);     
+
+        }
 
 
-        }        
 
         public void SetSuspicionLocation(ArtificialIntelligence.Room room) => suspicionLocation = room;
         public ArtificialIntelligence.Room GetSuspicionLocation() => suspicionLocation;
@@ -83,6 +86,49 @@ namespace ArtificialIntelligence
         public IntelligentAgent.Psychology GetPsychology() => psychology;
 
         public ArtificialIntelligence.DecisionMaker GetThinker() => thinker;
+
+        private void OnTriggerEnter(Collider other) 
+        {
+            if(other.gameObject.CompareTag("HiddingPlace"))
+            {
+                currentHiddingPlace = other.transform.GetComponent<ArtificialIntelligence.HiddingPlace>();
+            }
+            else if(other.gameObject.CompareTag("Room"))
+            {
+                currentRoom = other.transform.GetComponent<ArtificialIntelligence.Room>();
+            }            
+        }
+
+        /**
+        @brief Hides the agent
+        */
+        public void Hide()
+        {
+            if(currentHiddingPlace.IsAvailable())
+            {
+                meshRenderer.enabled = false;
+                currentHiddingPlace.AddAgent(this);
+            }
+
+        }
+
+        /**
+        @brief Reveals the agent
+        */
+        public void Unhide()
+        {
+            meshRenderer.enabled = true;
+            currentHiddingPlace.RemoveAgent(this);
+        }
+       
+        /**
+        @brief Method called when the agent reach the goal
+        */
+        public void AtGoal()
+        {
+            // DO SOMETHNG
+        }
+
 
     }
 

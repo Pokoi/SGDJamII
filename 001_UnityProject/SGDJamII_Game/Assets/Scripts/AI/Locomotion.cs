@@ -58,7 +58,35 @@ namespace ArtificialIntelligence
                 agent.destination = destination;
             }
 
-            SetDestination (intelligentAgent.GetThinker().MakeADecision());            
+            else
+            {
+                switch(intelligentAgent.GetThinker().GetCurrentAction())
+                {
+                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_HIDDING_PLACE:
+                    intelligentAgent.Hide();
+                    break;
+
+                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:
+                    break;
+
+                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE:
+                    intelligentAgent.Hide();
+                    break;
+
+                    case ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL:
+                    intelligentAgent.AtGoal();
+                    break;
+
+                    case ArtificialIntelligence.DecisionMaker.ActionTypes.WAIT:
+                    break;
+
+                }
+
+                SetDestination (intelligentAgent.GetThinker().MakeADecision());
+                            
+
+            }
+
         }
 
         public void SetDestination(Vector3 destination) => this.destination = destination;

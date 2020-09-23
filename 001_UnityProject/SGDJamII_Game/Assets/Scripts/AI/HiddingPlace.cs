@@ -34,6 +34,7 @@ using UnityEngine;
 
 namespace ArtificialIntelligence
 {
+     [RequireComponent (typeof(BoxCollider))]
     public class HiddingPlace : MonoBehaviour
     {
         [SerializeField] private int maxOccupation;
