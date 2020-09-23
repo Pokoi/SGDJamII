@@ -70,7 +70,20 @@ namespace ArtificialIntelligence
 
         }
 
+        /**
+        @brief Sets the ai agent into a given hidding place
+        @param hiddingPlace The hidding place where hide this agent
+        */
+        public void SetOnRandomHiddingPlace(ArtificialIntelligence.HiddingPlace hiddingPlace)
+        {
+            currentHiddingPlace = hiddingPlace;
+            currentRoom = hiddingPlace.GetOwnerRoom();
 
+            transform.position = hiddingPlace.transform.position;
+            locomotor.SetDestination(transform.position);
+            Hide();        
+
+        }
 
         public void SetSuspicionLocation(ArtificialIntelligence.Room room) => suspicionLocation = room;
         public ArtificialIntelligence.Room GetSuspicionLocation() => suspicionLocation;
