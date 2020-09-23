@@ -58,9 +58,20 @@ namespace ArtificialIntelligence
             public float destinyRoomDistanceToGoal;
             public float distanceToSuspectionFromOrigin;
             public float distanceToSuspectionFromDestiny;
+
+            public Weights(bool b)
+            {
+                distanceBetweenRooms = 0.14f;
+                hiddingPlacesDestinyRoom = 0.14f;
+                hiddingPlacesOriginRoom = 0.14f;
+                originRoomDistanceToGoal = 0.14f;
+                destinyRoomDistanceToGoal = 0.14f;
+                distanceToSuspectionFromOrigin = 0.14f;
+                distanceToSuspectionFromDestiny = 0.14f;
+            }
         }
 
-        Weights weights; 
+        Weights weights = new Weights(true); 
 
         /**
         @brief Reset the action with the given params
@@ -109,9 +120,19 @@ namespace ArtificialIntelligence
             public float distanceToGoalFromDestiny;
             public float chanceToRevealPositionOrigin;
             public float chanceToRevealPositionDestiny;
+
+            public Weights (bool b)
+            {
+                originOccupation = 0.15f;
+                destinyOccupation = 0.15f;
+                distanceToGoalFromOrigin = 0.15f;
+                distanceToGoalFromDestiny = 0.15f;
+                chanceToRevealPositionOrigin = 0.15f;
+                chanceToRevealPositionDestiny = 0.15f;
+            }
         } 
 
-        Weights weights;
+        Weights weights = new Weights(true); 
 
         /**
         @brief Reset the action with the given params
