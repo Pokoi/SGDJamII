@@ -102,6 +102,8 @@ namespace ArtificialIntelligence
         public List<ArtificialIntelligence.Room> GetRooms() => rooms;  
         public Transform GetGoal()=> goal;     
 
+        public void AddRoom(ArtificialIntelligence.Room room) => rooms.Add(room);
+
     }
 
 }

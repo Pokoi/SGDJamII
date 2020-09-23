@@ -44,6 +44,11 @@ namespace ArtificialIntelligence
         private float chanceToRevealPosition;
         private float distanceToExitRoom;
 
+        private void Awake() 
+        {
+          transform.parent.GetComponent<ArtificialIntelligence.Room>().AddHiddingPlace(this);  
+        }
+
         public bool IsAvailable() => currentOccupation < maxOccupation;
         
         public float GetOccupationRate() => (float) currentOccupation / (float) maxOccupation;

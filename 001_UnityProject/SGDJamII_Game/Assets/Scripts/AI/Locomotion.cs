@@ -41,10 +41,13 @@ namespace ArtificialIntelligence
         private UnityEngine.AI.NavMeshAgent agent;
         private Vector3 destination;
         private Transform cachedTransform;
+        private ArtificialIntelligence.IntelligentAgent intelligentAgent;
 
         private void Start() 
         {
-            agent = GetComponent<UnityEngine.AI.NavMeshAgent>(); 
+            agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+            intelligentAgent = GetComponent<ArtificialIntelligence.IntelligentAgent>();
+
             cachedTransform = transform;  
         }
 
@@ -54,6 +57,8 @@ namespace ArtificialIntelligence
             {
                 agent.destination = destination;
             }
+
+            SetDestination (intelligentAgent.GetThinker().MakeADecision());            
         }
 
         public void SetDestination(Vector3 destination) => this.destination = destination;

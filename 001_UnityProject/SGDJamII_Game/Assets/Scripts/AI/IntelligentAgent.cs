@@ -63,7 +63,7 @@ namespace ArtificialIntelligence
             psychology.changeRoomWeight = Random.Range(0.0f, 1.0f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.0f, 1.0f);
             psychology.waitingWeight = Random.Range(0.0f, 1.0f);
-            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);         
+            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);        
 
 
         }        
@@ -80,7 +80,9 @@ namespace ArtificialIntelligence
         public ArtificialIntelligence.HiddingPlace GetCurrentHiddingPlace() => currentHiddingPlace;        
 
         public IntelligentAgent.Psychology GetPsychology() => psychology;
-    
+
+        public ArtificialIntelligence.DecisionMaker GetThinker() => thinker;
+
     }
 
 }

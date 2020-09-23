@@ -53,6 +53,11 @@ namespace ArtificialIntelligence
 
         public bool GetIsGoal() => isGoal;
 
+        private void Awake() 
+        {
+            transform.parent.GetComponent<ArtificialIntelligence.RoomManager>().AddRoom(this);   
+        }
+
         private void OnTriggerEnter(Collider other) 
         {
             // TODO if other == player
