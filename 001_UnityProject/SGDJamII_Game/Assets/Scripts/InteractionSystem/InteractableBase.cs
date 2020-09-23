@@ -14,19 +14,29 @@ public class InteractableBase : MonoBehaviour, IInteractable
 {
     #region Variables
     [Header("Interactable Settings")]
+    [SerializeField] private string actionName;
 
     [Space]
     [SerializeField] private bool multipleUse = true;
     [SerializeField] private bool isInteractable = true;
 
     [Space]
-    [SerializeField] private string actionName;
+    [Header("Hold Settings")]
+    [SerializeField] private bool holdInteract;
+    [SerializeField] private float holdDuration;
+
     #endregion
 
     #region Properties
     public bool MultipleUse => multipleUse;
-    public bool IsInteractable => isInteractable;
+    public bool IsInteractable
+    {
+        get => isInteractable;
+        set => isInteractable = value;
+    }
     public string ActionName => actionName;
+    public float HoldDuration => holdDuration;
+    public bool HoldInteract => holdInteract;
     #endregion
 
     #region Methods

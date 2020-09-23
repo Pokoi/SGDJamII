@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,16 +24,22 @@ public class InteractionController : MonoBehaviour
     public float raySphereRadius;
     public LayerMask interactableLayer;
 
+    [Space]
     [SerializeField] Vector3 rayPositionOffset;
+
+    [Header("Debug")]
+    public float holdPercentage = 0f;
     #endregion
 
     #region Private
 
     bool m_interacting;
-    bool m_firstInteractingInput;
+    bool m_firstInteractingInput = true;
 
     bool m_hitSomething;
     Ray m_ray;
+
+    float m_holdTimer = 0f;
     #endregion
 
     #region Built In Methods
@@ -98,29 +105,61 @@ public class InteractionController : MonoBehaviour
             if (!interactionData.Interactable.IsInteractable)
                 return;
 
+            if (interactionData.Interactable.HoldInteract)
+            {
+                m_holdTimer += Time.deltaTime;
+
+                double _holdP = Mathf.Clamp(m_holdTimer / interactionData.Interactable.HoldDuration, 0f, 1f);
+                holdPercentage = (float) Math.Round(_holdP, 2);
+                                            
+                if (m_holdTimer >= interactionData.Interactable.HoldDuration)
+                {
+                    Interact();
+                }
+            }
             else
             {
-                interactionData.Interact();
-                m_interacting = false;
-                m_firstInteractingInput = false;
+                Interact();
             }
         }
     }
 
+    void Interact()
+    {
+        interactionData.Interact();
+        m_interacting = false;
+        m_firstInteractingInput = false;
+        holdPercentage = 0f;
+    }
+
+    #region Input
+
     public void OnInteractionPress()
     {
         m_interacting = true;
+
+        if (m_firstInteractingInput)
+            m_holdTimer = 0f;
     }
 
     public void OnInteractionUnpress()
     {
         m_interacting = false;
         m_firstInteractingInput = true;
+        m_holdTimer = 0f;
+        holdPercentage = 0f;
     }
+
+    #endregion
+
+    #region Debug
 
     void DrawInteractionRay()
     {
         Debug.DrawRay(gameObject.transform.position + rayPositionOffset, gameObject.transform.forward * rayDistance, m_hitSomething ? Color.green : Color.red);
     }
+
+    #endregion
+
     #endregion
 }

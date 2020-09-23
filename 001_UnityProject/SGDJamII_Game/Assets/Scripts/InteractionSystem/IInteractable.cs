@@ -14,6 +14,8 @@ public interface IInteractable
     string ActionName { get; }
     bool MultipleUse { get; }
     bool IsInteractable { get; }
+    bool HoldInteract { get; }
+    float HoldDuration { get; }
 
 
     void OnInteract();
