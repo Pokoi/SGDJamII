@@ -34,7 +34,11 @@ public class InteractableBase : MonoBehaviour, IInteractable
         get => isInteractable;
         set => isInteractable = value;
     }
-    public string ActionName => actionName;
+    public string ActionName
+    {
+        get => actionName;
+        set => actionName = value;
+    }
     public float HoldDuration => holdDuration;
     public bool HoldInteract => holdInteract;
     #endregion
