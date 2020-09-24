@@ -104,7 +104,7 @@ namespace ArtificialIntelligence
             int roomIndex = Random.Range(0, maxRoom);
             suspicionLocation = rooms[roomIndex];
 
-            ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
+            //ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
             
             return suspicionLocation;
         } 

@@ -157,7 +157,7 @@ public class AStar : Singleton<AStar>
                     if (table[ady.i_, ady.j_].cell == Cells.Empty)
                         weight = 1;
                     else if (table[ady.i_, ady.j_].cell == Cells.Door)
-                        weight = int.MaxValue;
+                        weight = 4;
                     else if (table[ady.i_, ady.j_].cell == Cells.Corridor)
                         weight = 4;
                     else if (table[ady.i_, ady.j_].cell == Cells.Room)
@@ -290,7 +290,7 @@ public class AStar : Singleton<AStar>
         if (table[n.i_, n.j_].cell == Cells.Empty)
             weight = 1;
         else if (table[n.i_, n.j_].cell == Cells.Door)
-            weight = int.MaxValue;
+            weight = 4;
         else if (table[n.i_, n.j_].cell == Cells.Corridor)
             weight = 4;
         else if (table[n.i_, n.j_].cell == Cells.Room)

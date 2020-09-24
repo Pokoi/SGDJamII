@@ -65,7 +65,7 @@ namespace ArtificialIntelligence
             chooseHiddingPlaceAction.SetAgent(agent);
             changeRoomAction.SetAgent(agent);
             waitAction.SetAgent(agent);
-            goalAction.SetAgent(agent);           
+            goalAction.SetAgent(agent);         
         }
 
         public Vector3 MakeADecision()
@@ -96,9 +96,9 @@ namespace ArtificialIntelligence
                 changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
                 changeHiddingPlaceHeuristic = agent.GetPsychology().changeHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);
 
-                if(waitinghHeuristic < changeRoomHeuristic)
+                if(waitinghHeuristic > changeRoomHeuristic)
                 {
-                    if(waitinghHeuristic < changeHiddingPlaceHeuristic)
+                    if(waitinghHeuristic > changeHiddingPlaceHeuristic)
                     {
                         return Wait();
                     }
@@ -107,7 +107,7 @@ namespace ArtificialIntelligence
                         return  ChooseNewDestinyHiddingPlace();
                     }
                 }
-                else if(changeRoomHeuristic < changeHiddingPlaceHeuristic)
+                else if(changeRoomHeuristic > changeHiddingPlaceHeuristic)
                 {
                     return ChooseDestinyRoom();
                 }
