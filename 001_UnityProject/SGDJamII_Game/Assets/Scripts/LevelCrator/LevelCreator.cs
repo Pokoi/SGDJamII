@@ -69,7 +69,7 @@ public class LevelCreator : MonoBehaviour
 
         wallsOnCorridors();
 
-        //clearPath();
+        clearPath();
 
         //Generate NavMesh
         navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
