@@ -22,7 +22,7 @@ namespace ArtificialIntelligence
                 Destroy(this);
             }    
         }
-        
+
         public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) => agents.Add(agent);
         public List<ArtificialIntelligence.IntelligentAgent> GetAgents() => agents;
 
@@ -60,7 +60,9 @@ namespace ArtificialIntelligence
 
         }
 
-        public Transform GetPlayerReference() => player;        
+        public Transform GetPlayerReference() => player;  
+        
+        public void SetPlayerReference(Transform t) { player = t; }
     }
 
 }
