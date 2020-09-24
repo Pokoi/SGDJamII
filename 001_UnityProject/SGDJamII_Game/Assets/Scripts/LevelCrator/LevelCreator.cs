@@ -278,7 +278,7 @@ public class LevelCreator : MonoBehaviour
 
             GameObject roomGo = Instantiate(r.gameObject, new Vector3(rndX, 0, rndY), Quaternion.identity);
 
-            GameObject doorObject = createPhysicalDoor(roomGo, table[r.roomDoorX, r.roomDoorY].mapCell);
+            GameObject doorObject = createPhysicalDoor(roomGo, table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).gameObject);
 
             GameObject d = new GameObject();
             d.AddComponent<Door>();
