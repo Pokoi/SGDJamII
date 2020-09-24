@@ -55,17 +55,20 @@ namespace ArtificialIntelligence
             }    
         }
 
-
-
         /**
-        @brief Genereate the nav mesh distances relevants in each room 
+        @brief Sets the position of the goal transform
         */
-        public void GenerateDistances()
-        {            
-            // TODO calculate distance from each room hidding place to room door
-            // TODO calculate distance between each room            
+        public void SetGoal()
+        {
+            foreach(ArtificialIntelligence.Room room in rooms)
+            {
+                if(room.GetIsGoal())
+                {
+                    goal = room.transform.Find("Goal");
+                    return;
+                }
+            }
         }
-
 
         /**
         @brief Get the distance between two rooms 

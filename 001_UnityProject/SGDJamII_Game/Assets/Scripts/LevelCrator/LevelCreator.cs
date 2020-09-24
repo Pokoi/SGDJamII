@@ -83,6 +83,9 @@ public class LevelCreator : MonoBehaviour
 
     private void CalculateRoomsDistances()
     {
+
+        roomManager.SetGoal();
+
         List<ArtificialIntelligence.Room> roomsList = roomManager.GetRooms();
         int nRooms = roomsList.Count;
         
