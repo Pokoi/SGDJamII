@@ -247,11 +247,13 @@ MonoBehaviour:
   CORRIDORMATERIAL: {fileID: 2100000, guid: 4c3d7516712df2941986f0d006c925ea, type: 2}
   ROOMMATERIAL: {fileID: 2100000, guid: d75edf6ae91d886429cacd0fca5937d5, type: 2}
   DOORMATERIAL: {fileID: 2100000, guid: 758a012b670d4df44be0ea667be58feb, type: 2}
-  matrixX: 15
-  matrixY: 15
+  matrixX: 20
+  matrixY: 20
   rooms:
   - {fileID: 6385482204816784483, guid: 9fd2b8d638164634aa2efd2d53c3ad5d, type: 3}
   - {fileID: 8299107982214392787, guid: fc293a4acc6c7264399fb7714f45ea72, type: 3}
+  - {fileID: -6432014019499517459, guid: d2099d7bc9400544b993b5379ed2af07, type: 3}
+  - {fileID: -6432014019499517459, guid: df2c6162770e30142b20be995733258b, type: 3}
   - {fileID: -6432014019499517459, guid: d2099d7bc9400544b993b5379ed2af07, type: 3}
   - {fileID: -6432014019499517459, guid: df2c6162770e30142b20be995733258b, type: 3}
   tiles:

@@ -64,9 +64,12 @@ public class LevelCreator : MonoBehaviour
             createRoom(r);
         }
 
-        createCorridors();
+        createCorridors(true);
+        createCorridors(false);
 
         wallsOnCorridors();
+
+        //clearPath();
 
         //Generate NavMesh
         navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
@@ -77,7 +80,7 @@ public class LevelCreator : MonoBehaviour
         CalculateRoomsDistances();
 
         HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
-        clearPath();
+
     }
 
     private void CalculateRoomsDistances()
@@ -100,14 +103,14 @@ public class LevelCreator : MonoBehaviour
                     distanceMatrix[x].Add(0.0f);
                     continue;
                 }
-                
-                float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position); 
-                
-                if(roomsList[y].GetIsGoal())
+
+                float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position);
+
+                if (roomsList[y].GetIsGoal())
                 {
                     roomsList[x].GetDoor().SetDistanceToGoal(dist);
-                }             
-                
+                }
+
 
                 distanceMatrix[x].Add(dist);
             }
@@ -149,7 +152,6 @@ public class LevelCreator : MonoBehaviour
             {
                 if (table[i, j].cell == Cells.Corridor || table[i, j].cell == Cells.Door)
                 {
-                    table[i, j].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = CORRIDORMATERIAL;
                     wallsOnADy(i, j);
                 }
             }
@@ -170,7 +172,7 @@ public class LevelCreator : MonoBehaviour
 
         if (j + 1 == matrixY)
             table[i, j].mapCell.GetComponent<Tile>().EastWall.SetActive(true);
-        else if (j + 1 < matrixY && table[i, j + 1].cell == Cells.Empty )
+        else if (j + 1 < matrixY && table[i, j + 1].cell == Cells.Empty)
             table[i, j].mapCell.GetComponent<Tile>().EastWall.SetActive(true);
 
         if (j - 1 < 0)
@@ -184,45 +186,55 @@ public class LevelCreator : MonoBehaviour
 
     private void clearPath()
     {
-        //for (int i = 0; i < matrixX; i++)
-        //    for (int j = 0; j < matrixY; j++)
-        //    {
-        //        if (!table[i, j].occupied)
-        //            Destroy(table[i, j].mapCell);
-        //    }
+        for (int i = 0; i < matrixX; i++)
+            for (int j = 0; j < matrixY; j++)
+            {
+                if (table[i, j].cell == Cells.Empty)
+                    DestroyImmediate(table[i, j].mapCell);
+            }
     }
 
-    private void createCorridors()
+    private void createCorridors(bool toCenter)
     {
-        foreach (WorldRoom r in rooms)
+        foreach (Room r in roomManager.GetRooms())
         {
-            WorldRoom closestOne = FindClosestRoom(r);
+            WorldRoom rRoom = r.GetComponent<WorldRoom>();
+
+            WorldRoom closestOne;
+
+            if (toCenter)
+                closestOne = FindClosestRoom(rRoom);
+            else
+                closestOne = rooms[0];
+
             if (closestOne)
             {
-                var condition = AStar.Instance.Begin(0, closestOne.roomDoorX, closestOne.roomDoorY, r.roomDoorX, r.roomDoorY, table);
+                var condition = AStar.Instance.Begin(0, closestOne.roomDoorX, closestOne.roomDoorY, rRoom.roomDoorX, rRoom.roomDoorY, table);
+
                 if (condition)
                 {
                     List<Node> path = AStar.Instance.getPath();
+
                     foreach (Node n in path)
                     {
-                        if (!(n.i_ == closestOne.roomDoorX && n.j_ == closestOne.roomDoorY) &&
-                            !(n.i_ == r.roomDoorX && n.j_ == r.roomDoorY))
-                        {
-                            table[n.i_, n.j_].occupied = true;
-                            table[n.i_, n.j_].cell = Cells.Corridor;
+                        //if (!(n.i_ == closestOne.roomDoorX && n.j_ == closestOne.roomDoorY) &&
+                        //    !(n.i_ == r.roomDoorX && n.j_ == r.roomDoorY))
+                        //{
+                        table[n.i_, n.j_].occupied = true;
+                        table[n.i_, n.j_].cell = Cells.Corridor;
+                        table[n.i_, n.j_].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = CORRIDORMATERIAL;
 
-                        }
+                        //}
                     }
                 }
 
-                Debug.Log(condition);
             }
         }
     }
 
     private WorldRoom FindClosestRoom(WorldRoom room)
     {
-        float closestDistance = Mathf.Infinity;
+        float closestDistance = float.MaxValue;
         WorldRoom closestRoom = null;
 
         foreach (WorldRoom r in rooms)
@@ -274,6 +286,7 @@ public class LevelCreator : MonoBehaviour
 
 
             table[r.roomDoorX, r.roomDoorY].cell = Cells.Door;
+
             table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = DOORMATERIAL;
 
             GameObject roomGo = Instantiate(r.gameObject, new Vector3(rndX, 0, rndY), Quaternion.identity);
@@ -289,6 +302,8 @@ public class LevelCreator : MonoBehaviour
 
             DestroyImmediate(doorObject);
 
+            //doorObject.GetComponent<Renderer>().material = DOORMATERIAL;
+
             Room roomComponent = roomGo.GetComponent<Room>();
             roomGo.transform.parent = roomManager.transform;
             roomComponent.RegisterRoom();
@@ -303,14 +318,13 @@ public class LevelCreator : MonoBehaviour
         float closestDistance = float.MaxValue;
         GameObject closest = null;
 
-
-        for(int i = 0; i < child; i++)
+        for (int i = 0; i < child; i++)
         {
-            if(!r.transform.GetChild(i).CompareTag("HiddingPlace"))
+            if (!r.transform.GetChild(i).CompareTag("HiddingPlace"))
             {
                 float distance = Vector3.Distance(tableDoor.transform.position, r.transform.GetChild(i).position);
 
-                if(distance < closestDistance)
+                if (distance < closestDistance)
                 {
                     closestDistance = distance;
                     closest = r.transform.GetChild(i).gameObject;
@@ -337,7 +351,7 @@ public class LevelCreator : MonoBehaviour
             y = rndY;
         else y = (rndY + r.RoomSizeY) + 1;
 
-        if((x == rndX && y == rndY) || (x == rndX && y == (rndY + r.RoomSizeY) + 1) || 
+        if ((x == rndX && y == rndY) || (x == rndX && y == (rndY + r.RoomSizeY) + 1) ||
             (x == (rndX + r.RoomSizeX) + 1 && y == rndY) || (x == (rndX + r.RoomSizeX) + 1 && y == (rndY + r.RoomSizeY) + 1))
         {
             if (rnd == 0)
