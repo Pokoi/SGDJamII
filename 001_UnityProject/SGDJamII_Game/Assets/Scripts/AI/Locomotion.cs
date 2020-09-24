@@ -77,8 +77,7 @@ namespace ArtificialIntelligence
                         intelligentAgent.Hide();
                         break;
 
-                        case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:
-                        int i = 0;
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:                        
                         break;
 
                         case ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE:

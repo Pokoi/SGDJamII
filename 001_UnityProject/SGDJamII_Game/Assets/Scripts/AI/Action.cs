@@ -195,9 +195,16 @@ namespace ArtificialIntelligence
         {     
             public float destinyOccupation; 
             public float chanceToRevealPositionDestiny;
-        } 
 
-        Weights weights;
+            public Weights(bool b)
+            {
+                destinyOccupation = 0.2f;
+                chanceToRevealPositionDestiny = 0.15f;
+            }
+
+        }
+
+        Weights weights = new Weights(true);
 
         /**
         @brief Reset the action with the given params
@@ -223,7 +230,7 @@ namespace ArtificialIntelligence
         @return The destination coordinates
         */
         public Vector3 GetDestination() => destiny.transform.position;
-        
+
     }
 
     public class Wait : ArtificialIntelligence.Action

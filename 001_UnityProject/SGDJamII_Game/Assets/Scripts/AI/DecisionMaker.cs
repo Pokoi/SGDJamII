@@ -162,7 +162,7 @@ namespace ArtificialIntelligence
 
             foreach(ArtificialIntelligence.HiddingPlace hp in hiddingPlaces)
             {
-                if(hp != null && hp.GetMaxOccupation() > hp.GetCurrentOccupation())
+                if(hp.GetMaxOccupation() > hp.GetCurrentOccupation())
                 {
                     chooseHiddingPlaceAction.Reset(hp);
                     ChangeDestinationWhenHeuristicImprovement
@@ -172,17 +172,13 @@ namespace ArtificialIntelligence
                                                                 chooseHiddingPlaceAction.GetDestination(),
                                                                 ref destiny
                                                             );           
-                }
-                else
-                {
-                    int a = 25;
-                }
+                }               
 
             }
 
             currentAction = ActionTypes.CHOOSE_HIDDING_PLACE;            
            
-           return destiny == Vector3.zero ? chooseHiddingPlaceAction.GetDestination() : destiny;
+           return destiny == Vector3.zero ? ChooseDestinyRoom() : destiny;
         }
 
         /**
@@ -215,7 +211,7 @@ namespace ArtificialIntelligence
             currentAction = ActionTypes.CHANGE_HIDDING_PLACE;            
             agent.Unhide();
             
-            return destiny == Vector3.zero ? changeHiddingPlaceAction.GetDestination() : destiny;
+            return destiny == Vector3.zero ? ChooseDestinyRoom() : destiny;
         }
 
         /**
