@@ -43,7 +43,7 @@ namespace ArtificialIntelligence
         private Transform cachedTransform;
         private ArtificialIntelligence.IntelligentAgent intelligentAgent;
 
-        private void Start() 
+        public void Init() 
         {
             agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
             intelligentAgent = GetComponent<ArtificialIntelligence.IntelligentAgent>();

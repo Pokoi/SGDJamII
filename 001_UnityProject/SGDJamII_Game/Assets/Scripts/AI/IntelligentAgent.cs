@@ -58,9 +58,11 @@ namespace ArtificialIntelligence
         public IntelligentAgent.Psychology psychology;    
 
 
-        private void Start() 
+        public void Init() 
         {
             locomotor = GetComponent<ArtificialIntelligence.Locomotion>();
+            locomotor.Init();
+
             thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
             transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
             meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
@@ -108,9 +110,9 @@ namespace ArtificialIntelligence
 
             /*
             suspicionLocation = currentRoom;
-            */
+            
             ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
-
+            */
             return suspicionLocation;
         } 
 

@@ -15,8 +15,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../ProyectoFMOD/ProyectoFMOD.fspro
-  sourceBankPath: ..\..\ProyectoFMOD\Build
+  sourceProjectPath: Assets/Sound and Music/FMODproject/FMODproject.fspro
+  sourceBankPath: Assets\Sound and Music\FMODproject\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
