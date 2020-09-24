@@ -79,14 +79,33 @@ namespace ArtificialIntelligence
             currentHiddingPlace = hiddingPlace;
             currentRoom = hiddingPlace.GetOwnerRoom();
 
+            var component = locomotor.GetNavMeshAgent();
+            component.enabled = false;
+            
             transform.position = hiddingPlace.transform.position;
+
+            component.enabled = true;
+
+            //locomotor.GetNavMeshAgent().Warp(hiddingPlace.transform.position);
             locomotor.SetDestination(transform.position);
             Hide();        
+            locomotor.Activate();
 
         }
 
         public void SetSuspicionLocation(ArtificialIntelligence.Room room) => suspicionLocation = room;
-        public ArtificialIntelligence.Room GetSuspicionLocation() => suspicionLocation;
+        public ArtificialIntelligence.Room GetSuspicionLocation() 
+        {
+            
+            // FOR DEBUG PURPOSES ONLY:
+            var rooms = ArtificialIntelligence.RoomManager.singletonInstance.GetRooms();
+            int maxRoom = rooms.Count;           
+
+            int roomIndex = Random.Range(0, maxRoom);
+            suspicionLocation = rooms[roomIndex];
+            
+            return suspicionLocation;
+        } 
 
         public void SetCurrentRoom(ArtificialIntelligence.Room room) => currentRoom = room;
 
@@ -122,7 +141,6 @@ namespace ArtificialIntelligence
                 meshRenderer.enabled = false;
                 currentHiddingPlace.AddAgent(this);
             }
-
         }
 
         /**

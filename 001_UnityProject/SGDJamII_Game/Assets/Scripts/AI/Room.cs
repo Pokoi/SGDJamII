@@ -51,6 +51,8 @@ namespace ArtificialIntelligence
 
         public ArtificialIntelligence.Door GetDoor() => door;
 
+        public void setDoor(ArtificialIntelligence.Door d) { door = d; }
+
         public bool GetIsGoal() => isGoal;
 
         public void RegisterRoom() => transform.parent.GetComponent<ArtificialIntelligence.RoomManager>().AddRoom(this);
