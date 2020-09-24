@@ -80,6 +80,8 @@ public class LevelCreator : MonoBehaviour
         //Calculate distances between rooms
         CalculateRoomsDistances();
 
+        HiveManager.singletonInstance.SetPlayerReference(GameObject.FindGameObjectWithTag("Player").gameObject.transform);
+
         HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
 
     }
@@ -223,7 +225,8 @@ public class LevelCreator : MonoBehaviour
                         //{
                         table[n.i_, n.j_].occupied = true;
                         table[n.i_, n.j_].cell = Cells.Corridor;
-                        table[n.i_, n.j_].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = CORRIDORMATERIAL;
+                        if(CORRIDORMATERIAL)
+                            table[n.i_, n.j_].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = CORRIDORMATERIAL;
 
                         //}
                     }
@@ -272,7 +275,8 @@ public class LevelCreator : MonoBehaviour
                 {
                     table[rndX + i, rndY + j].occupied = true;
                     table[rndX + i, rndY + j].cell = Cells.Room;
-                    table[rndX + i, rndY + j].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = ROOMMATERIAL;
+                    if (ROOMMATERIAL)
+                        table[rndX + i, rndY + j].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = ROOMMATERIAL;
                 }
 
             r.matrixStartX = rndX;
@@ -288,7 +292,8 @@ public class LevelCreator : MonoBehaviour
 
             table[r.roomDoorX, r.roomDoorY].cell = Cells.Door;
 
-            table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = DOORMATERIAL;
+            if (DOORMATERIAL)
+                table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = DOORMATERIAL;
 
             GameObject roomGo = Instantiate(r.gameObject, new Vector3(rndX, 0, rndY), Quaternion.identity);
 
