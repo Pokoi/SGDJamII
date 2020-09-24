@@ -28,7 +28,7 @@ public class LevelCreator : MonoBehaviour
 
     private box[,] table;
 
-    private NavMeshSurface navigationSurface;
+    public NavMeshSurface navigationSurface;
 
     //Rooms assign
     private RoomManager roomManager;
@@ -40,9 +40,10 @@ public class LevelCreator : MonoBehaviour
         //RoomManager creation
         GameObject roomManagerGO = new GameObject("RoomManager");
         roomManager = roomManagerGO.AddComponent(typeof(RoomManager)) as RoomManager;
+        
 
-
-        GameObject aux = new GameObject();
+        GameObject aux = new GameObject("FloorLayout");
+        
 
         table = new box[matrixX, matrixY];
 
@@ -55,6 +56,7 @@ public class LevelCreator : MonoBehaviour
                 GameObject g = Instantiate(tiles[Random.Range(0, tiles.Length)], new Vector3(i, 0, j), Quaternion.identity);
                 table[i, j].mapCell = g;
                 g.transform.parent = aux.transform;
+                g.layer = LayerMask.NameToLayer("NavMeshSurface");
                 table[i, j].cell = Cells.Empty;
             }
         }
@@ -72,8 +74,7 @@ public class LevelCreator : MonoBehaviour
         clearPath();
 
         //Generate NavMesh
-        navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
-
+       
         navigationSurface.BuildNavMesh();
 
         //Calculate distances between rooms

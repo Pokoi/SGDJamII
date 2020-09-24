@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 right;
 
     [HideInInspector]
-    public bool running;
+    public bool running = false;
 
     private Rigidbody rb;
 
@@ -34,45 +34,21 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInputHandler>();
 
         currentSpeed = startSpeed;
-
     }
 
     void FixedUpdate()
     {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
 
         newMovementInput = playerInput.movementInput;
-        //if (newMovementInput.magnitude < minInput)
-        //    newMovementInput = Vector2.zero;
 
         float realBuildUpSpeed = 1f - Mathf.Pow(1f - buildUpSpeed, Time.deltaTime * 60);
         movementInput = Vector2.Lerp(movementInput, newMovementInput, realBuildUpSpeed);
 
-        // Movement ---------------------------------------------------
-        //Vector3 hMovement;
-        //Vector3 vMovement;
-
-
-        // hMovement = transform.right * movementInput.x;
-        //vMovement = transform.forward * movementInput.y;
-
         if (running)
             currentSpeed = startSpeed * 1.5f;
 
-
-
-        // Vector3 finalMovement = Vector3.ClampMagnitude((hMovement + vMovement), 1.0f) * currentSpeed * Time.deltaTime;
-
-
-
-        //// Rotation ---------------------------------------------------
-        //if (newMovementInput.magnitude > minInput)
-        //{
-        //    //Vector3 heading = (hMovement + vMovement);
-        //    //transform.forward = heading;
-
-        //}
         Vector3 heading = (Vector3.Normalize(Camera.main.transform.forward) * movementInput.y +
             Vector3.Normalize(Camera.main.transform.right) * movementInput.x);
 
@@ -80,8 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
         transform.forward = Vector3.Slerp(transform.forward, heading, rotationSpeed * Time.deltaTime);
 
-        transform.position += heading
-            * Time.deltaTime * currentSpeed;
+        /*transform.position += heading
+            * Time.deltaTime * currentSpeed;*/
+        rb.velocity = heading * currentSpeed;
 
         currentSpeed = startSpeed;
     }
