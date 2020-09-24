@@ -44,6 +44,7 @@ namespace ArtificialIntelligence
         ArtificialIntelligence.DecisionMaker thinker;   
 
         MeshRenderer meshRenderer;
+        CapsuleCollider collider;
 
         [System.Serializable]
         public struct Psychology
@@ -66,8 +67,9 @@ namespace ArtificialIntelligence
             thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
             transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
             meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
+            collider = transform.GetComponent<CapsuleCollider>();            
 
-            psychology.changeRoomWeight = Random.Range(0.0f, 0.0f);
+            psychology.changeRoomWeight = Random.Range(0.0f, 0.1f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.5f, 1.0f);
             psychology.waitingWeight = Random.Range(0.7f, 1.0f);
             psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f);     
@@ -160,7 +162,7 @@ namespace ArtificialIntelligence
                 meshRenderer.enabled = false;
                 currentHiddingPlace.Use();
                 currentHiddingPlace.AddAgent(this);
-                transform.GetComponent<Collider>().enabled = false;
+                collider.enabled = false;
             }
         }
 
@@ -170,11 +172,12 @@ namespace ArtificialIntelligence
         public void Unhide()
         {
             meshRenderer.enabled = true;
+            collider.enabled = true;
 
             if(currentHiddingPlace)
             {
                 currentHiddingPlace.RemoveAgent(this);                              
-                transform.GetComponent<Collider>().enabled = true;
+                collider.enabled = true;
             }
         }
        

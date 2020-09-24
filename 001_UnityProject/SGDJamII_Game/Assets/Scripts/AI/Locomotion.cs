@@ -63,7 +63,7 @@ namespace ArtificialIntelligence
             {
                 yield return new WaitForEndOfFrame();                
 
-                if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.5f)
+                if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.1f)
                 {
                     agent.destination = destination; 
                     intelligentAgent.Unhide();              
@@ -92,17 +92,15 @@ namespace ArtificialIntelligence
 
                         case ArtificialIntelligence.DecisionMaker.ActionTypes.WAIT:
                         break;
-
                     }
 
-
                     var destiny = intelligentAgent.GetThinker().MakeADecision();   
-
-                    float seconds = intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL || 
-                                    intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE ||
-                                    intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM ? 
+                    
+                    float seconds = intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL ||
+                                    intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE
+                                    ?                                    
                                     0.1f :
-                                    Random.Range(1.5f, 6.0f); 
+                                    Random.Range(6.0f, 12.0f);
                    
 
                     yield return new WaitForSeconds(seconds);

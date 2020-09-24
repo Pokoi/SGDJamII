@@ -223,6 +223,7 @@ namespace ArtificialIntelligence
         @return The destination coordinates
         */
         public Vector3 GetDestination() => destiny.transform.position;
+        
     }
 
     public class Wait : ArtificialIntelligence.Action

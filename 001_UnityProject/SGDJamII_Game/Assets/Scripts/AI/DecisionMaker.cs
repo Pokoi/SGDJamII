@@ -51,7 +51,7 @@ namespace ArtificialIntelligence
 
         public ActionTypes GetCurrentAction() => currentAction;
 
-        private void Start()
+        private void Awake()
         {
             agent = GetComponent<IntelligentAgent>(); 
 
@@ -79,8 +79,13 @@ namespace ArtificialIntelligence
 
             // In case the AI is in the same room of the goal, the AI runs to the goal point
             if(agent.GetCurrentRoom() != null && agent.GetCurrentRoom().GetIsGoal())
-            {
+            {                
                 return Goal();
+            }
+
+            if(currentAction == ActionTypes.CHANGE_ROOM)
+            {
+                return ChooseDestinyHiddingPlace();
             }
 
             var suspicion = agent.GetSuspicionLocation();
@@ -97,7 +102,7 @@ namespace ArtificialIntelligence
                 }
                 else
                 {                        
-                    return  ChooseNewDestinyHiddingPlace();
+                    return ChooseDestinyHiddingPlace();
                 }
             }
             else if(changeRoomHeuristic > changeHiddingPlaceHeuristic)
@@ -107,8 +112,7 @@ namespace ArtificialIntelligence
             else 
             {                    
                 return Wait();
-            }
-                
+            }               
                        
         }
 
@@ -141,7 +145,7 @@ namespace ArtificialIntelligence
 
             currentAction = ActionTypes.CHANGE_ROOM;                  
             
-            return destiny == Vector3.zero ? Wait() : destiny;
+            return destiny == Vector3.zero ? changeRoomAction.GetDestination() : destiny;
 
         }
 
@@ -158,7 +162,7 @@ namespace ArtificialIntelligence
 
             foreach(ArtificialIntelligence.HiddingPlace hp in hiddingPlaces)
             {
-                if(hp.GetMaxOccupation() > hp.GetCurrentOccupation())
+                if(hp != null && hp.GetMaxOccupation() > hp.GetCurrentOccupation())
                 {
                     chooseHiddingPlaceAction.Reset(hp);
                     ChangeDestinationWhenHeuristicImprovement
@@ -168,6 +172,10 @@ namespace ArtificialIntelligence
                                                                 chooseHiddingPlaceAction.GetDestination(),
                                                                 ref destiny
                                                             );           
+                }
+                else
+                {
+                    int a = 25;
                 }
 
             }
@@ -207,7 +215,7 @@ namespace ArtificialIntelligence
             currentAction = ActionTypes.CHANGE_HIDDING_PLACE;            
             agent.Unhide();
             
-            return destiny == Vector3.zero ? Wait() : destiny;
+            return destiny == Vector3.zero ? changeHiddingPlaceAction.GetDestination() : destiny;
         }
 
         /**
