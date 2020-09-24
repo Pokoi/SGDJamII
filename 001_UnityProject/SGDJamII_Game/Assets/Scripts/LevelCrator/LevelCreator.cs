@@ -44,8 +44,6 @@ public class LevelCreator : MonoBehaviour
 
         GameObject aux = new GameObject();
 
-        navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
-
         table = new box[matrixX, matrixY];
 
 
@@ -71,16 +69,15 @@ public class LevelCreator : MonoBehaviour
         wallsOnCorridors();
 
         //Generate NavMesh
+        navigationSurface = aux.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
+
         navigationSurface.BuildNavMesh();
 
         //Calculate distances between rooms
         CalculateRoomsDistances();
 
-
         HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
-
         clearPath();
-
     }
 
     private void CalculateRoomsDistances()
@@ -90,7 +87,7 @@ public class LevelCreator : MonoBehaviour
 
         List<ArtificialIntelligence.Room> roomsList = roomManager.GetRooms();
         int nRooms = roomsList.Count;
-        
+
         List<List<float>> distanceMatrix = roomManager.GetDistanceMatrix();
         for (int x = 0; x < nRooms; x++)
         {
@@ -103,7 +100,7 @@ public class LevelCreator : MonoBehaviour
                     distanceMatrix[x].Add(0.0f);
                     continue;
                 }
-
+                
                 float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position); 
                 
                 if(roomsList[y].GetIsGoal())
@@ -111,12 +108,13 @@ public class LevelCreator : MonoBehaviour
                     roomsList[x].GetDoor().SetDistanceToGoal(dist);
                 }             
                 
+
                 distanceMatrix[x].Add(dist);
             }
 
             var hiddingPlaces = roomsList[x].GetHiddingPlaces();
 
-            foreach(var hp in hiddingPlaces)
+            foreach (var hp in hiddingPlaces)
             {
                 hp.SetDistanceToExitRoom(GetDistanceBetweenPoints(hp.transform.position, roomsList[x].GetDoor().transform.position));
             }
@@ -126,20 +124,20 @@ public class LevelCreator : MonoBehaviour
     private float GetDistanceBetweenPoints(Vector3 origin, Vector3 target)
     {
         NavMeshPath path = new NavMeshPath();
-        
+
         if (NavMesh.CalculatePath(origin, target, NavMesh.AllAreas, path))
         {
             float distance = 0.0f;
             Vector3[] corners = path.corners;
 
-            for (int k = 0; k < corners.Length -1; ++k)
+            for (int k = 0; k < corners.Length - 1; ++k)
             {
-                distance += (corners[k] - corners[k + 1]).magnitude;                
+                distance += (corners[k] - corners[k + 1]).magnitude;
             }
 
             return distance;
         }
-        
+
         Debug.Log("Not path found");
         return -1.0f;
     }
@@ -149,7 +147,7 @@ public class LevelCreator : MonoBehaviour
         for (int i = 0; i < matrixX; i++)
             for (int j = 0; j < matrixY; j++)
             {
-                if (table[i, j].cell == Cells.Corridor)
+                if (table[i, j].cell == Cells.Corridor || table[i, j].cell == Cells.Door)
                 {
                     table[i, j].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = CORRIDORMATERIAL;
                     wallsOnADy(i, j);
@@ -172,7 +170,7 @@ public class LevelCreator : MonoBehaviour
 
         if (j + 1 == matrixY)
             table[i, j].mapCell.GetComponent<Tile>().EastWall.SetActive(true);
-        else if (j + 1 < matrixY && table[i, j + 1].cell == Cells.Empty)
+        else if (j + 1 < matrixY && table[i, j + 1].cell == Cells.Empty )
             table[i, j].mapCell.GetComponent<Tile>().EastWall.SetActive(true);
 
         if (j - 1 < 0)
@@ -265,39 +263,29 @@ public class LevelCreator : MonoBehaviour
             r.matrixStartY = rndY;
 
             int x = 0, y = 0;
-            maxTries = 50;
 
-            bool worked = false;
+            createDoor(ref x, ref y, rndX - 1, rndY - 1, r);
 
-            while (maxTries-- >= 0 && !worked)
-            {
-                createDoor(ref x, ref y, rndX, rndY, r);
+            r.roomDoorX = x;
+            r.roomDoorY = y;
 
-                if (x == rndX || x == rndX + r.RoomSizeX || y == rndY || y == r.roomDoorY)
-                {
-                    worked = true;
-                }
-            }
-
-            if (worked)
-            {
-                r.roomDoorX = x;
-                r.roomDoorY = y;
-                Debug.Log("Worked door creation");
-            }
-
-            else
-            {
-                r.roomDoorX = rndX;
-                r.roomDoorY = rndY;
-                Debug.Log("Didnt work door creation, default position");
-            }
 
             table[r.roomDoorX, r.roomDoorY].cell = Cells.Door;
             table[r.roomDoorX, r.roomDoorY].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = DOORMATERIAL;
 
-
             GameObject roomGo = Instantiate(r.gameObject, new Vector3(rndX, 0, rndY), Quaternion.identity);
+
+            GameObject doorObject = createPhysicalDoor(roomGo, table[r.roomDoorX, r.roomDoorY].mapCell);
+
+            GameObject d = new GameObject();
+            d.AddComponent<Door>();
+            d.transform.position = doorObject.transform.position;
+            d.transform.parent = roomGo.transform;
+
+            roomGo.GetComponent<Room>().setDoor(d.GetComponent<Door>());
+
+            DestroyImmediate(doorObject);
+
             Room roomComponent = roomGo.GetComponent<Room>();
             roomGo.transform.parent = roomManager.transform;
             roomComponent.RegisterRoom();
@@ -306,10 +294,56 @@ public class LevelCreator : MonoBehaviour
         else Debug.Log("Cannot place this room, max tries reached");
     }
 
+    private GameObject createPhysicalDoor(GameObject r, GameObject tableDoor)
+    {
+        int child = r.gameObject.transform.childCount;
+        float closestDistance = float.MaxValue;
+        GameObject closest = null;
+
+
+        for(int i = 0; i < child; i++)
+        {
+            float distance = Vector3.Distance(tableDoor.transform.position, r.transform.GetChild(i).position);
+
+            if(distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = r.transform.GetChild(i).gameObject;
+            }
+        }
+
+        return closest;
+
+    }
+
     private void createDoor(ref int x, ref int y, int rndX, int rndY, WorldRoom r)
     {
-        x = Random.Range(rndX, rndX + r.RoomSizeX);
-        y = Random.Range(rndY, rndY + r.RoomSizeY);
+        x = Random.Range(rndX, rndX + r.RoomSizeX + 1);
+        y = Random.Range(rndY, rndY + r.RoomSizeY + 1);
+
+        int rnd = Random.Range(0, 4);
+
+        if (rnd == 0)
+            x = rndX;
+        else if (rnd == 1)
+            x = (rndX + r.RoomSizeX) + 1;
+        else if (rnd == 2)
+            y = rndY;
+        else y = (rndY + r.RoomSizeY) + 1;
+
+        if((x == rndX && y == rndY) || (x == rndX && y == (rndY + r.RoomSizeY) + 1) || 
+            (x == (rndX + r.RoomSizeX) + 1 && y == rndY) || (x == (rndX + r.RoomSizeX) + 1 && y == (rndY + r.RoomSizeY) + 1))
+        {
+            if (rnd == 0)
+                x++;
+            else if (rnd == 1)
+                x--;
+            else if (rnd == 2)
+                y++;
+            else y--;
+
+        }
+
     }
 
     private void randomPosition(ref int x, ref int y)
@@ -321,8 +355,8 @@ public class LevelCreator : MonoBehaviour
     private bool checkIfCanPlaceRoom(WorldRoom r, int x, int y)
     {
         bool canConstruct = true;
-        for (int i = 0; i < r.RoomSizeX; i++)
-            for (int j = 0; j < r.RoomSizeY; j++)
+        for (int i = -1; i < r.RoomSizeX + 1; i++)
+            for (int j = -1; j < r.RoomSizeY + 1; j++)
             {
                 if (x + i > matrixX - 2 || y + j > matrixY - 2 || x + i <= 0 || y + j <= 0 || table[x + i, y + j].occupied)
                 {
