@@ -9,6 +9,8 @@ namespace ArtificialIntelligence
         private List<ArtificialIntelligence.IntelligentAgent> agents = new List<ArtificialIntelligence.IntelligentAgent>();
         public static ArtificialIntelligence.HiveManager singletonInstance;
 
+        [SerializeField] private Transform player;
+
         private void Awake() 
         {
             if(singletonInstance == null)
@@ -57,6 +59,8 @@ namespace ArtificialIntelligence
             }
 
         }
+
+        public Transform GetPlayerReference() => player;        
     }
 
 }

@@ -53,7 +53,7 @@ namespace ArtificialIntelligence
 
         public UnityEngine.AI.NavMeshAgent  GetNavMeshAgent() => agent;
 
-        public void SetDestination(Vector3 destination) => this.destination = destination;
+        public void SetDestination(Vector3 destination) => this.destination = new Vector3(destination.x, 0.0f, destination.z);
         public void Activate() => StartCoroutine(LocomotionTask());
         public void Inactivate() => StopCoroutine(LocomotionTask()); 
 
@@ -62,9 +62,10 @@ namespace ArtificialIntelligence
             while(true)
             {
                 yield return new WaitForEndOfFrame();
-                if(Vector3.Distance (destination, cachedTransform.position) > 0.2f)
+                if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.2f)
                 {
                     agent.destination = destination;
+                    intelligentAgent.Unhide();
                 }
 
                 else
@@ -76,6 +77,7 @@ namespace ArtificialIntelligence
                         break;
 
                         case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:
+                        int i = 0;
                         break;
 
                         case ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE:
@@ -92,9 +94,11 @@ namespace ArtificialIntelligence
 
                     }
 
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
 
-                    SetDestination (intelligentAgent.GetThinker().MakeADecision());                        
+                    var destiny = intelligentAgent.GetThinker().MakeADecision();                   
+
+                    SetDestination (destiny);                        
 
                 }
             }

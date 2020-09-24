@@ -43,17 +43,23 @@ namespace ArtificialIntelligence
         private ActionTypes currentAction;
 
         ArtificialIntelligence.IntelligentAgent     agent;
-        ArtificialIntelligence.ChangeHiddingPlace  changeHiddingPlaceAction = new ArtificialIntelligence.ChangeHiddingPlace();
-        ArtificialIntelligence.ChooseHiddingPlace  chooseHiddingPlaceAction = new ArtificialIntelligence.ChooseHiddingPlace();
-        ArtificialIntelligence.ChangeRoom          changeRoomAction = new ArtificialIntelligence.ChangeRoom();
-        ArtificialIntelligence.Wait                waitAction = new ArtificialIntelligence.Wait();
-        ArtificialIntelligence.Goal                goalAction = new ArtificialIntelligence.Goal();
+        ArtificialIntelligence.ChangeHiddingPlace  changeHiddingPlaceAction;
+        ArtificialIntelligence.ChooseHiddingPlace  chooseHiddingPlaceAction;
+        ArtificialIntelligence.ChangeRoom          changeRoomAction;
+        ArtificialIntelligence.Wait                waitAction;
+        ArtificialIntelligence.Goal                goalAction;
 
         public ActionTypes GetCurrentAction() => currentAction;
 
         private void Start()
         {
             agent = GetComponent<IntelligentAgent>(); 
+
+            changeHiddingPlaceAction = new ArtificialIntelligence.ChangeHiddingPlace();
+            chooseHiddingPlaceAction = new ArtificialIntelligence.ChooseHiddingPlace();
+            changeRoomAction = new ArtificialIntelligence.ChangeRoom();
+            waitAction = new ArtificialIntelligence.Wait();
+            goalAction = new ArtificialIntelligence.Goal();
 
             changeHiddingPlaceAction.SetAgent(agent);
             chooseHiddingPlaceAction.SetAgent(agent);
@@ -97,7 +103,7 @@ namespace ArtificialIntelligence
                         return Wait();
                     }
                     else
-                    {
+                    {                        
                         return  ChooseNewDestinyHiddingPlace();
                     }
                 }
@@ -106,12 +112,10 @@ namespace ArtificialIntelligence
                     return ChooseDestinyRoom();
                 }
                 else
-                {
+                {                    
                     return ChooseNewDestinyHiddingPlace();
                 }
-            }
-
-            return Vector3.zero;
+            }            
         }
 
         /**
@@ -141,9 +145,8 @@ namespace ArtificialIntelligence
                 }
             }
 
-            currentAction = ActionTypes.CHANGE_ROOM;
+            currentAction = ActionTypes.CHANGE_ROOM;           
             
-            Debug.Log(currentAction);
             return destiny;
 
         }
@@ -176,7 +179,7 @@ namespace ArtificialIntelligence
             }
 
             currentAction = ActionTypes.CHOOSE_HIDDING_PLACE;
-            Debug.Log(currentAction);
+           
             return destiny;
         }
 
@@ -209,7 +212,7 @@ namespace ArtificialIntelligence
 
             currentAction = ActionTypes.CHANGE_HIDDING_PLACE;
             agent.Unhide();
-            Debug.Log(currentAction);
+            
             return destiny;
         }
 
@@ -220,7 +223,7 @@ namespace ArtificialIntelligence
         public Vector3 Wait()
         {
             currentAction = ActionTypes.WAIT;
-            Debug.Log(currentAction);
+ 
             return waitAction.GetDestination();
         }
 
@@ -231,7 +234,7 @@ namespace ArtificialIntelligence
         public Vector3 Goal()
         {
             currentAction = ActionTypes.GOAL;
-            Debug.Log(currentAction);
+          
             return goalAction.GetDestination();
         }
 
