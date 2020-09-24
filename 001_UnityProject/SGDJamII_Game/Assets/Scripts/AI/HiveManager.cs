@@ -6,7 +6,7 @@ namespace ArtificialIntelligence
 {        
     public class HiveManager : MonoBehaviour
     {
-        private List<ArtificialIntelligence.IntelligentAgent> agents;
+        private List<ArtificialIntelligence.IntelligentAgent> agents = new List<ArtificialIntelligence.IntelligentAgent>();
         public static ArtificialIntelligence.HiveManager singletonInstance;
 
         private void Awake() 

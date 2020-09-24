@@ -42,6 +42,8 @@ namespace ArtificialIntelligence
         {
             return 0.0f;
         }
+
+        public void SetAgent(ArtificialIntelligence.IntelligentAgent agent) => this.agent = agent;
     }
 
     public class ChangeRoom : ArtificialIntelligence.Action
@@ -90,13 +92,15 @@ namespace ArtificialIntelligence
         */
         public override float CalculateHeuristic()
         {
+            var suspicion = agent.GetSuspicionLocation();
+
             return  weights.distanceBetweenRooms * RoomManager.singletonInstance.GetDistanceBetween(origin, destiny) +
                     weights.hiddingPlacesOriginRoom * origin.GetHiddingPlacesCount() +
                     weights.hiddingPlacesDestinyRoom * destiny.GetHiddingPlacesCount() + 
                     weights.originRoomDistanceToGoal * origin.GetDistanceToGoal() + 
                     weights.destinyRoomDistanceToGoal * destiny.GetDistanceToGoal() + 
-                    weights.distanceToSuspectionFromOrigin * RoomManager.singletonInstance.GetDistanceBetween(origin, agent.GetSuspicionLocation()) + 
-                    weights.distanceToSuspectionFromDestiny * RoomManager.singletonInstance.GetDistanceBetween(destiny, agent.GetSuspicionLocation());
+                    weights.distanceToSuspectionFromOrigin * RoomManager.singletonInstance.GetDistanceBetween(origin, suspicion) + 
+                    weights.distanceToSuspectionFromDestiny * RoomManager.singletonInstance.GetDistanceBetween(destiny, suspicion);
         }
 
         /**

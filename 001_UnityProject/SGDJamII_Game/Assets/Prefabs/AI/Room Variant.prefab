@@ -75,6 +75,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiddingPlace (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: maxOccupation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: chanceToRevealPosition
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c480a62c191ead043b892acf54c7349c, type: 3}
 --- !u!1001 &6606432542005613971
@@ -222,6 +230,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiddingPlace (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: maxOccupation
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: chanceToRevealPosition
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c480a62c191ead043b892acf54c7349c, type: 3}
 --- !u!1001 &7871419667577834058
@@ -299,6 +315,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiddingPlace (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: maxOccupation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: chanceToRevealPosition
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c480a62c191ead043b892acf54c7349c, type: 3}
 --- !u!1001 &8579379145925249689
@@ -367,6 +391,14 @@ PrefabInstance:
     - target: {fileID: 8177673889035367478, guid: c480a62c191ead043b892acf54c7349c, type: 3}
       propertyPath: m_Name
       value: HiddingPlace
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: maxOccupation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177673889035367479, guid: c480a62c191ead043b892acf54c7349c, type: 3}
+      propertyPath: chanceToRevealPosition
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c480a62c191ead043b892acf54c7349c, type: 3}

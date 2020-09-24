@@ -51,45 +51,54 @@ namespace ArtificialIntelligence
             cachedTransform = transform;  
         }
 
-        private void Update() 
-        {
-            if(Vector3.Distance (destination, cachedTransform.position) > 1.0f)
-            {
-                agent.destination = destination;
-            }
-
-            else
-            {
-                switch(intelligentAgent.GetThinker().GetCurrentAction())
-                {
-                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_HIDDING_PLACE:
-                    intelligentAgent.Hide();
-                    break;
-
-                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:
-                    break;
-
-                    case ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE:
-                    intelligentAgent.Hide();
-                    break;
-
-                    case ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL:
-                    intelligentAgent.AtGoal();
-                    break;
-
-                    case ArtificialIntelligence.DecisionMaker.ActionTypes.WAIT:
-                    break;
-
-                }
-
-                SetDestination (intelligentAgent.GetThinker().MakeADecision());
-                            
-
-            }
-
-        }
+        public UnityEngine.AI.NavMeshAgent  GetNavMeshAgent() => agent;
 
         public void SetDestination(Vector3 destination) => this.destination = destination;
+        public void Activate() => StartCoroutine(LocomotionTask());
+        public void Inactivate() => StopCoroutine(LocomotionTask()); 
+
+        public IEnumerator LocomotionTask()
+        {
+            while(true)
+            {
+                yield return new WaitForEndOfFrame();
+                if(Vector3.Distance (destination, cachedTransform.position) > 0.2f)
+                {
+                    agent.destination = destination;
+                }
+
+                else
+                {
+                    switch(intelligentAgent.GetThinker().GetCurrentAction())
+                    {
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_HIDDING_PLACE:
+                        intelligentAgent.Hide();
+                        break;
+
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_ROOM:
+                        break;
+
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE:
+                        intelligentAgent.Hide();
+                        break;
+
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL:
+                        intelligentAgent.AtGoal();
+                        Inactivate();
+                        break;
+
+                        case ArtificialIntelligence.DecisionMaker.ActionTypes.WAIT:
+                        break;
+
+                    }
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    SetDestination (intelligentAgent.GetThinker().MakeADecision());                        
+
+                }
+            }
+        }
 
     }
 

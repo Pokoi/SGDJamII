@@ -77,6 +77,8 @@ public class LevelCreator : MonoBehaviour
         CalculateRoomsDistances();
 
 
+        HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
+
         clearPath();
 
     }
@@ -102,10 +104,13 @@ public class LevelCreator : MonoBehaviour
                     continue;
                 }
 
-                float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position);
+                float dist = GetDistanceBetweenPoints(roomsList[x].GetDoor().transform.position, roomsList[y].GetDoor().transform.position); 
                 
-                Debug.Log(dist.ToString());
-
+                if(roomsList[y].GetIsGoal())
+                {
+                    roomsList[x].GetDoor().SetDistanceToGoal(dist);
+                }             
+                
                 distanceMatrix[x].Add(dist);
             }
 
