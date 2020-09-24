@@ -34,9 +34,8 @@ using UnityEngine;
 
 namespace ArtificialIntelligence
 {
-    public class Action : MonoBehaviour
-    {  
-            
+    public class Action
+    {
         protected ArtificialIntelligence.IntelligentAgent agent;
         public virtual float CalculateHeuristic()
         {
@@ -63,17 +62,16 @@ namespace ArtificialIntelligence
 
             public Weights(bool b)
             {
-                distanceBetweenRooms = 0.14f;
-                hiddingPlacesDestinyRoom = 0.14f;
-                hiddingPlacesOriginRoom = 0.14f;
-                originRoomDistanceToGoal = 0.14f;
-                destinyRoomDistanceToGoal = 0.14f;
-                distanceToSuspectionFromOrigin = 0.14f;
-                distanceToSuspectionFromDestiny = 0.14f;
+                distanceBetweenRooms = Random.Range(-1.0f, 1.0f);
+                hiddingPlacesDestinyRoom = Random.Range(-1.0f, 1.0f);
+                hiddingPlacesOriginRoom = Random.Range(-1.0f, 1.0f);
+                originRoomDistanceToGoal = Random.Range(-1.0f, 1.0f);
+                destinyRoomDistanceToGoal = Random.Range(-1.0f, 1.0f);
+                distanceToSuspectionFromOrigin = Random.Range(-1.0f, 1.0f);
+                distanceToSuspectionFromDestiny = Random.Range(-1.0f, 1.0f);
             }
         }
-
-        Weights weights = new Weights(true); 
+        Weights weights = new Weights(true);
 
         /**
         @brief Reset the action with the given params
@@ -127,16 +125,15 @@ namespace ArtificialIntelligence
 
             public Weights (bool b)
             {
-                originOccupation = 0.15f;
-                destinyOccupation = 0.15f;
-                distanceToGoalFromOrigin = 0.15f;
-                distanceToGoalFromDestiny = 0.15f;
-                chanceToRevealPositionOrigin = 0.15f;
-                chanceToRevealPositionDestiny = 0.15f;
+                originOccupation = Random.Range(-1.0f, 1.0f);
+                destinyOccupation = Random.Range(-1.0f, 1.0f);
+                distanceToGoalFromOrigin = Random.Range(-1.0f, 1.0f);
+                distanceToGoalFromDestiny = Random.Range(-1.0f, 1.0f);
+                chanceToRevealPositionOrigin = Random.Range(-1.0f, 1.0f);
+                chanceToRevealPositionDestiny = Random.Range(-1.0f, 1.0f);                              
             }
         } 
-
-        Weights weights = new Weights(true); 
+        Weights weights = new Weights(true);       
 
         /**
         @brief Reset the action with the given params

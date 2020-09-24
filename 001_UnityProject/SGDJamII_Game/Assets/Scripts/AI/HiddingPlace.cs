@@ -67,11 +67,22 @@ namespace ArtificialIntelligence
 
         public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) 
         {
-          hiddenAgents.Add(agent);
-          ++currentOccupation;
+          if(!hiddenAgents.Contains(agent))
+          {
+            hiddenAgents.Add(agent);
+            ++currentOccupation;
+          }         
         }
 
-        public void RemoveAgent(ArtificialIntelligence.IntelligentAgent agent) => hiddenAgents.Remove(agent);
+        public void RemoveAgent(ArtificialIntelligence.IntelligentAgent agent)
+        {
+          if(hiddenAgents.Contains(agent))
+          {
+            hiddenAgents.Remove(agent);
+            --currentOccupation;
+          }
+        }
+          
 
         public List<ArtificialIntelligence.IntelligentAgent> GetHiddenAgents() => hiddenAgents;
 

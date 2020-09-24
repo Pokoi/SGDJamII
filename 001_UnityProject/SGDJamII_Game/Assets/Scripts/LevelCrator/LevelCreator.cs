@@ -199,7 +199,8 @@ public class LevelCreator : MonoBehaviour
             WorldRoom closestOne = FindClosestRoom(r);
             if (closestOne)
             {
-                if (AStar.Instance.Begin(0, closestOne.roomDoorX, closestOne.roomDoorY, r.roomDoorX, r.roomDoorY, table))
+                var condition = AStar.Instance.Begin(0, closestOne.roomDoorX, closestOne.roomDoorY, r.roomDoorX, r.roomDoorY, table);
+                if (condition)
                 {
                     List<Node> path = AStar.Instance.getPath();
                     foreach (Node n in path)
@@ -213,6 +214,8 @@ public class LevelCreator : MonoBehaviour
                         }
                     }
                 }
+
+                Debug.Log(condition);
             }
         }
     }
@@ -303,12 +306,15 @@ public class LevelCreator : MonoBehaviour
 
         for(int i = 0; i < child; i++)
         {
-            float distance = Vector3.Distance(tableDoor.transform.position, r.transform.GetChild(i).position);
-
-            if(distance < closestDistance)
+            if(!r.transform.GetChild(i).CompareTag("HiddingPlace"))
             {
-                closestDistance = distance;
-                closest = r.transform.GetChild(i).gameObject;
+                float distance = Vector3.Distance(tableDoor.transform.position, r.transform.GetChild(i).position);
+
+                if(distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closest = r.transform.GetChild(i).gameObject;
+                }
             }
         }
 
