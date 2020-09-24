@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: f79b051578cd2c34894003b78c158f74
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Head: {fileID: 2800000, guid: 6040436a55b572042a4540b70099e855, type: 3}
+  - _TX_CutAlphaGhost: {fileID: 2800000, guid: 7219c24c990890c43af83b5d0552a332, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
