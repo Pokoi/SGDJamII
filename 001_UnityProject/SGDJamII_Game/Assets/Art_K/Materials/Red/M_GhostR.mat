@@ -11,13 +11,12 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: ce230007c0cf13e45828681949831d0e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -85,7 +84,7 @@ Material:
     - Vector1_725EFFCD: 0.18
     - Vector1_7C55F91C: 7.22
     - Vector1_97E0AA81: 1.6
-    - Vector1_9D2DE4DE: 0.13
+    - Vector1_9D2DE4DE: 0.24
     - Vector1_B19338D9: 1
     - _BumpScale: 1
     - _ColorIntensity: 1.008
@@ -108,7 +107,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - Color_5DF3CB86: {r: 0.086274505, g: 0.6335141, b: 0.6431373, a: 0}
+    - Color_5DF3CB86: {r: 0.6792453, g: 0.028835872, b: 0.04774662, a: 0}
     - Vector2_59B14028: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.89887714, g: 1, b: 0, a: 0}

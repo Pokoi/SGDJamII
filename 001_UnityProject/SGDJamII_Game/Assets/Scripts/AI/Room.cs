@@ -57,16 +57,12 @@ namespace ArtificialIntelligence
 
         public void RegisterRoom() => transform.parent.GetComponent<ArtificialIntelligence.RoomManager>().AddRoom(this);
 
-        //private void Start() 
-        //{
-           
-        //    Debug.Log("Room added");
-        //}
-
         private void OnTriggerEnter(Collider other) 
         {
-            // TODO if other == player
-            // PlayerAlert();
+            if(other.gameObject.CompareTag("Player"))
+            {
+                PlayerAlert();
+            }
         }
 
         /**

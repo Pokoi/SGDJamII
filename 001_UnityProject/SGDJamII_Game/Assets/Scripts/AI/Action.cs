@@ -62,6 +62,7 @@ namespace ArtificialIntelligence
 
             public Weights(bool b)
             {
+                /*
                 distanceBetweenRooms = Random.Range(-1.0f, 1.0f);
                 hiddingPlacesDestinyRoom = Random.Range(-1.0f, 1.0f);
                 hiddingPlacesOriginRoom = Random.Range(-1.0f, 1.0f);
@@ -69,6 +70,16 @@ namespace ArtificialIntelligence
                 destinyRoomDistanceToGoal = Random.Range(-1.0f, 1.0f);
                 distanceToSuspectionFromOrigin = Random.Range(-1.0f, 1.0f);
                 distanceToSuspectionFromDestiny = Random.Range(-1.0f, 1.0f);
+                */
+
+                distanceBetweenRooms = 0.15f;
+                hiddingPlacesDestinyRoom = 0.15f;
+                hiddingPlacesOriginRoom = 0.15f;
+                originRoomDistanceToGoal = 0.0f;
+                destinyRoomDistanceToGoal = 0.0f;
+                distanceToSuspectionFromOrigin = 0.15f;
+                distanceToSuspectionFromDestiny = 0.15f;
+
             }
         }
         Weights weights = new Weights(true);
@@ -125,12 +136,21 @@ namespace ArtificialIntelligence
 
             public Weights (bool b)
             {
+                /*
                 originOccupation = Random.Range(-1.0f, 1.0f);
                 destinyOccupation = Random.Range(-1.0f, 1.0f);
                 distanceToGoalFromOrigin = Random.Range(-1.0f, 1.0f);
                 distanceToGoalFromDestiny = Random.Range(-1.0f, 1.0f);
                 chanceToRevealPositionOrigin = Random.Range(-1.0f, 1.0f);
-                chanceToRevealPositionDestiny = Random.Range(-1.0f, 1.0f);                              
+                chanceToRevealPositionDestiny = Random.Range(-1.0f, 1.0f);  
+                */   
+
+                originOccupation = 0.14f;
+                destinyOccupation = 0.14f;
+                distanceToGoalFromOrigin = 0.0f;
+                distanceToGoalFromDestiny = 0.0f;
+                chanceToRevealPositionOrigin = 0.14f;
+                chanceToRevealPositionDestiny = 0.14f;                          
             }
         } 
         Weights weights = new Weights(true);       

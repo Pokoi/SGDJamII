@@ -40,7 +40,7 @@ namespace ArtificialIntelligence
 
         public enum ActionTypes { CHANGE_HIDDING_PLACE, CHOOSE_HIDDING_PLACE, CHANGE_ROOM, WAIT, GOAL};
 
-        private ActionTypes currentAction;
+        public ActionTypes currentAction;
 
         ArtificialIntelligence.IntelligentAgent     agent;
         ArtificialIntelligence.ChangeHiddingPlace  changeHiddingPlaceAction;
@@ -54,6 +54,8 @@ namespace ArtificialIntelligence
         private void Start()
         {
             agent = GetComponent<IntelligentAgent>(); 
+
+            currentAction = ActionTypes.WAIT;
 
             changeHiddingPlaceAction = new ArtificialIntelligence.ChangeHiddingPlace();
             chooseHiddingPlaceAction = new ArtificialIntelligence.ChooseHiddingPlace();
@@ -82,40 +84,32 @@ namespace ArtificialIntelligence
             }
 
             var suspicion = agent.GetSuspicionLocation();
+            
+            waitinghHeuristic = (agent.GetPsychology().waitingWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion));
+            changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
+            changeHiddingPlaceHeuristic =  agent.GetPsychology().changeHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);
 
-            if (agent.GetCurrentHiddingPlace() == null)
-            {                            
-                changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
-                chooseHiddingPlaceHeuristic = agent.GetPsychology().searchingHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);           
-               
-                return changeRoomHeuristic < chooseHiddingPlaceHeuristic ? ChooseDestinyRoom() : ChooseDestinyHiddingPlace();              
-            }          
-            else
+            if(waitinghHeuristic > changeRoomHeuristic)
             {
-                waitinghHeuristic = agent.GetPsychology().waitingWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);
-                changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
-                changeHiddingPlaceHeuristic = agent.GetPsychology().changeHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);
-
-                if(waitinghHeuristic > changeRoomHeuristic)
+                if(waitinghHeuristic >= changeHiddingPlaceHeuristic)
                 {
-                    if(waitinghHeuristic > changeHiddingPlaceHeuristic)
-                    {
-                        return Wait();
-                    }
-                    else
-                    {                        
-                        return  ChooseNewDestinyHiddingPlace();
-                    }
-                }
-                else if(changeRoomHeuristic > changeHiddingPlaceHeuristic)
-                {
-                    return ChooseDestinyRoom();
+                    return Wait();
                 }
                 else
-                {                    
-                    return ChooseNewDestinyHiddingPlace();
+                {                        
+                    return  ChooseNewDestinyHiddingPlace();
                 }
-            }            
+            }
+            else if(changeRoomHeuristic > changeHiddingPlaceHeuristic)
+            {
+                return ChooseDestinyRoom();
+            }
+            else 
+            {                    
+                return Wait();
+            }
+                
+                       
         }
 
         /**
@@ -145,9 +139,9 @@ namespace ArtificialIntelligence
                 }
             }
 
-            currentAction = ActionTypes.CHANGE_ROOM;           
+            currentAction = ActionTypes.CHANGE_ROOM;                  
             
-            return destiny;
+            return destiny == Vector3.zero ? Wait() : destiny;
 
         }
 
@@ -178,9 +172,9 @@ namespace ArtificialIntelligence
 
             }
 
-            currentAction = ActionTypes.CHOOSE_HIDDING_PLACE;
+            currentAction = ActionTypes.CHOOSE_HIDDING_PLACE;            
            
-            return destiny;
+           return destiny == Vector3.zero ? chooseHiddingPlaceAction.GetDestination() : destiny;
         }
 
         /**
@@ -210,10 +204,10 @@ namespace ArtificialIntelligence
                 }
             }
 
-            currentAction = ActionTypes.CHANGE_HIDDING_PLACE;
+            currentAction = ActionTypes.CHANGE_HIDDING_PLACE;            
             agent.Unhide();
             
-            return destiny;
+            return destiny == Vector3.zero ? Wait() : destiny;
         }
 
         /**
@@ -222,7 +216,7 @@ namespace ArtificialIntelligence
         */
         public Vector3 Wait()
         {
-            currentAction = ActionTypes.WAIT;
+            currentAction = ActionTypes.WAIT;            
  
             return waitAction.GetDestination();
         }
@@ -233,8 +227,8 @@ namespace ArtificialIntelligence
         */
         public Vector3 Goal()
         {
-            currentAction = ActionTypes.GOAL;
-          
+            currentAction = ActionTypes.GOAL;            
+
             return goalAction.GetDestination();
         }
 

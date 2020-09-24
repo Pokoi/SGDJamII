@@ -80,8 +80,10 @@ public class PlayerMovement : MonoBehaviour
 
         transform.forward = Vector3.Slerp(transform.forward, heading, rotationSpeed * Time.deltaTime);
 
+
         transform.position += heading
             * Time.deltaTime * currentSpeed;
+        
 
         currentSpeed = startSpeed;
     }

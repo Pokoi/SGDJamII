@@ -45,6 +45,7 @@ namespace ArtificialIntelligence
 
         MeshRenderer meshRenderer;
 
+        [System.Serializable]
         public struct Psychology
         {
             public float changeRoomWeight;
@@ -53,7 +54,8 @@ namespace ArtificialIntelligence
             public float searchingHiddingPlaceWeight;
         }
 
-        private IntelligentAgent.Psychology psychology;    
+        [SerializeField]
+        public IntelligentAgent.Psychology psychology;    
 
 
         private void Start() 
@@ -63,10 +65,10 @@ namespace ArtificialIntelligence
             transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
             meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
 
-            psychology.changeRoomWeight = Random.Range(0.0f, 1.0f);
-            psychology.changeHiddingPlaceWeight = Random.Range(0.0f, 1.0f);
-            psychology.waitingWeight = Random.Range(0.0f, 1.0f);
-            psychology.searchingHiddingPlaceWeight = Random.Range(0.0f, 1.0f);     
+            psychology.changeRoomWeight = Random.Range(0.0f, 0.0f);
+            psychology.changeHiddingPlaceWeight = Random.Range(0.5f, 1.0f);
+            psychology.waitingWeight = Random.Range(0.7f, 1.0f);
+            psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f);     
 
         }
 
@@ -104,8 +106,11 @@ namespace ArtificialIntelligence
             int roomIndex = Random.Range(0, maxRoom);
             suspicionLocation = rooms[roomIndex];
 
-            //ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
-            
+            /*
+            suspicionLocation = currentRoom;
+            */
+            ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
+
             return suspicionLocation;
         } 
 
@@ -121,6 +126,8 @@ namespace ArtificialIntelligence
 
         public ArtificialIntelligence.DecisionMaker GetThinker() => thinker;
 
+        public void ResetCurrentHiddingPlace() => currentHiddingPlace = null;
+
         private void OnTriggerEnter(Collider other) 
         {
             if(other.gameObject.CompareTag("HiddingPlace"))
@@ -133,6 +140,14 @@ namespace ArtificialIntelligence
             }            
         }
 
+        private void OnCollisionEnter(Collision other) 
+        {
+            if(other.gameObject.CompareTag("Player"))
+            {
+               Death();
+            }
+        }
+
         /**
         @brief Hides the agent
         */
@@ -141,7 +156,9 @@ namespace ArtificialIntelligence
             if(currentHiddingPlace.IsAvailable())
             {
                 meshRenderer.enabled = false;
+                currentHiddingPlace.Use();
                 currentHiddingPlace.AddAgent(this);
+                transform.GetComponent<Collider>().enabled = false;
             }
         }
 
@@ -151,7 +168,12 @@ namespace ArtificialIntelligence
         public void Unhide()
         {
             meshRenderer.enabled = true;
-            currentHiddingPlace.RemoveAgent(this);
+
+            if(currentHiddingPlace)
+            {
+                currentHiddingPlace.RemoveAgent(this);                              
+                transform.GetComponent<Collider>().enabled = true;
+            }
         }
        
         /**
@@ -160,6 +182,22 @@ namespace ArtificialIntelligence
         public void AtGoal()
         {
             // DO SOMETHNG
+            Hide();
+            locomotor.Inactivate();
+             Debug.Log ("He salvado mi vida c:");
+            gameObject.SetActive(false);
+        }
+
+        /**
+        @brief Method called when
+        */
+        private void Death()
+        {
+            Hide();
+            locomotor.Inactivate();
+            gameObject.SetActive(false);
+            Debug.Log ("He morido :c");
+
         }
 
 
