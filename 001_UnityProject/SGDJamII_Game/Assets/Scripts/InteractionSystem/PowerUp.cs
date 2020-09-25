@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class PowerUp : MonoBehaviour
 {
-    public string PowerUpName { get; }
+    public string PowerUpName { get; set; }
 
     public abstract void OnApply();
 }

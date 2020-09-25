@@ -88,7 +88,7 @@ namespace MessageSystem
             {             
                 foreach (Listener l in listeners[tag])
                 {
-                    l.Handle();
+                    l.Handle(tag);
                 }
             }
         }
