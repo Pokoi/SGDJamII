@@ -61,5 +61,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = heading * currentSpeed;
 
         currentSpeed = startSpeed;
+
+        MessageSystem.Dispatcher.singletonInstance.Send("dynamicCameraFieldOfView");
     }
 }

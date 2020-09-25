@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519398926432319836}
-  m_LocalRotation: {x: 0.16155912, y: 0.14018145, z: -0.0231907, w: 0.9765808}
+  m_LocalRotation: {x: 0.1615603, y: 0.14018193, z: -0.023190958, w: 0.9765805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -372,7 +372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519398927477814781}
-  m_LocalRotation: {x: 0.08601107, y: 0.14154935, z: -0.012346297, w: 0.98611027}
+  m_LocalRotation: {x: 0.08600408, y: 0.14154994, z: -0.012345337, w: 0.9861108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -611,7 +611,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519398928401905738}
-  m_LocalRotation: {x: 0.12177469, y: 0.14100742, z: -0.017479911, w: 0.98233515}
+  m_LocalRotation: {x: 0.121767744, y: 0.1410081, z: -0.017478986, w: 0.9823359}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -695,7 +695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519398928428536438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6516559, y: 1.3333331, z: -2.2231257}
+  m_LocalPosition: {x: -0.6516748, y: 1.333323, z: -2.2231305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1519398928401905736}
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
@@ -6052,6 +6052,7 @@ GameObject:
   - component: {fileID: 8657174215931767162}
   - component: {fileID: 1399433127}
   - component: {fileID: 1399433126}
+  - component: {fileID: 3533816678348280665}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -6173,6 +6174,20 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 2.24
   OverrideMaxDistance: 20
+--- !u!114 &3533816678348280665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657174215931767156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ba83bb4d328ab43b65b753b4e056c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1519398927271935302}
+  modifier: 7
 --- !u!1001 &5641491486157501314
 PrefabInstance:
   m_ObjectHideFlags: 0
