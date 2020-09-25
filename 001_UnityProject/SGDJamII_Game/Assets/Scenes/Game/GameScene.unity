@@ -279,10 +279,6 @@ PrefabInstance:
       propertyPath: hiveManager
       value: 
       objectReference: {fileID: 1921089397}
-    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
-      propertyPath: gameDuration
-      value: 150
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
 --- !u!1001 &940822793
@@ -961,6 +957,10 @@ PrefabInstance:
       propertyPath: rooms.Array.data[149]
       value: 
       objectReference: {fileID: 877493121643486289, guid: 84d4b377063db9947af6745dece0ac57, type: 3}
+    - target: {fileID: 1285410732525795645, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
+      propertyPath: tiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 5586941929673315951, guid: 5ceb2ad2c40657b41a804e1c7047f3d8, type: 3}
     - target: {fileID: 1285410733385264106, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1114,7 +1114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719562811}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
