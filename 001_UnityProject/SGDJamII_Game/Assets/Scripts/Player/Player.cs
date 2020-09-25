@@ -16,4 +16,15 @@ public class Player : Singleton<Player>
     }
 
     #endregion
+
+    public void ApplyPowerUp()
+    {
+        if (currentPowerUp)
+        {
+            Debug.LogWarning("There is no PowerUp in the player.");
+            return;
+        }
+
+        currentPowerUp.OnApply();
+    }
 }

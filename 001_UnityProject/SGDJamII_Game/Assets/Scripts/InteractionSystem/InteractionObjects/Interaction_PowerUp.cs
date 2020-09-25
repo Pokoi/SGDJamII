@@ -46,13 +46,12 @@ public class Interaction_PowerUp : InteractableBase
 
     void ApplyPowerUp()
     {
-        /*
         if (powerUp == null)
             return;
-        */
 
         m_player.PowerUp = powerUp;
-        powerUp?.OnApply();
+
+        //TODO : Guardar selección.
 
         OnSelection();
 
