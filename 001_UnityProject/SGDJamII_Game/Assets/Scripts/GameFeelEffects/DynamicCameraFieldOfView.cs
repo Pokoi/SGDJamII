@@ -63,13 +63,11 @@ public class DynamicCameraFieldOfView : GameFeelEffect
         float f = Mathf.Lerp(newFieldOfView, initialFieldOfView, Time.deltaTime);
         camera.m_Lens.FieldOfView = f;
 
-        Debug.Log(f);
-
         lastFieldOfView = f;
 
     }
 
-    public override void Handle()
+    public override void Handle(string tag)
     {
         Apply();
     }

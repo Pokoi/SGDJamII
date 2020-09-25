@@ -61,7 +61,18 @@ namespace ArtificialIntelligence
         {
             if(other.gameObject.CompareTag("Player"))
             {
-                PlayerAlert();
+                var playerListener = other.GetComponent<MessageSystem.PlayerListener>();
+                if (playerListener)
+                { 
+                    if (playerListener.GetExposed())
+                    { 
+                        PlayerAlert();                       
+                    }
+                    else 
+                    {
+                        playerListener.SetExposed(true);
+                    }
+                }
             }
         }
 

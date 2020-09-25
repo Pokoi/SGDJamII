@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        Debug.Log(TimeLeftText());
+        
         if (!gameOver)
         {
             currentTime += Time.deltaTime;

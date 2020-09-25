@@ -11,7 +11,14 @@ public class PowerUp_SlowEnemy : PowerUp
 
     public override void OnApply()
     {
-        throw new System.NotImplementedException();
+        Slow();
+
+        Invoke("Restore", 3.0f);
     }
+
+    public void Slow() => MessageSystem.Dispatcher.singletonInstance.Send("slowEnemy");
+
+    public void Restore() => MessageSystem.Dispatcher.singletonInstance.Send("speedUpEnemy");
+
 
 }

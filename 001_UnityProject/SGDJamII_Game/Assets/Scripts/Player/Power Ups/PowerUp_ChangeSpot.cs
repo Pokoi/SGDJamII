@@ -11,7 +11,7 @@ public class PowerUp_ChangeSpot : PowerUp
 
     public override void OnApply()
     {
-        throw new System.NotImplementedException();
+        MessageSystem.Dispatcher.singletonInstance.Send("changeSpot");
     }
 
 }

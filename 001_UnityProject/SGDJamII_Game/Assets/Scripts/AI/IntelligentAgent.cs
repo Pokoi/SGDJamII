@@ -35,7 +35,7 @@ using UnityEngine;
 namespace ArtificialIntelligence
 {
     [RequireComponent (typeof(ArtificialIntelligence.Locomotion))]
-    public class IntelligentAgent : MonoBehaviour
+    public class IntelligentAgent : MessageSystem.Listener
     {
         ArtificialIntelligence.Room suspicionLocation;
         ArtificialIntelligence.Room currentRoom;
@@ -64,6 +64,10 @@ namespace ArtificialIntelligence
             locomotor = GetComponent<ArtificialIntelligence.Locomotion>();
             locomotor.Init();
 
+            MessageSystem.Dispatcher.singletonInstance.AddListener(this, "slowEnemy");
+            MessageSystem.Dispatcher.singletonInstance.AddListener(this, "speedUpEnemy");
+            MessageSystem.Dispatcher.singletonInstance.AddListener(this, "changeSpot");
+
             thinker = GetComponent<ArtificialIntelligence.DecisionMaker>();
             transform.parent.GetComponent<ArtificialIntelligence.HiveManager>().AddAgent(this);
             meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
@@ -72,7 +76,9 @@ namespace ArtificialIntelligence
             psychology.changeRoomWeight = Random.Range(0.0f, 0.1f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.5f, 1.0f);
             psychology.waitingWeight = Random.Range(0.7f, 1.0f);
-            psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f);     
+            psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f); 
+            
+
 
         }
 
@@ -206,6 +212,24 @@ namespace ArtificialIntelligence
 
         }
 
+        /**
+        @brief Handle the messages
+        */
+        public override void Handle(string tag)
+        {
+            if (tag == "slowEnemy")
+            {
+                locomotor.Slow();
+            }
+            else if (tag == "speedUpEnemy")
+            {
+                locomotor.SpeedUp();
+            }
+            else if (tag == "changeSpot")
+            {
+                locomotor.SetDestination(thinker.ChooseDestinyRoom());            
+            }
+        }
 
     }
 
