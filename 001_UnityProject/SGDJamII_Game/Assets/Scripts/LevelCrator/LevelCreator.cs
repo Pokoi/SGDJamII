@@ -82,10 +82,10 @@ public class LevelCreator : MonoBehaviour
 
         HiveManager.singletonInstance.SetPlayerReference(GameObject.FindGameObjectWithTag("Player").gameObject.transform);
 
-        foreach (IntelligentAgent IA in HiveManager.singletonInstance.transform.GetComponentsInChildren<IntelligentAgent>())
-            IA.Init();
+        //foreach (IntelligentAgent IA in HiveManager.singletonInstance.transform.GetComponentsInChildren<IntelligentAgent>())
+        //    IA.Init();
 
-        HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
+        //HiveManager.singletonInstance.RandomizeAgentsInitialHiddingPlace();
 
     }
 

@@ -189,7 +189,7 @@ namespace ArtificialIntelligence
             // DO SOMETHNG
             Hide();
             locomotor.Inactivate();
-             Debug.Log ("He salvado mi vida c:");
+            GameManager.Instance.EnemySaved();
             gameObject.SetActive(false);
         }
 
@@ -200,8 +200,9 @@ namespace ArtificialIntelligence
         {
             Hide();
             locomotor.Inactivate();
+            GameManager.Instance.EnemyCaught();
             gameObject.SetActive(false);
-            Debug.Log ("He morido :c");
+            //Debug.Log ("He morido :c");
 
         }
 
