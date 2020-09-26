@@ -47,8 +47,13 @@ namespace ArtificialIntelligence
 
         private void Awake() 
         {
-          ownerRoom = transform.parent.GetComponent<ArtificialIntelligence.Room>();
-          ownerRoom.AddHiddingPlace(this); 
+            Transform t = transform.parent;
+            while (t.GetComponent<ArtificialIntelligence.Room>() == null)
+            {
+                t = transform.parent;
+            }
+            ownerRoom = t.GetComponent<ArtificialIntelligence.Room>();
+            ownerRoom.AddHiddingPlace(this); 
         }
 
         public bool IsAvailable() => currentOccupation < maxOccupation;
