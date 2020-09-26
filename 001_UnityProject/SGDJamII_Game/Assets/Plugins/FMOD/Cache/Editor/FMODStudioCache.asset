@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7807171103280181877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gameover
+  m_EditorClassIdentifier: 
+  Path: event:/Gameover
+  guid: b8cc63c987a6d8428455cb74c9b0c4dd
+  Banks:
+  - {fileID: -2703467119209478469}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20476
 --- !u!114 &-5940634715916219239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,6 +41,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-5758207058148505362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637366581490864406
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-4909568478987735674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +74,7 @@ MonoBehaviour:
   Path: event:/BGMusic
   guid: 4a990f02807223488de486cb9d406ead
   Banks:
-  - {fileID: -1517411313182903319}
+  - {fileID: -2703467119209478469}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -59,6 +100,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-2703467119209478469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637366676226195511
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-2395558669241762187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +171,7 @@ MonoBehaviour:
   lastModified: 637366574226717982
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-484853432326820879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,15 +222,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 42262335975353819}
-  - {fileID: -1517411313182903319}
+  - {fileID: -2703467119209478469}
   EditorEvents:
   - {fileID: -4909568478987735674}
+  - {fileID: -7807171103280181877}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1517411313182903319}
+  - {fileID: -2703467119209478469}
   StringsBanks:
   - {fileID: 42262335975353819}
-  stringsBankWriteTime: 637366574226847899
+  stringsBankWriteTime: 637366676226215429
   cacheVersion: 3
 --- !u!114 &42262335975353819
 MonoBehaviour:
@@ -187,11 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637366574226847899
+  lastModified: 637366676226215429
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 732
+    Value: 784
   Exists: 1
 --- !u!114 &1880550180303015334
 MonoBehaviour:

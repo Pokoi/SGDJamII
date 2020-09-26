@@ -55,7 +55,10 @@ namespace ArtificialIntelligence
 
         public void SetDestination(Vector3 destination) => this.destination = new Vector3(destination.x, 0.0f, destination.z);
         public void Activate() => StartCoroutine(LocomotionTask());
-        public void Inactivate() => StopCoroutine(LocomotionTask()); 
+        public void Inactivate() => StopCoroutine(LocomotionTask());
+        
+        public void Slow() => agent.speed = 1.5f;
+        public void SpeedUp() => agent.speed = 3.5f;
 
         public IEnumerator LocomotionTask()
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MessageSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,3 +29,4 @@ public class Player : Singleton<Player>
         currentPowerUp.OnApply();
     }
 }
+

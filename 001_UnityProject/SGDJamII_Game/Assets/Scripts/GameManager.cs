@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -51,7 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        Debug.Log(TimeLeftText());
+        
         if (!gameOver)
         {
             currentTime += Time.deltaTime;
@@ -92,15 +93,35 @@ public class GameManager : Singleton<GameManager>
     private void PlayerVictory()
     {
         gameOver = true;
-        //TODO: Player victory yeah!!!
+        string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
+        Debug.Log(victoryText);
+
     }
 
     private void PlayerDefeated(bool timeOver)
     {
         gameOver = true;
-        //TODO: Player defeat sad :(
         if (timeOver)
-            Debug.Log("Time is over!");
+        {
+            string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}\n. Se ha acabado el tiempo!", 
+                enemiesCaught, enemiesNumber, enemiesSaved);
+            
+            Debug.Log(defeatText);
+        }
+        else
+        {
+            string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}",
+                enemiesCaught, enemiesNumber,enemiesSaved);
+
+            Debug.Log(defeatText);
+        }
+
+        ResetGame();
+    }
+    private void ResetGame()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

@@ -35,6 +35,6 @@ using UnityEngine;
 namespace MessageSystem
 {    public abstract class Listener : MonoBehaviour
     {
-        public abstract void Handle();
+        public abstract void Handle(string tag);
     }
 }

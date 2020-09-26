@@ -11,6 +11,6 @@ public class PowerUp_SneakyEntry : PowerUp
 
     public override void OnApply()
     {
-        throw new System.NotImplementedException();
+        MessageSystem.Dispatcher.singletonInstance.Send("sneakyEntry");
     }
 }

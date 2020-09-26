@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9885cb45827dd9248a031319017f2b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DontDestroyOnLoad: 1
+  DontDestroyOnLoad: 0
   enemiesNumber: 5
   hiveManager: {fileID: 0}
   artificialAgent: {fileID: 3211172269043034654, guid: 77e1b65e434f04e4d8cf9c348f9680fa, type: 3}
+  gameDuration: 10
