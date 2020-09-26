@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Gameover
   guid: b8cc63c987a6d8428455cb74c9b0c4dd
-  Banks:
-  - {fileID: -2703467119209478469}
+  Banks: []
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -23,6 +22,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20476
+--- !u!114 &-7419749036932509121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Endgame
+  m_EditorClassIdentifier: 
+  Path: event:/Endgame
+  guid: b8cc63c987a6d8428455cb74c9b0c4dd
+  Banks:
+  - {fileID: 8880251417285948458}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 6547616362755508774}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 35428
 --- !u!114 &-5940634715916219239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +97,7 @@ MonoBehaviour:
   Path: event:/BGMusic
   guid: 4a990f02807223488de486cb9d406ead
   Banks:
-  - {fileID: -2703467119209478469}
+  - {fileID: 8880251417285948458}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -117,7 +140,7 @@ MonoBehaviour:
   lastModified: 637366676226195511
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2395558669241762187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,16 +245,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 42262335975353819}
-  - {fileID: -2703467119209478469}
+  - {fileID: 8880251417285948458}
   EditorEvents:
   - {fileID: -4909568478987735674}
-  - {fileID: -7807171103280181877}
+  - {fileID: -7419749036932509121}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -2703467119209478469}
+  - {fileID: 8880251417285948458}
   StringsBanks:
   - {fileID: 42262335975353819}
-  stringsBankWriteTime: 637366676226215429
+  stringsBankWriteTime: 637367245792786590
   cacheVersion: 3
 --- !u!114 &42262335975353819
 MonoBehaviour:
@@ -247,11 +270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637366676226215429
+  lastModified: 637367245792786590
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 784
+    Value: 832
   Exists: 1
 --- !u!114 &1880550180303015334
 MonoBehaviour:
@@ -345,6 +368,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &6547616362755508774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Endgame/WinParam
+  m_EditorClassIdentifier: 
+  Name: WinParam
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &7231666449989425335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +421,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &8880251417285948458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637367245792786590
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &8924503262056068737
 MonoBehaviour:
   m_ObjectHideFlags: 0

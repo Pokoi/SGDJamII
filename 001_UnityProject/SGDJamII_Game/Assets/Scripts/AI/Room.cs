@@ -51,7 +51,7 @@ namespace ArtificialIntelligence
 
         public ArtificialIntelligence.Door GetDoor() => door;
 
-        public void setDoor(ArtificialIntelligence.Door d) { door = d; }
+        public void setDoor(ArtificialIntelligence.Door d) => door = d;
 
         public bool GetIsGoal() => isGoal;
 

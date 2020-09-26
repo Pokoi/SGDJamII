@@ -98,7 +98,7 @@ namespace ArtificialIntelligence
         @brief Use the hidding place revealing the position or not
         */
         public void Use()
-        {
+        {         
           float random = Random.Range (0.0f, 1.0f);
           if(random < chanceToRevealPosition)
           {

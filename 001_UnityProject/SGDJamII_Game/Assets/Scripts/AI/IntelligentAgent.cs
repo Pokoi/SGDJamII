@@ -108,19 +108,15 @@ namespace ArtificialIntelligence
         public void SetSuspicionLocation(ArtificialIntelligence.Room room) => suspicionLocation = room;
         public ArtificialIntelligence.Room GetSuspicionLocation() 
         {
-            
-            // FOR DEBUG PURPOSES ONLY:
-            var rooms = ArtificialIntelligence.RoomManager.singletonInstance.GetRooms();
-            int maxRoom = rooms.Count;           
+            if (!suspicionLocation)
+            {  
+                var rooms = ArtificialIntelligence.RoomManager.singletonInstance.GetRooms();
+                int maxRoom = rooms.Count;           
 
-            int roomIndex = Random.Range(0, maxRoom);
-            suspicionLocation = rooms[roomIndex];
-
-            /*
-            suspicionLocation = currentRoom;
+                int roomIndex = Random.Range(0, maxRoom);
+                suspicionLocation = rooms[roomIndex];
+            }
             
-            ArtificialIntelligence.HiveManager.singletonInstance.GetPlayerReference().position = suspicionLocation.GetDoor().transform.position;
-            */
             return suspicionLocation;
         } 
 
