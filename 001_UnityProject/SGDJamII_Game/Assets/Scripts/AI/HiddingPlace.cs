@@ -50,7 +50,7 @@ namespace ArtificialIntelligence
             Transform t = transform.parent;
             while (t.GetComponent<ArtificialIntelligence.Room>() == null)
             {
-                t = transform.parent;
+                t = t.parent;
             }
             ownerRoom = t.GetComponent<ArtificialIntelligence.Room>();
             ownerRoom.AddHiddingPlace(this); 

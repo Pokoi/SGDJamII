@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HiddingPlace
   - Room
+  - Wall
   layers:
   - Default
   - TransparentFX
