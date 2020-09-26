@@ -66,7 +66,7 @@ namespace ArtificialIntelligence
             {
                 yield return new WaitForEndOfFrame();                
 
-                if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.1f)
+                if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.5f)
                 {
                     agent.destination = destination; 
                     intelligentAgent.Unhide();              

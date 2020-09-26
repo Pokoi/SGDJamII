@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorldRoom : MonoBehaviour
 {
     public int RoomSizeX, RoomSizeY;
-
+    public bool MainRoom = false;
     [HideInInspector]
     public int roomDoorX, roomDoorY;
 
