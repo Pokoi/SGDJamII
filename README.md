@@ -52,7 +52,7 @@ And that's it. No more steps are needed.
 :computer: [Unity](https://unity.com) 
 
 ## Authors
-
+* **Kumi Carretero** - *Artist* - [Artstation profile](https://kumidcm.artstation.com)
 * **Sergio Eslava** - *Programmer* - [GitHub profile](https://github.com/SergioTrac) 
 * **Javier Cordero** - *Programmer* - [GitHub profile](https://github.com/JavierCordero) 
 * **Ramón Arjona** - *Programmer and Sound/Music* - [GitHub profile](https://github.com/ramonarj) 
