@@ -40,10 +40,10 @@ public class LevelCreator : MonoBehaviour
         //RoomManager creation
         GameObject roomManagerGO = new GameObject("RoomManager");
         roomManager = roomManagerGO.AddComponent(typeof(RoomManager)) as RoomManager;
-        
+
 
         GameObject aux = new GameObject("FloorLayout");
-        
+
 
         table = new box[matrixX, matrixY];
 
@@ -74,7 +74,7 @@ public class LevelCreator : MonoBehaviour
         clearPath();
 
         //Generate NavMesh
-       
+
         navigationSurface.BuildNavMesh();
 
         //Calculate distances between rooms
@@ -269,9 +269,10 @@ public class LevelCreator : MonoBehaviour
         while (maxTries-- >= 0 && !checkIfCanPlaceRoom(r, rndX, rndY))
         {
             randomPosition(ref rndX, ref rndY);
+
         }
 
-        if (maxTries-- >= 0)
+        if (maxTries >= 0)
         {
             for (int i = 0; i < r.RoomSizeX; i++)
                 for (int j = 0; j < r.RoomSizeY; j++)
@@ -280,6 +281,7 @@ public class LevelCreator : MonoBehaviour
                     table[rndX + i, rndY + j].cell = Cells.Room;
                     //if (ROOMMATERIAL)
                     //    table[rndX + i, rndY + j].mapCell.transform.GetChild(0).GetComponent<Renderer>().material = ROOMMATERIAL;
+
                 }
 
             r.matrixStartX = rndX;
@@ -291,8 +293,6 @@ public class LevelCreator : MonoBehaviour
 
             r.roomDoorX = x;
             r.roomDoorY = y;
-
-
             table[r.roomDoorX, r.roomDoorY].cell = Cells.Door;
 
             //if (DOORMATERIAL)
@@ -307,13 +307,16 @@ public class LevelCreator : MonoBehaviour
             d.transform.position = doorObject.transform.position;
             d.transform.parent = roomGo.transform;
 
-            roomGo.GetComponent<Room>().setDoor(d.GetComponent<Door>());
+            Room roomComponent = roomGo.GetComponent<Room>();
+            roomComponent.setDoor(d.GetComponent<Door>());
 
-            DestroyImmediate(doorObject);
+            if (doorObject.transform.childCount > 0 && doorObject.transform.GetChild(0).GetComponent<HiddingPlace>())
+                roomGo.GetComponent<Room>().RemoveHiddingPlace(doorObject.transform.GetChild(0).GetComponent<HiddingPlace>());
 
             //doorObject.GetComponent<Renderer>().material = DOORMATERIAL;
 
-            Room roomComponent = roomGo.GetComponent<Room>();
+            DestroyImmediate(doorObject);
+ 
             roomGo.transform.parent = roomManager.transform;
             roomComponent.RegisterRoom();
         }
@@ -329,7 +332,7 @@ public class LevelCreator : MonoBehaviour
 
         for (int i = 0; i < child; i++)
         {
-            if (!r.transform.GetChild(i).CompareTag("HiddingPlace"))
+            if (r.transform.GetChild(i).CompareTag("Wall"))
             {
                 float distance = Vector3.Distance(tableDoor.transform.position, r.transform.GetChild(i).position);
 

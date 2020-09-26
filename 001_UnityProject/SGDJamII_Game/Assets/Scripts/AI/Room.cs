@@ -49,6 +49,8 @@ namespace ArtificialIntelligence
 
         public void AddHiddingPlace(ArtificialIntelligence.HiddingPlace hp) => hiddingPlaces.Add(hp);
 
+        public void RemoveHiddingPlace(ArtificialIntelligence.HiddingPlace hp) => hiddingPlaces.Remove(hp);
+
         public ArtificialIntelligence.Door GetDoor() => door;
 
         public void setDoor(ArtificialIntelligence.Door d) => door = d;
