@@ -116,6 +116,19 @@ namespace ArtificialIntelligence
 
           }
         }
+
+        /**
+         * @brief Reveal the enemies hidden in the hidding place
+         */
+        public void RevealEnemiesInside()
+        {
+            foreach (ArtificialIntelligence.IntelligentAgent agent in hiddenAgents)
+            {
+                agent.Unhide();
+                agent.Death();
+            }
+        }
+
     }
 
 }

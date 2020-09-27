@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5909232159926702855}
   - component: {fileID: 5909232159926702854}
   - component: {fileID: 5909232159926702853}
+  - component: {fileID: -611158605120846272}
   m_Layer: 0
   m_Name: ClockHidePoint
   m_TagString: HiddingPlace
@@ -141,6 +142,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxOccupation: 1
   chanceToRevealPosition: 0.2
+--- !u!114 &-611158605120846272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909232159926702852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147ca10ee9fe1904a96fa2ca9e9c1d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  multipleUse: 1
+  isInteractable: 1
+  holdInteract: 0
+  holdDuration: 0
+  actionToPerform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5909232159926702853}
+        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5909232159926702853}
+        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
+        m_MethodName: RevealEnemiesInside
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7876988298818290587
 GameObject:
   m_ObjectHideFlags: 0

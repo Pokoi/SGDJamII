@@ -196,9 +196,9 @@ namespace ArtificialIntelligence
         }
 
         /**
-        @brief Method called when
+        @brief Method called when the enemy dies
         */
-        private void Death()
+        public void Death()
         {
             Hide();
             locomotor.Inactivate();
