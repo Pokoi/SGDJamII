@@ -255,6 +255,18 @@ PrefabInstance:
       propertyPath: gameDuration
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
+      propertyPath: endgame
+      value: event:/Endgame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
+      propertyPath: backgroundMusic
+      value: event:/BGMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
+      propertyPath: enemiesNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
 --- !u!1001 &940822793
@@ -328,7 +340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285410732525795645, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
       propertyPath: rooms.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1285410732525795645, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
       propertyPath: rooms.Array.data[0]
@@ -337,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 1285410732525795645, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
       propertyPath: rooms.Array.data[1]
       value: 
-      objectReference: {fileID: 110936408077064964, guid: dd554a59684c3c4469f8a3936a6dea07, type: 3}
+      objectReference: {fileID: 2150269061817659742, guid: d2099d7bc9400544b993b5379ed2af07, type: 3}
     - target: {fileID: 1285410732525795645, guid: b51808b4a9477fd4aa4b8a3f1bbd2858, type: 3}
       propertyPath: rooms.Array.data[2]
       value: 

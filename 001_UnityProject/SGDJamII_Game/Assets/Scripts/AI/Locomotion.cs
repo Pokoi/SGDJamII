@@ -42,6 +42,7 @@ namespace ArtificialIntelligence
         private Vector3 destination;
         private Transform cachedTransform;
         private ArtificialIntelligence.IntelligentAgent intelligentAgent;
+        private bool emitter = false;
 
         public void Init() 
         {
@@ -60,6 +61,9 @@ namespace ArtificialIntelligence
         public void Slow() => agent.speed = 1.5f;
         public void SpeedUp() => agent.speed = 3.5f;
 
+        public void Emitt() => emitter = true;
+        public void Silence() => emitter = false;
+
         public IEnumerator LocomotionTask()
         {
             while(true)
@@ -74,6 +78,8 @@ namespace ArtificialIntelligence
 
                 else
                 {
+                    OnStopMoving();
+
                     switch(intelligentAgent.GetThinker().GetCurrentAction())
                     {
                         case ArtificialIntelligence.DecisionMaker.ActionTypes.CHANGE_HIDDING_PLACE:
@@ -102,14 +108,41 @@ namespace ArtificialIntelligence
                                     intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE
                                     ?                                    
                                     0.1f :
-                                    Random.Range(6.0f, 12.0f);
+                                    Random.Range(3.0f, 4.0f);
                    
 
                     yield return new WaitForSeconds(seconds);
-                    
+
+                    if (intelligentAgent.GetThinker().GetCurrentAction() != ArtificialIntelligence.DecisionMaker.ActionTypes.WAIT)
+                    {
+                        OnStartMoving();
+                    }
+
                     SetDestination (destiny);                        
 
                 }
+            }
+        }
+
+        /**
+         @brief Event called when the agent starts moving
+        */
+        public void OnStartMoving()
+        {
+            if (emitter)
+            { 
+                //Play sound
+            }
+        }
+
+        /**
+         * @brief Event called when the agent stops moving
+         */
+        public void OnStopMoving()
+        {
+            if (emitter)
+            { 
+                // Stop playing sound
             }
         }
 

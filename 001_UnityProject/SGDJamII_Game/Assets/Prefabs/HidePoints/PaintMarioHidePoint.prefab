@@ -1,5 +1,94 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172750256159839077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2987911419735442790}
+  - component: {fileID: 578298375185449814}
+  - component: {fileID: 3260181655335063414}
+  m_Layer: 8
+  m_Name: Interactuable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2987911419735442790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172750256159839077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8208570552795410243}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &578298375185449814
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172750256159839077}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.12, y: 2, z: 2}
+  m_Center: {x: -0.12, y: 0.5, z: -1}
+--- !u!114 &3260181655335063414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172750256159839077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147ca10ee9fe1904a96fa2ca9e9c1d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  multipleUse: 1
+  isInteractable: 1
+  holdInteract: 0
+  holdDuration: 0
+  actionToPerform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8208570552795410241}
+        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8208570552795410241}
+        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
+        m_MethodName: RevealEnemiesInside
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3282223809295067081
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +131,7 @@ GameObject:
   - component: {fileID: 7337630826250833038}
   - component: {fileID: 1997890071234341546}
   - component: {fileID: 5031230658326754948}
+  - component: {fileID: 2888796031010468301}
   m_Layer: 0
   m_Name: PaintingA
   m_TagString: Untagged
@@ -112,6 +202,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2888796031010468301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4832292487446576805}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5000001, y: 0.036237918, z: 0.70000017}
+  m_Center: {x: 0, y: -0.08061898, z: 0.5076436}
 --- !u!1 &8208570552795410240
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +226,6 @@ GameObject:
   - component: {fileID: 8208570552795410243}
   - component: {fileID: 8208570552795410242}
   - component: {fileID: 8208570552795410241}
-  - component: {fileID: 7123330980134413887}
   m_Layer: 0
   m_Name: PaintMarioHidePoint
   m_TagString: HiddingPlace
@@ -143,6 +245,7 @@ Transform:
   m_LocalScale: {x: 0.20000006, y: 0.2, z: 0.13883406}
   m_Children:
   - {fileID: 6844467126769473229}
+  - {fileID: 2987911419735442790}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -172,48 +275,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOccupation: 1
-  chanceToRevealPosition: 0.2
---- !u!114 &7123330980134413887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208570552795410240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 147ca10ee9fe1904a96fa2ca9e9c1d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: 
-  multipleUse: 1
-  isInteractable: 1
-  holdInteract: 0
-  holdDuration: 0
-  actionToPerform:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8208570552795410241}
-        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
-        m_MethodName: Use
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8208570552795410241}
-        m_TargetAssemblyTypeName: ArtificialIntelligence.HiddingPlace, Assembly-CSharp
-        m_MethodName: RevealEnemiesInside
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  chanceToRevealPosition: 0
