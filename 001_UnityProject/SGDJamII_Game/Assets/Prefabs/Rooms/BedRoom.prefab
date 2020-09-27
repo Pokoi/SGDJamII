@@ -1242,9 +1242,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5608399611614301477}
     m_Modifications:
+    - target: {fileID: 86788394420760396, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 565919245514370494, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5909232159926702852, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
       propertyPath: m_Name
       value: ClockHidePoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909232159926702852, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5909232159926702855, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1302,6 +1314,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.13883403
       objectReference: {fileID: 0}
+    - target: {fileID: 7876988298818290587, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180226467829170350, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da258c69ef3e0745aae2a05471db651, type: 3}
 --- !u!4 &2087348866412236993 stripped
@@ -1316,9 +1336,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5608399611230546357}
     m_Modifications:
+    - target: {fileID: 16611844276972932, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840323725153175441, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 877503864478397490, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4205892772707280572, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_Name
       value: WardroveHidePoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205892772707280572, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4205892772707280575, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1375,6 +1411,14 @@ PrefabInstance:
     - target: {fileID: 4205892772707280575, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.20000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446097531065741397, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320630940743068838, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}

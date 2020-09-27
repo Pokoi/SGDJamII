@@ -134,6 +134,16 @@ public class LevelCreator : MonoBehaviour
     {
         NavMeshPath path = new NavMeshPath();
 
+        // Find the closest point to the target position. This is needed to avoid 
+        // false "not path found" when the point is outside the navmesh
+
+        NavMeshHit hit;
+        bool b = NavMesh.SamplePosition(origin, out hit, 2.0f, NavMesh.AllAreas);
+        if (b)
+        { 
+            origin = hit.position;
+        }
+
         if (NavMesh.CalculatePath(origin, target, NavMesh.AllAreas, path))
         {
             float distance = 0.0f;

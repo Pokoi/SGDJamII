@@ -108,7 +108,7 @@ namespace ArtificialIntelligence
                                     intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE
                                     ?                                    
                                     0.1f :
-                                    Random.Range(6.0f, 12.0f);
+                                    Random.Range(3.0f, 4.0f);
                    
 
                     yield return new WaitForSeconds(seconds);
