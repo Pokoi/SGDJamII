@@ -9,10 +9,7 @@ public class SceneTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ChangeScene();
+           SceneFader.Instance.PlayFadeOut();
     }
-    private void ChangeScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+   
 }
