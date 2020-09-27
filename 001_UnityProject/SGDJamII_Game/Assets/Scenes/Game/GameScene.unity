@@ -255,6 +255,14 @@ PrefabInstance:
       propertyPath: gameDuration
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
+      propertyPath: endgame
+      value: event:/Endgame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722051140324151055, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
+      propertyPath: backgroundMusic
+      value: event:/BGMusic
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365e9f9a13b0993468ed0d9872f7a735, type: 3}
 --- !u!1001 &940822793

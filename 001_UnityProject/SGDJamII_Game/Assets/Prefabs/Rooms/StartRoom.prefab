@@ -1958,7 +1958,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3938093840380402445}
-  m_LocalRotation: {x: 0.08601112, y: 0.14154917, z: -0.012346287, w: 0.9861103}
+  m_LocalRotation: {x: 0.08601111, y: 0.14154917, z: -0.012346285, w: 0.98611027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2338,7 +2338,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3938093841494579116}
-  m_LocalRotation: {x: 0.16155912, y: 0.1401813, z: -0.023190677, w: 0.9765808}
+  m_LocalRotation: {x: 0.16155912, y: 0.14018126, z: -0.02319067, w: 0.9765808}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2740,7 +2740,6 @@ GameObject:
   - component: {fileID: 6599849508331521931}
   - component: {fileID: 6599849508331521930}
   - component: {fileID: 2572424266410756439}
-  - component: {fileID: 2572424266410756438}
   - component: {fileID: 1349309357302971817}
   - component: {fileID: 2572424267128224270}
   - component: {fileID: 2572424267128224759}
@@ -2843,29 +2842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerNumber: -1
---- !u!114 &2572424266410756438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6599849508331521924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/BGMusic
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 2.24
-  OverrideMaxDistance: 20
 --- !u!114 &1349309357302971817
 MonoBehaviour:
   m_ObjectHideFlags: 0

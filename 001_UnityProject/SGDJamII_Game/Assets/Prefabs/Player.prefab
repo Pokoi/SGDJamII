@@ -6050,8 +6050,6 @@ GameObject:
   - component: {fileID: 1519398928412928868}
   - component: {fileID: 8657174215931767163}
   - component: {fileID: 8657174215931767162}
-  - component: {fileID: 1399433127}
-  - component: {fileID: 1399433126}
   - component: {fileID: 3533816678348280665}
   - component: {fileID: 1034818814}
   - component: {fileID: 1034818823}
@@ -6140,42 +6138,6 @@ CapsuleCollider:
   m_Height: 0.67
   m_Direction: 1
   m_Center: {x: 0, y: 0.24, z: 0}
---- !u!114 &1399433127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8657174215931767156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ListenerNumber: -1
---- !u!114 &1399433126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8657174215931767156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/BGMusic
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 2.24
-  OverrideMaxDistance: 20
 --- !u!114 &3533816678348280665
 MonoBehaviour:
   m_ObjectHideFlags: 0
