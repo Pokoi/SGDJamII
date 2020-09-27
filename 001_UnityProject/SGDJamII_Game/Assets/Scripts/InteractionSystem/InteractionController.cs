@@ -25,7 +25,7 @@ public class InteractionController : MonoBehaviour
     public LayerMask interactableLayer;
 
     [Space]
-    [SerializeField] Vector3 rayPositionOffset;
+    [SerializeField] Transform rayPositionOffset;
 
     [Header("Debug")]
     public float holdPercentage = 0f;
@@ -60,7 +60,8 @@ public class InteractionController : MonoBehaviour
     void CheckForInteractable()
     {
         //Ray to the direction : Front of player.
-        m_ray = new Ray(gameObject.transform.position + rayPositionOffset, gameObject.transform.forward);
+        m_ray = new Ray(rayPositionOffset.position, gameObject.transform.forward);
+
         RaycastHit _hitInfo;
 
         m_hitSomething = Physics.SphereCast(m_ray, raySphereRadius, out _hitInfo, rayDistance, interactableLayer);
@@ -156,7 +157,8 @@ public class InteractionController : MonoBehaviour
 
     void DrawInteractionRay()
     {
-        Debug.DrawRay(gameObject.transform.position + rayPositionOffset, gameObject.transform.forward * rayDistance, m_hitSomething ? Color.green : Color.red);
+        // Debug.DrawRay(gameObject.transform.position + rayPositionOffset, gameObject.transform.forward * rayDistance, m_hitSomething ? Color.green : Color.red);        
+        Debug.DrawRay(rayPositionOffset.position, gameObject.transform.forward, m_hitSomething ? Color.green : Color.red);
     }
 
     #endregion
