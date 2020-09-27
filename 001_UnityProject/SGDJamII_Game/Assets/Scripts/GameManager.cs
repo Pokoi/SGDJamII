@@ -13,13 +13,10 @@ public class GameManager : Singleton<GameManager>
     [FMODUnity.EventRef]
     public string endgame;
     //[FMODUnity.EventRef]
-    //public string powerUp;
-    //[FMODUnity.EventRef]
     //public string levitate;
 
     FMOD.Studio.EventInstance musicEvent;
     FMOD.Studio.EventInstance endgameEvent;
-    //FMOD.Studio.EventInstance powerUpEvent;
     //FMOD.Studio.EventInstance levitateEvent;
 
 
@@ -68,7 +65,6 @@ public class GameManager : Singleton<GameManager>
             Debug.LogException(new Exception("Hive manager not found in Game Manager"));
 
         musicEvent.start();
-        PlayerVictory();
     }
 
     private void Update()
