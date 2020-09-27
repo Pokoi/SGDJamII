@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 866304123263196002}
   - component: {fileID: 866304123263196003}
   - component: {fileID: 866304123263196000}
-  - component: {fileID: 5012658074045454502}
   m_Layer: 0
   m_Name: LampHidePoint
   m_TagString: HiddingPlace
@@ -31,6 +30,7 @@ Transform:
   m_LocalScale: {x: 0.10809559, y: 0.2, z: 0.12127904}
   m_Children:
   - {fileID: 1633006358850956623}
+  - {fileID: 9133197500556383495}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -60,14 +60,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOccupation: 1
-  chanceToRevealPosition: 0.2
---- !u!114 &5012658074045454502
+  chanceToRevealPosition: 0
+--- !u!1 &3970618871334508789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9133197500556383495}
+  - component: {fileID: 8229552990532865751}
+  - component: {fileID: 2304772818805776912}
+  m_Layer: 0
+  m_Name: Interactuable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9133197500556383495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970618871334508789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 866304123263196002}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8229552990532865751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970618871334508789}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2, z: 3}
+  m_Center: {x: 0, y: 0.5, z: -1}
+--- !u!114 &2304772818805776912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866304123263196001}
+  m_GameObject: {fileID: 3970618871334508789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 147ca10ee9fe1904a96fa2ca9e9c1d4f, type: 3}
