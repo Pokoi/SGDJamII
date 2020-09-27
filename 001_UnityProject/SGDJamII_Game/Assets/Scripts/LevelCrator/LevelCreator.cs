@@ -28,6 +28,8 @@ public class LevelCreator : MonoBehaviour
 
     private box[,] table;
 
+    public GameObject door;
+
     public NavMeshSurface navigationSurface;
 
     //Rooms assign
