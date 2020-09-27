@@ -22,24 +22,24 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_1FB8F5E: 0.69
-    - Vector1_2330811F: 1.76
-    - Vector1_3E60CD72: 0.87
-    - Vector1_3F76FFCA: 0.55
-    - Vector1_48F8D2CE: 1.01
-    - Vector1_52A4234E: -0.14
-    - Vector1_5F0B6D58: 2
-    - Vector1_64EE49CE: -0.36
-    - Vector1_69315031: 0.15
-    - Vector1_A3EF069D: 64.58
-    - Vector1_B1FFD6A1: 0.14
-    - Vector1_BEA8AAF5: 0.92
-    - Vector1_DEE5B51D: 3.02
-    - Vector1_F48C110F: -2
+    - Vector1_1FB8F5E: 0.38
+    - Vector1_2330811F: 0.63
+    - Vector1_3E60CD72: 1.17
+    - Vector1_3F76FFCA: 0.42
+    - Vector1_48F8D2CE: 1.22
+    - Vector1_52A4234E: -0.06
+    - Vector1_5F0B6D58: 0.05
+    - Vector1_64EE49CE: 0.35
+    - Vector1_69315031: 0.2
+    - Vector1_A3EF069D: 26.17
+    - Vector1_B1FFD6A1: 1.24
+    - Vector1_BEA8AAF5: 12.9
+    - Vector1_DEE5B51D: 0.16
+    - Vector1_F48C110F: 0.93
     m_Colors:
-    - Color_7838ADB3: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.41960785}
-    - Color_7B754E0F: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
-    - Vector2_530E3E4B: {r: 3, g: 3, b: 0, a: 0}
-    - Vector4_1CD4A21A: {r: -0.42, g: 1.53, b: -0.26, a: 2.08}
+    - Color_7838ADB3: {r: 0.57254905, g: 0.70003855, b: 0.8392157, a: 0.41960785}
+    - Color_7B754E0F: {r: 0.31399074, g: 0.4528302, b: 0.36903343, a: 1}
+    - Vector2_530E3E4B: {r: 1, g: 1, b: 0, a: 0}
+    - Vector4_1CD4A21A: {r: -0.26, g: 1.87, b: -0.2, a: 1.75}
     - Vector4_8D860D8F: {r: 1, g: 1, b: 0, a: 90}
   m_BuildTextureStacks: []
