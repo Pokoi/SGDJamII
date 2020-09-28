@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -52,6 +53,8 @@ public class Interaction_PowerUp : InteractableBase
         m_player.PowerUp = powerUp;
 
         //TODO : Guardar selección.
+
+        GameManager.Instance.powerUp = powerUp.GetType();
 
         OnSelection();
 

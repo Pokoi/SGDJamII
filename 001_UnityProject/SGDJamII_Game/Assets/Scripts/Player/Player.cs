@@ -10,8 +10,11 @@ public class Player : Singleton<Player>
     public string powerUp;
     FMOD.Studio.EventInstance powerUpEvent;
 
-    [Header("Power Up")]
-    [SerializeField] private PowerUp currentPowerUp;
+    //[Header("Power Up")]
+    //[SerializeField] private PowerUp currentPowerUp;
+    public PowerUp currentPowerUp = null;
+
+    // public void SetPowerUp(PowerUp p) => currentPowerUp = p;
 
     #region Properties
 
@@ -32,11 +35,14 @@ public class Player : Singleton<Player>
     public void ApplyPowerUp()
     {
         powerUpEvent.start(); //fmod
-        if (currentPowerUp)
+
+        if (!TryGetComponent(out PowerUp p))
         {
-            Debug.LogWarning("There is no PowerUp in the player.");
+            Debug.LogError("No powerup in player");
             return;
         }
+        else
+            currentPowerUp = p;
 
         currentPowerUp.OnApply();
     }

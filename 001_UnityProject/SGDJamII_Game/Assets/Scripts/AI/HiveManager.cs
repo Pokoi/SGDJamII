@@ -23,6 +23,11 @@ namespace ArtificialIntelligence
             }    
         }
 
+        private void Start()
+        {
+            GameManager.Instance.hiveManager = this;
+        }
+
         public void AddAgent(ArtificialIntelligence.IntelligentAgent agent) => agents.Add(agent);
         public List<ArtificialIntelligence.IntelligentAgent> GetAgents() => agents;
 
