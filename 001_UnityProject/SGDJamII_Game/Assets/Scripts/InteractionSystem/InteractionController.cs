@@ -134,6 +134,7 @@ public class InteractionController : MonoBehaviour
             else
             {
                 Interact();
+
             }
         }
     }
@@ -144,6 +145,7 @@ public class InteractionController : MonoBehaviour
         m_interacting = false;
         m_firstInteractingInput = false;
         holdPercentage = 0f;
+
     }
 
     #region Input

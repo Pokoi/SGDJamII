@@ -33,12 +33,12 @@ public class Player : Singleton<Player>
     }
 
     public void ApplyPowerUp()
-    {
+    {       
         powerUpEvent.start(); //fmod
 
         if (!TryGetComponent(out PowerUp p))
         {
-            Debug.LogError("No powerup in player");
+            //Debug.LogError("No powerup in player");
             return;
         }
         else

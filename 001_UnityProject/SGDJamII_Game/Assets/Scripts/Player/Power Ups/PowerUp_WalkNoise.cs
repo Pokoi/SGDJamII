@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PowerUp_WalkNoise : PowerUp
 {
+
+    bool used = false;
+
     private void Awake()
     {
         PowerUpName = "Walk Noise";
@@ -12,8 +15,12 @@ public class PowerUp_WalkNoise : PowerUp
 
     public override void OnApply()
     {
-        TurnOnEmitters();
-        Invoke("TurnOffEmitters", 5.0f);
+        if (!used)
+        {         
+            TurnOnEmitters();
+            Invoke("TurnOffEmitters", 5.0f);
+            used = true;
+        }
     }
 
     public void TurnOnEmitters()

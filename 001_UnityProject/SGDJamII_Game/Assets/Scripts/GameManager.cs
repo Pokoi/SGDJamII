@@ -74,7 +74,7 @@ public class GameManager : Singleton<GameManager>
 
 
         musicEvent.start();
-        mainDoor.SetActive(false);
+        //mainDoor.SetActive(false);
     }
 
     private void Update()
@@ -117,7 +117,14 @@ public class GameManager : Singleton<GameManager>
     public void EnemyCaught()
     {
         enemiesCaught++;
+
         totalEnemiesCaught++;
+
+        CanvasUI can = FindObjectOfType<CanvasUI>();
+
+        if (can)
+            can.enableGatcha();
+
         if (enemiesCaught >= enemiesNumber)
             PlayerVictory();
 
@@ -142,7 +149,6 @@ public class GameManager : Singleton<GameManager>
 
         gameOver = true;
         string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
-        Debug.Log(victoryText);
 
         ResetGame();
     }
@@ -161,14 +167,12 @@ public class GameManager : Singleton<GameManager>
             string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}\n. Se ha acabado el tiempo!", 
                 enemiesCaught, enemiesNumber, enemiesSaved);
             
-            Debug.Log(defeatText);
         }
         else
         {
             string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}",
                 enemiesCaught, enemiesNumber,enemiesSaved);
 
-            Debug.Log(defeatText);
         }
 
         ResetGame();
@@ -179,7 +183,9 @@ public class GameManager : Singleton<GameManager>
         enemiesSaved = 0;
         GameScene = false;
         gameOver = false;
+        hiveManager = null;
         hiveInitialized = false;
+        currentTime = 0.0f;
 
         SceneManager.LoadScene(0);
     }

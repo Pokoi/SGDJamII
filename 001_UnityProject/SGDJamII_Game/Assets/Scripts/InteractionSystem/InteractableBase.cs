@@ -63,8 +63,6 @@ public class InteractableBase : MonoBehaviour, IInteractable
 
     public virtual void OnInteract()
     {
-        Debug.Log("INTERACTED : " + gameObject.name);
-
         if (!multipleUse)
         {
             isInteractable = false;
@@ -73,19 +71,22 @@ public class InteractableBase : MonoBehaviour, IInteractable
 
     public void PlayParticles()
     {
-        if (!emittingParticles)
-        { 
-            if(particles.Count == 0)
+        if (isInteractable)
+        {
+            if (!emittingParticles)
             {
-                particles = transform.GetComponentsInChildren<ParticleSystem>().ToList<ParticleSystem>();
-            }
+                if (particles.Count == 0)
+                {
+                    particles = transform.GetComponentsInChildren<ParticleSystem>().ToList<ParticleSystem>();
+                }
 
-            foreach (ParticleSystem p in particles)
-            {
-                p.Play();
-            }
+                foreach (ParticleSystem p in particles)
+                {
+                    p.Play();
+                }
 
-            emittingParticles = true;
+                emittingParticles = true;
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class Interaction_PowerUp : InteractableBase
 
     #endregion
 
-    
+
     public override void OnInteract()
     {
         base.OnInteract();
@@ -54,7 +54,11 @@ public class Interaction_PowerUp : InteractableBase
 
         //Guardar selección.
         GameManager.Instance.powerUp = powerUp.GetType();
-        GameManager.Instance.mainDoor.SetActive(true);
+        if (!GameManager.Instance.mainDoor)
+            GameManager.Instance.mainDoor = GameObject.FindGameObjectWithTag("MainDoor");
+
+        GameManager.Instance.mainDoor.GetComponent<Animator>().SetTrigger("open");
+      //  GameObject.FindObjectOfType<Scene_PowerUpSelection>().OnPowerUpSelection();
 
         OnSelection();
 

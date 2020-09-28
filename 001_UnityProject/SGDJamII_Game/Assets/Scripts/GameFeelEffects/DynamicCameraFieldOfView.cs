@@ -41,7 +41,7 @@ public class DynamicCameraFieldOfView : GameFeelEffect
     float initialFieldOfView;
     float lastFieldOfView;
 
-    private void Awake()
+    private void Start()
     {
         Init();
     }
