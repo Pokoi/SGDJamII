@@ -38,6 +38,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool hiveInitialized = false;
 
+    public GameObject mainDoor;
+
     public Type powerUp { get { return powerUpType; } set { powerUpType = value; } }
     public bool GameScene = false;
 
@@ -68,6 +70,7 @@ public class GameManager : Singleton<GameManager>
 
 
         musicEvent.start();
+        mainDoor.SetActive(false);
     }
 
     private void Update()
@@ -88,7 +91,7 @@ public class GameManager : Singleton<GameManager>
             CreateEnemies();
             hiveInitialized = true;
             Player.Instance.gameObject.AddComponent(powerUpType);
-            Debug.Log("INSTANCIADOP COMPONENTE EN EL PLYER AaAA");
+            
             
         }
     }
@@ -133,6 +136,8 @@ public class GameManager : Singleton<GameManager>
         gameOver = true;
         string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
         Debug.Log(victoryText);
+
+        ResetGame();
     }
 
     private void PlayerDefeated(bool timeOver)

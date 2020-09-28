@@ -46,6 +46,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerInputActions.PlayerControls.PickUpRelease.performed += Interaction_Performed;
         playerInputActions.PlayerControls.PickUpRelease.canceled += Interaction_Canceled;
+        playerInputActions.PlayerControls.Use.performed += Use_Performed;
+        
 
     }
 
@@ -58,6 +60,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerInputActions.PlayerControls.PickUpRelease.performed -= Interaction_Performed;
         playerInputActions.PlayerControls.PickUpRelease.canceled -= Interaction_Canceled;
+        playerInputActions.PlayerControls.Use.performed -= Use_Performed;
+
 
         playerInputActions.Disable();
     }
@@ -89,5 +93,9 @@ public class PlayerInputHandler : MonoBehaviour
     private void Interaction_Canceled(InputAction.CallbackContext context)
     {
         interactionController.OnInteractionUnpress();
+    }
+    private void Use_Performed(InputAction.CallbackContext context)
+    {
+        Player.Instance.ApplyPowerUp();
     }
 }
