@@ -7,6 +7,7 @@ public class CanvasUI : MonoBehaviour
 {
     public TextMeshProUGUI Timetext, caughtGhosts, savedGhosts, timeToStart;
     public GameObject gatcha;
+    public GameObject victoryGO, defeatGO;
 
     private void DrawCanvasTime()
     {

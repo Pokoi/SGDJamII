@@ -49,10 +49,15 @@ public class GameManager : Singleton<GameManager>
 
     public float SecondsLeft() => gameDuration - currentTime;
 
-    
+    public int totalEnemiesCaught = 0;
+    public int totalEnemiesSaved = 0;
+
+    private CanvasUI can;
+
+
     //Returns time left in format mm:ss
     public string TimeLeftText()
-    {        
+    {
         int seconds = (int)SecondsLeft() % 60;
         int minutes = (int)SecondsLeft() / 60;
 
@@ -75,7 +80,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEvent, Player.Instance.transform, Player.Instance.GetComponent<Rigidbody>());   
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEvent, Player.Instance.transform, Player.Instance.GetComponent<Rigidbody>());
 
         if (GameScene && !gameOver)
         {
@@ -91,8 +96,8 @@ public class GameManager : Singleton<GameManager>
             CreateEnemies();
             hiveInitialized = true;
             Player.Instance.gameObject.AddComponent(powerUpType);
-            
-            
+
+
         }
     }
 
@@ -114,8 +119,10 @@ public class GameManager : Singleton<GameManager>
     public void EnemyCaught()
     {
         enemiesCaught++;
+        totalEnemiesCaught++;
 
-        CanvasUI can = FindObjectOfType<CanvasUI>();
+        if (!can)
+            can = FindObjectOfType<CanvasUI>();
 
         if (can)
             can.enableGatcha();
@@ -133,6 +140,8 @@ public class GameManager : Singleton<GameManager>
     public void EnemySaved()
     {
         enemiesSaved++;
+        totalEnemiesSaved++;
+
         if (enemiesSaved >= enemiesNumber)
             PlayerDefeated(false);
 
@@ -149,13 +158,15 @@ public class GameManager : Singleton<GameManager>
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(endgameEvent, Player.Instance.transform, Player.Instance.GetComponent<Rigidbody>());
         endgameEvent.setParameterByName("WinParam", 1.0f);
         endgameEvent.start(); //fmod
-        
+
 
         gameOver = true;
         string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
         Debug.Log(victoryText);
 
-        ResetGame();
+        can.victoryGO.SetActive(true);
+        Player.Instance.GetComponent<PlayerMovement>().enabled = false;
+        Invoke("ResetGame", 3f);
     }
 
     private void PlayerDefeated(bool timeOver)
@@ -169,25 +180,53 @@ public class GameManager : Singleton<GameManager>
         gameOver = true;
         if (timeOver)
         {
-            string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}\n. Se ha acabado el tiempo!", 
+            string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}\n. Se ha acabado el tiempo!",
                 enemiesCaught, enemiesNumber, enemiesSaved);
-            
+
             Debug.Log(defeatText);
         }
         else
         {
             string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}",
-                enemiesCaught, enemiesNumber,enemiesSaved);
+                enemiesCaught, enemiesNumber, enemiesSaved);
 
             Debug.Log(defeatText);
         }
 
-        ResetGame();
+        if (!can)
+            can = FindObjectOfType<CanvasUI>();
+
+        can.defeatGO.SetActive(true);
+        Player.Instance.GetComponent<PlayerMovement>().enabled = false;
+        Invoke("ResetGame", 3f);
+
     }
     private void ResetGame()
     {
+        currentTime = 0.0f;
+        gameOver = false;
+        hiveManager = null;
+        hiveInitialized = false;
+        GameScene = false;
+        enemiesCaught = 0;
+        enemiesSaved = 0;
+
+        if (PlayerPrefs.GetInt("SavedData") == 1)
+        {
+            PlayerPrefs.SetInt("TotalCaught", totalEnemiesCaught + PlayerPrefs.GetInt("TotalCaught"));
+            PlayerPrefs.SetInt("TotalSaved", totalEnemiesSaved + PlayerPrefs.GetInt("TotalSaved"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("TotalCaught", totalEnemiesCaught);
+            PlayerPrefs.SetInt("TotalSaved", totalEnemiesSaved);
+            PlayerPrefs.SetInt("SavedData", 1);
+        }
+
+        PlayerPrefs.Save();
 
         SceneManager.LoadScene(0);
     }
+
 
 }
