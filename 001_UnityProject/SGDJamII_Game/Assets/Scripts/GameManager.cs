@@ -136,6 +136,8 @@ public class GameManager : Singleton<GameManager>
         gameOver = true;
         string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
         Debug.Log(victoryText);
+
+        ResetGame();
     }
 
     private void PlayerDefeated(bool timeOver)
