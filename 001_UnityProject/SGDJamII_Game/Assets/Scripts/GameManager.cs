@@ -49,11 +49,7 @@ public class GameManager : Singleton<GameManager>
 
     public float SecondsLeft() => gameDuration - currentTime;
 
-    public int totalEnemiesCaught = 0;
-    public int totalEnemiesSaved = 0;
-
-
-
+    
     //Returns time left in format mm:ss
     public string TimeLeftText()
     {        
@@ -96,6 +92,7 @@ public class GameManager : Singleton<GameManager>
             hiveInitialized = true;
             Player.Instance.gameObject.AddComponent(powerUpType);
             
+            
         }
     }
 
@@ -118,8 +115,6 @@ public class GameManager : Singleton<GameManager>
     {
         enemiesCaught++;
 
-        totalEnemiesCaught++;
-
         CanvasUI can = FindObjectOfType<CanvasUI>();
 
         if (can)
@@ -128,15 +123,24 @@ public class GameManager : Singleton<GameManager>
         if (enemiesCaught >= enemiesNumber)
             PlayerVictory();
 
-
+        if (enemiesCaught + enemiesSaved >= enemiesNumber)
+        {
+            if (enemiesCaught > enemiesSaved) PlayerVictory();
+            else PlayerDefeated(false);
+        }
 
     }
     public void EnemySaved()
     {
         enemiesSaved++;
-        totalEnemiesSaved++;
         if (enemiesSaved >= enemiesNumber)
             PlayerDefeated(false);
+
+        if (enemiesCaught + enemiesSaved >= enemiesNumber)
+        {
+            if (enemiesCaught > enemiesSaved) PlayerVictory();
+            else PlayerDefeated(false);
+        }
     }
 
     private void PlayerVictory()
@@ -149,6 +153,7 @@ public class GameManager : Singleton<GameManager>
 
         gameOver = true;
         string victoryText = String.Format("Victoria!\n enemigos atrapados {0}/{1}", enemiesCaught, enemiesNumber);
+        Debug.Log(victoryText);
 
         ResetGame();
     }
@@ -167,25 +172,20 @@ public class GameManager : Singleton<GameManager>
             string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}\n. Se ha acabado el tiempo!", 
                 enemiesCaught, enemiesNumber, enemiesSaved);
             
+            Debug.Log(defeatText);
         }
         else
         {
             string defeatText = String.Format("Derrota\n enemigos atrapados {0}/{1}\n enemigos salvados {2}{1}",
                 enemiesCaught, enemiesNumber,enemiesSaved);
 
+            Debug.Log(defeatText);
         }
 
         ResetGame();
     }
     private void ResetGame()
     {
-        enemiesCaught = 0;
-        enemiesSaved = 0;
-        GameScene = false;
-        gameOver = false;
-        hiveManager = null;
-        hiveInitialized = false;
-        currentTime = 0.0f;
 
         SceneManager.LoadScene(0);
     }
