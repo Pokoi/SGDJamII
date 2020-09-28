@@ -54,7 +54,7 @@ public class Interaction_PowerUp : InteractableBase
 
         //Guardar selección.
         GameManager.Instance.powerUp = powerUp.GetType();
-        GameManager.Instance.mainDoor.SetActive(true);
+        GameManager.Instance.mainDoor.GetComponent<Animator>().SetTrigger("open");       
 
         OnSelection();
 

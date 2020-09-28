@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PowerUp_ChangeSpot : PowerUp
 {
+
+    bool used = false;
+
     private void Awake()
     {
         PowerUpName = "Change Spot";    
@@ -11,7 +14,11 @@ public class PowerUp_ChangeSpot : PowerUp
 
     public override void OnApply()
     {
-        MessageSystem.Dispatcher.singletonInstance.Send("changeSpot");
+        if (!used)
+        { 
+            MessageSystem.Dispatcher.singletonInstance.Send("changeSpot");
+            used = true;        
+        }
     }
 
 }

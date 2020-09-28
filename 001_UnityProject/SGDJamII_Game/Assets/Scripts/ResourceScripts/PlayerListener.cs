@@ -9,7 +9,7 @@ namespace MessageSystem
 
         bool exposed = true;
 
-        private void Awake()
+        private void Start()
         {
             MessageSystem.Dispatcher.singletonInstance.AddListener(this, "sneakEntry");
         }

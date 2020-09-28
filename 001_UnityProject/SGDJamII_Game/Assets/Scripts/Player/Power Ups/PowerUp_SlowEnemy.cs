@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PowerUp_SlowEnemy : PowerUp
 {
+    bool used = false;
+
     private void Awake()
     {
         PowerUpName = "Slow Enemy";
@@ -11,9 +13,12 @@ public class PowerUp_SlowEnemy : PowerUp
 
     public override void OnApply()
     {
-        Slow();
-
-        Invoke("Restore", 3.0f);
+        if (!used)
+        { 
+            Slow();
+            Invoke("Restore", 5.0f);
+            used = true;
+        }
     }
 
     public void Slow() => MessageSystem.Dispatcher.singletonInstance.Send("slowEnemy");

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PowerUp_SneakyEntry : PowerUp
 {
+    bool used = false;
+
     private void Awake()
     {
         PowerUpName = "Sneaky Entry";
@@ -11,6 +13,10 @@ public class PowerUp_SneakyEntry : PowerUp
 
     public override void OnApply()
     {
-        MessageSystem.Dispatcher.singletonInstance.Send("sneakyEntry");
+        if (!used)
+        { 
+            MessageSystem.Dispatcher.singletonInstance.Send("sneakyEntry");
+            used = true;
+        }
     }
 }
