@@ -49,7 +49,11 @@ public class GameManager : Singleton<GameManager>
 
     public float SecondsLeft() => gameDuration - currentTime;
 
-    
+    public int totalEnemiesCaught = 0;
+    public int totalEnemiesSaved = 0;
+
+
+
     //Returns time left in format mm:ss
     public string TimeLeftText()
     {        
@@ -92,7 +96,6 @@ public class GameManager : Singleton<GameManager>
             hiveInitialized = true;
             Player.Instance.gameObject.AddComponent(powerUpType);
             
-            
         }
     }
 
@@ -114,13 +117,17 @@ public class GameManager : Singleton<GameManager>
     public void EnemyCaught()
     {
         enemiesCaught++;
+        totalEnemiesCaught++;
         if (enemiesCaught >= enemiesNumber)
             PlayerVictory();
+
+
 
     }
     public void EnemySaved()
     {
         enemiesSaved++;
+        totalEnemiesSaved++;
         if (enemiesSaved >= enemiesNumber)
             PlayerDefeated(false);
     }
@@ -168,6 +175,11 @@ public class GameManager : Singleton<GameManager>
     }
     private void ResetGame()
     {
+        enemiesCaught = 0;
+        enemiesSaved = 0;
+        GameScene = false;
+        gameOver = false;
+        hiveInitialized = false;
 
         SceneManager.LoadScene(0);
     }
