@@ -42,6 +42,7 @@ public class Player : Singleton<Player>
     {
         if (!used)
         {
+
             if (!TryGetComponent(out PowerUp p))
             {
                 //Debug.LogError("No powerup in player");
@@ -50,10 +51,23 @@ public class Player : Singleton<Player>
             else
                 currentPowerUp = p;
 
+            used = true;
+            
             powerUpEvent.start(); //fmod
+
+
+            float seconds = 1.319f;
+
+            Invoke("StopSoundEffect", seconds);
+
             currentPowerUp.OnApply();
             GameObject.FindGameObjectWithTag("PowerUpCanvas").GetComponent<UnityEngine.UI.Image>().sprite = image;
         }        
+    }
+
+    public void StopSoundEffect()
+    {
+        powerUpEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 }
 

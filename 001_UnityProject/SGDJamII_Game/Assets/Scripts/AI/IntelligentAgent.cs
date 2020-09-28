@@ -30,6 +30,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 namespace ArtificialIntelligence
@@ -83,6 +84,8 @@ namespace ArtificialIntelligence
 
 
         }
+
+        public bool GetDead() => dead;
 
         /**
         @brief Sets the ai agent into a given hidding place
