@@ -114,6 +114,12 @@ public class GameManager : Singleton<GameManager>
     public void EnemyCaught()
     {
         enemiesCaught++;
+
+        CanvasUI can = FindObjectOfType<CanvasUI>();
+
+        if (can)
+            can.enableGatcha();
+
         if (enemiesCaught >= enemiesNumber)
             PlayerVictory();
 
