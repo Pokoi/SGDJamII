@@ -4242,6 +4242,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 137.654
       objectReference: {fileID: 0}
+    - target: {fileID: 4135483496577574788, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4205892772707280572, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_Name
       value: WardroveHidePoint (1)
@@ -4310,6 +4314,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6527984112009264329, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6820662893886350032, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.35919642
@@ -4333,6 +4341,10 @@ PrefabInstance:
     - target: {fileID: 6820662893886350032, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -118.941
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910551559428715114, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4205892772707280573, guid: bb3d806cc1f5c7f4493944c7b5559382, type: 3}

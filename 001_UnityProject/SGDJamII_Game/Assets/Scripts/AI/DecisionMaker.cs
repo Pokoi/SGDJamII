@@ -72,10 +72,10 @@ namespace ArtificialIntelligence
 
         public Vector3 MakeADecision()
         {
-            float changeHiddingPlaceHeuristic = 0.0f;
-            float chooseHiddingPlaceHeuristic = 0.0f;
-            float changeRoomHeuristic = 0.0f;
-            float waitinghHeuristic = 0.0f;       
+            float choice = Random.Range(0.2f, 0.8f);
+            float changeHiddingPlaceHeuristic = Mathf.Abs(choice - agent.GetPsychology().changeHiddingPlaceWeight);            
+            float changeRoomHeuristic = Mathf.Abs(choice - agent.GetPsychology().changeRoomWeight);
+            float waitinghHeuristic = Mathf.Abs(choice - agent.GetPsychology().waitingWeight);       
 
             // In case the AI is in the same room of the goal, the AI runs to the goal point
             if(agent.GetCurrentRoom() != null && agent.GetCurrentRoom().GetIsGoal())
@@ -89,31 +89,35 @@ namespace ArtificialIntelligence
             }
 
             var suspicion = agent.GetSuspicionLocation();
+
+            if (agent.GetCurrentRoom() == suspicion) return Wait();
             
+            /*
             waitinghHeuristic = (agent.GetPsychology().waitingWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion));
             changeRoomHeuristic = agent.GetPsychology().changeRoomWeight * agent.GetCurrentRoom().GetDistanceToGoal();
             changeHiddingPlaceHeuristic =  agent.GetPsychology().changeHiddingPlaceWeight * RoomManager.singletonInstance.GetDistanceBetween(agent.GetCurrentRoom(), suspicion);
 
-            if(waitinghHeuristic > changeRoomHeuristic)
+            */
+            if(waitinghHeuristic < changeRoomHeuristic)
             {
-                if(waitinghHeuristic >= changeHiddingPlaceHeuristic)
+                if(waitinghHeuristic < changeHiddingPlaceHeuristic)
                 {
-                    return Wait();
+                    return Wait();                   
                 }
                 else
-                {                        
+                {
                     return ChooseDestinyHiddingPlace();
                 }
             }
-            else if(changeRoomHeuristic > changeHiddingPlaceHeuristic)
+            else if(changeRoomHeuristic < changeHiddingPlaceHeuristic)
             {
                 return ChooseDestinyRoom();
             }
             else 
             {                    
                 return Wait();
-            }               
-                       
+            }  
+
         }
 
         /**

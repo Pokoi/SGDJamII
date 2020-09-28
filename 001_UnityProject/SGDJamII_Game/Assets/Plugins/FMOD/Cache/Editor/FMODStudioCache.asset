@@ -177,7 +177,7 @@ MonoBehaviour:
   Path: event:/BGMusic
   guid: 4a990f02807223488de486cb9d406ead
   Banks:
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -235,12 +235,12 @@ MonoBehaviour:
   Path: event:/Endgame
   guid: b8cc63c987a6d8428455cb74c9b0c4dd
   Banks:
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -7896991319018731750}
+  - {fileID: 7277185233084160257}
   MinDistance: 1
   MaxDistance: 20
   Length: 35428
@@ -259,7 +259,7 @@ MonoBehaviour:
   Path: event:/Powerup
   guid: 3420b4c1a32d0041940fd26ffa46aa3c
   Banks:
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -338,6 +338,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-2223628367847177039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637368367111039682
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1687342264076761857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +405,23 @@ MonoBehaviour:
   m_Name: parameter:/Endgame/WinParam
   m_EditorClassIdentifier: 
   Name: WinParam
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-898698879696724431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Levitation/Finished
+  m_EditorClassIdentifier: 
+  Name: Finished
   Min: 0
   Max: 2
   Default: 0
@@ -441,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 42262335975353819}
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   EditorEvents:
   - {fileID: -4909568478987735674}
   - {fileID: -4023531198201306189}
@@ -449,10 +484,10 @@ MonoBehaviour:
   - {fileID: -4236837810502503972}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   StringsBanks:
   - {fileID: 42262335975353819}
-  stringsBankWriteTime: 637368089280788867
+  stringsBankWriteTime: 637368367111049661
   cacheVersion: 3
 --- !u!114 &42262335975353819
 MonoBehaviour:
@@ -468,7 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637368089280788867
+  lastModified: 637368367111049661
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -506,12 +541,12 @@ MonoBehaviour:
   Path: event:/Levitation
   guid: 50deac950853fe4cb197a525056b1399
   Banks:
-  - {fileID: 3017856701299262253}
+  - {fileID: -2223628367847177039}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4388904536980531223}
+  - {fileID: -898698879696724431}
   MinDistance: 1
   MaxDistance: 20
   Length: 4536
@@ -798,6 +833,23 @@ MonoBehaviour:
   lastModified: 637365859541356966
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &7277185233084160257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Endgame/WinParam
+  m_EditorClassIdentifier: 
+  Name: WinParam
+  Min: 0
+  Max: 2
+  Default: 0
   Exists: 1
 --- !u!114 &8227926677460077973
 MonoBehaviour:

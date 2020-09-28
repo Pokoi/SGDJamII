@@ -72,8 +72,7 @@ namespace ArtificialIntelligence
 
                 if(Vector3.Distance (destination, new Vector3(cachedTransform.position.x, 0.0f, cachedTransform.position.z)) > 0.5f)
                 {
-                    agent.destination = destination; 
-                    intelligentAgent.Unhide();              
+                    agent.destination = destination;                                  
                 }
 
                 else
@@ -104,11 +103,10 @@ namespace ArtificialIntelligence
 
                     var destiny = intelligentAgent.GetThinker().MakeADecision();   
                     
-                    float seconds = intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL ||
-                                    intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.CHOOSE_HIDDING_PLACE
+                    float seconds = intelligentAgent.GetThinker().GetCurrentAction() == ArtificialIntelligence.DecisionMaker.ActionTypes.GOAL                                    
                                     ?                                    
                                     0.1f :
-                                    Random.Range(3.0f, 4.0f);
+                                    Random.Range(6.0f, 10.0f);
                    
 
                     yield return new WaitForSeconds(seconds);
@@ -129,6 +127,7 @@ namespace ArtificialIntelligence
         */
         public void OnStartMoving()
         {
+            intelligentAgent.Unhide();
             if (emitter)
             { 
                 //Play sound

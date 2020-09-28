@@ -76,8 +76,8 @@ namespace ArtificialIntelligence
             collider = transform.GetComponent<CapsuleCollider>();            
 
             psychology.changeRoomWeight = Random.Range(0.0f, 0.1f);
-            psychology.changeHiddingPlaceWeight = Random.Range(0.5f, 1.0f);
-            psychology.waitingWeight = Random.Range(0.7f, 1.0f);
+            psychology.changeHiddingPlaceWeight = Random.Range(0.9f, 1.0f);
+            psychology.waitingWeight = Random.Range(0.3f, 0.7f);
             psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f); 
             
 
@@ -202,8 +202,8 @@ namespace ArtificialIntelligence
         @brief Method called when the enemy dies
         */
         public void Death()
-        {
-            Hide();
+        {          
+            
             locomotor.Inactivate();
             GameManager.Instance.EnemyCaught();
             gameObject.SetActive(false);
