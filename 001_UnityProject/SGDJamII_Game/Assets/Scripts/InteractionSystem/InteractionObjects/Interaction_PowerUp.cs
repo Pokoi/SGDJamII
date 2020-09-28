@@ -52,9 +52,9 @@ public class Interaction_PowerUp : InteractableBase
 
         m_player.PowerUp = powerUp;
 
-        //TODO : Guardar selección.
-
+        //Guardar selección.
         GameManager.Instance.powerUp = powerUp.GetType();
+        GameManager.Instance.mainDoor.SetActive(true);
 
         OnSelection();
 
