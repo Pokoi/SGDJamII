@@ -123,12 +123,24 @@ public class GameManager : Singleton<GameManager>
         if (enemiesCaught >= enemiesNumber)
             PlayerVictory();
 
+        if (enemiesCaught + enemiesSaved >= enemiesNumber)
+        {
+            if (enemiesCaught > enemiesSaved) PlayerVictory();
+            else PlayerDefeated(false);
+        }
+
     }
     public void EnemySaved()
     {
         enemiesSaved++;
         if (enemiesSaved >= enemiesNumber)
             PlayerDefeated(false);
+
+        if (enemiesCaught + enemiesSaved >= enemiesNumber)
+        {
+            if (enemiesCaught > enemiesSaved) PlayerVictory();
+            else PlayerDefeated(false);
+        }
     }
 
     private void PlayerVictory()

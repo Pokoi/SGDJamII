@@ -14,6 +14,8 @@ public class Player : Singleton<Player>
     //[SerializeField] private PowerUp currentPowerUp;
     public PowerUp currentPowerUp = null;
 
+    bool used = false;
+
     // public void SetPowerUp(PowerUp p) => currentPowerUp = p;
 
     #region Properties
@@ -33,18 +35,20 @@ public class Player : Singleton<Player>
     }
 
     public void ApplyPowerUp()
-    {       
-        powerUpEvent.start(); //fmod
-
-        if (!TryGetComponent(out PowerUp p))
+    {
+        if (!used)
         {
-            //Debug.LogError("No powerup in player");
-            return;
-        }
-        else
-            currentPowerUp = p;
+            if (!TryGetComponent(out PowerUp p))
+            {
+                //Debug.LogError("No powerup in player");
+                return;
+            }
+            else
+                currentPowerUp = p;
 
-        currentPowerUp.OnApply();
+            powerUpEvent.start(); //fmod
+            currentPowerUp.OnApply();
+        }        
     }
 }
 
