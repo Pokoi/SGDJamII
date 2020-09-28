@@ -81,6 +81,19 @@ public class GameManager : Singleton<GameManager>
         musicEvent.start();
         //mainDoor.SetActive(false);
     }
+    public void GameSceneStarted()
+    {
+        SceneFader.Instance.PlayFadeIn();
+        Player.Instance.gameObject.AddComponent(powerUpType);
+        GameScene = true;
+    }
+
+    public void StartThings()
+    {
+        CreateEnemies();
+        hiveInitialized = true;
+        startThings = false;
+    }
 
     private void Update()
     {
@@ -92,24 +105,7 @@ public class GameManager : Singleton<GameManager>
             if (currentTime >= gameDuration)
                 PlayerDefeated(true);
         }
-        if (GameScene)
-        {
-            SceneFader.Instance.PlayFadeIn();
-            Player.Instance.gameObject.AddComponent(powerUpType);
-            GameScene = false;
-        }
-        if (hiveManager && !hiveInitialized)
-        {
-            
-        }
-        if(startThings)
-        {
-            CreateEnemies();
-            hiveInitialized = true;
-            startThings = false;
 
-
-        }
     }
 
 
@@ -208,7 +204,8 @@ public class GameManager : Singleton<GameManager>
             can = FindObjectOfType<CanvasUI>();
 
         can.defeatGO.SetActive(true);
-        Player.Instance.GetComponent<PlayerMovement>().enabled = false;
+        if (Player.Instance.GetComponent<PlayerMovement>())
+         Player.Instance.GetComponent<PlayerMovement>().enabled = false;
         Invoke("ResetGame", 3f);
 
     }

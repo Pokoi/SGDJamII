@@ -282,7 +282,7 @@ MonoBehaviour:
   guid: 4a990f02807223488de486cb9d406ead
   Banks:
   - {fileID: 4728763683149708079}
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -358,15 +358,33 @@ MonoBehaviour:
   guid: b8cc63c987a6d8428455cb74c9b0c4dd
   Banks:
   - {fileID: 4728763683149708079}
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -5120284907093410527}
+  - {fileID: 3870452925473449050}
   MinDistance: 1
   MaxDistance: 20
   Length: 35428
+--- !u!114 &-4189026456411019237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637368089280723660
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-4023531198201306189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +401,7 @@ MonoBehaviour:
   guid: 3420b4c1a32d0041940fd26ffa46aa3c
   Banks:
   - {fileID: 4728763683149708079}
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -551,6 +569,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-1545078899050225011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Levitation/Finished
+  m_EditorClassIdentifier: 
+  Name: Finished
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-1517411313182903319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 42262335975353819}
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   EditorEvents:
   - {fileID: -4909568478987735674}
   - {fileID: -4023531198201306189}
@@ -678,10 +713,10 @@ MonoBehaviour:
   - {fileID: -4236837810502503972}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   StringsBanks:
   - {fileID: 42262335975353819}
-  stringsBankWriteTime: 637368367111049661
+  stringsBankWriteTime: 637368089280788867
   cacheVersion: 3
 --- !u!114 &42262335975353819
 MonoBehaviour:
@@ -697,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sound and Music/FMODproject/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637368367111049661
+  lastModified: 637368089280788867
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -753,12 +788,12 @@ MonoBehaviour:
   guid: 50deac950853fe4cb197a525056b1399
   Banks:
   - {fileID: 4728763683149708079}
-  - {fileID: -2272689160379318459}
+  - {fileID: -4189026456411019237}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -5310001550226816387}
+  - {fileID: -1545078899050225011}
   MinDistance: 1
   MaxDistance: 20
   Length: 4536
@@ -924,6 +959,23 @@ MonoBehaviour:
   Default: 0
   Exists: 1
 --- !u!114 &3671419631523567724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Endgame/WinParam
+  m_EditorClassIdentifier: 
+  Name: WinParam
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &3870452925473449050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
