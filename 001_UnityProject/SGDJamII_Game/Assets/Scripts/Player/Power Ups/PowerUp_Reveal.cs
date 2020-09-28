@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using ArtificialIntelligence;
 
 public class PowerUp_Reveal : PowerUp
 {
@@ -16,20 +17,18 @@ public class PowerUp_Reveal : PowerUp
     public override void OnApply()
     {
         if (!used)
-        {         
-            Vector3 center = Player.Instance.transform.position;
+        {
             int amount = 0;
 
-            Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.gameObject.TryGetComponent(out ArtificialIntelligence.IntelligentAgent agent))
-                {
-                    ++amount;
-                }
-            }
+            Vector3 center = Player.Instance.transform.position;
 
-            used = true;
+            var agents = HiveManager.singletonInstance.GetAgents();
+
+            foreach (var agent in agents)
+            {
+                if (!agent.GetDead()  && Vector3.Distance(agent.transform.position, center) <= 4.0f) ++amount;  
+            }            
+            
             // Amount has the value of the number of enemies inside this radius
             //TODO:
             GameObject.FindGameObjectWithTag("RevealedCanvas").GetComponent<TextMeshProUGUI>().text = "Near Ghosts: " + amount;

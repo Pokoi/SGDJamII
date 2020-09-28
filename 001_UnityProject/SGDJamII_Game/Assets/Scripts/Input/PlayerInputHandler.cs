@@ -44,6 +44,8 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputActions.PlayerControls.Run.performed += Run_Performed;
         playerInputActions.PlayerControls.Run.canceled += Run_Cancelled;
 
+        playerInputActions.PlayerControls.QuitGame.performed += Exit_Game;
+
         playerInputActions.PlayerControls.PickUpRelease.performed += Interaction_Performed;
         playerInputActions.PlayerControls.PickUpRelease.canceled += Interaction_Canceled;
         playerInputActions.PlayerControls.Use.performed += Use_Performed;
@@ -57,6 +59,8 @@ public class PlayerInputHandler : MonoBehaviour
         playerInputActions.PlayerControls.Move.canceled -= Move_Cancelled;
         playerInputActions.PlayerControls.Run.performed -= Run_Performed;
         playerInputActions.PlayerControls.Run.canceled -= Run_Cancelled;
+
+        playerInputActions.PlayerControls.QuitGame.performed -= Exit_Game;
 
         playerInputActions.PlayerControls.PickUpRelease.performed -= Interaction_Performed;
         playerInputActions.PlayerControls.PickUpRelease.canceled -= Interaction_Canceled;
@@ -98,4 +102,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Player.Instance.ApplyPowerUp();
     }
+
+    private void Exit_Game(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.QuitGame();
+    }
+
 }

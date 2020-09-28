@@ -69,6 +69,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Cursor.visible = false;
+
         musicEvent = FMODUnity.RuntimeManager.CreateInstance(backgroundMusic);
         endgameEvent = FMODUnity.RuntimeManager.CreateInstance(endgame);
 
@@ -238,5 +240,9 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(0);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 }
