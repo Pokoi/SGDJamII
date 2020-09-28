@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class GameManager : Singleton<GameManager>
 {
     // FMOD
@@ -50,13 +49,14 @@ public class GameManager : Singleton<GameManager>
 
     public float SecondsLeft() => gameDuration - currentTime;
 
+    
     //Returns time left in format mm:ss
     public string TimeLeftText()
     {        
         int seconds = (int)SecondsLeft() % 60;
         int minutes = (int)SecondsLeft() / 60;
 
-        return String.Format("{0:D2}m:{1:D2}s", minutes, seconds);
+        return String.Format("{0:D2}' {1:D2}''", minutes, seconds);
     }
 
 
