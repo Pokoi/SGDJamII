@@ -34,6 +34,13 @@ public class GameManager : Singleton<GameManager>
     public int gameDuration = 60;
     private float currentTime = 0.0f;
 
+    private Type powerUpType;
+
+    private bool hiveInitialized = false;
+
+    public Type powerUp { get { return powerUpType; } set { powerUpType = value; } }
+    public bool GameScene = false;
+
     //GETTERS
     public int GetEnemiesCaught() => enemiesCaught;
     public int GetEnemiesSaved() => enemiesSaved;
@@ -59,10 +66,6 @@ public class GameManager : Singleton<GameManager>
         if (enemiesNumber <= 0)
             Debug.LogError("Enemies number not assigned in Game Manager");
 
-        if (hiveManager)
-            CreateEnemies();
-        else
-            Debug.LogException(new Exception("Hive manager not found in Game Manager"));
 
         musicEvent.start();
     }
@@ -70,11 +73,23 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEvent, Player.Instance.transform, Player.Instance.GetComponent<Rigidbody>());   
-        if (!gameOver)
+
+        if (GameScene && !gameOver)
         {
             currentTime += Time.deltaTime;
             if (currentTime >= gameDuration)
                 PlayerDefeated(true);
+        }
+
+        if (hiveManager && !hiveInitialized)
+        {
+            SceneFader.Instance.PlayFadeIn();
+            GameScene = true;
+            CreateEnemies();
+            hiveInitialized = true;
+            Player.Instance.gameObject.AddComponent(powerUpType);
+            Debug.Log("INSTANCIADOP COMPONENTE EN EL PLYER AaAA");
+            
         }
     }
 
@@ -149,7 +164,7 @@ public class GameManager : Singleton<GameManager>
     private void ResetGame()
     {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
 }

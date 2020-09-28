@@ -9,8 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2217239181909283512}
-  m_Layer: 0
-  m_Name: Botella (5)
+  - component: {fileID: 516043207}
+  - component: {fileID: 516043205}
+  - component: {fileID: 516043206}
+  m_Layer: 8
+  m_Name: BotellaBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +36,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &516043207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553433893321279490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.56, z: 0.46}
+  m_Center: {x: 0, y: 0.48, z: 0}
+--- !u!114 &516043205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553433893321279490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94ee23727c0d0649bda17d259613eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &516043206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553433893321279490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1ecbc12d490d54d922f171221051d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  multipleUse: 1
+  isInteractable: 1
+  holdInteract: 0
+  holdDuration: 0
+  powerUp: {fileID: 516043205}
 --- !u!1 &4894108674760216718
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +90,7 @@ GameObject:
   - component: {fileID: 3936744095098944825}
   - component: {fileID: 103248221115462114}
   - component: {fileID: 8810919916429608425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fluid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +171,7 @@ GameObject:
   - component: {fileID: 4531933735069473798}
   - component: {fileID: 6878604074164594005}
   - component: {fileID: 2036220628782574872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +252,7 @@ GameObject:
   - component: {fileID: 8613865273225800873}
   - component: {fileID: 8649877943838613527}
   - component: {fileID: 5434627680305966454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

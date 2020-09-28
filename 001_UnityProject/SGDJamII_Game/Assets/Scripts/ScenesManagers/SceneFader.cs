@@ -15,4 +15,14 @@ public class SceneFader : Singleton<SceneFader>
     {
         SceneManager.LoadScene(1);
     }
+
+    public void StartCountdown()
+    {
+
+    }
+
+    public void PlayFadeIn()
+    {
+        animator.SetBool("FadeIn", true);
+    }
 }
