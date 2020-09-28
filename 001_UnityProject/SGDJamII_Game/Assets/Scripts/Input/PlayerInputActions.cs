@@ -57,6 +57,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""45beac25-9b7b-41d1-8f37-accaadd18f80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -211,6 +219,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90fa4cfc-b27b-43ff-b811-e1a5ca8f8721"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff80c49a-a20c-4b1c-a647-d60551869b19"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -445,6 +475,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_PickUpRelease = m_PlayerControls.FindAction("PickUpRelease", throwIfNotFound: true);
         m_PlayerControls_Run = m_PlayerControls.FindAction("Run", throwIfNotFound: true);
         m_PlayerControls_Look = m_PlayerControls.FindAction("Look", throwIfNotFound: true);
+        m_PlayerControls_QuitGame = m_PlayerControls.FindAction("QuitGame", throwIfNotFound: true);
         // MenuPlayerControls
         m_MenuPlayerControls = asset.FindActionMap("MenuPlayerControls", throwIfNotFound: true);
         m_MenuPlayerControls_Move = m_MenuPlayerControls.FindAction("Move", throwIfNotFound: true);
@@ -507,6 +538,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_PickUpRelease;
     private readonly InputAction m_PlayerControls_Run;
     private readonly InputAction m_PlayerControls_Look;
+    private readonly InputAction m_PlayerControls_QuitGame;
     public struct PlayerControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -516,6 +548,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @PickUpRelease => m_Wrapper.m_PlayerControls_PickUpRelease;
         public InputAction @Run => m_Wrapper.m_PlayerControls_Run;
         public InputAction @Look => m_Wrapper.m_PlayerControls_Look;
+        public InputAction @QuitGame => m_Wrapper.m_PlayerControls_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -540,6 +573,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLook;
+                @QuitGame.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -559,6 +595,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -670,6 +709,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnPickUpRelease(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
     public interface IMenuPlayerControlsActions
     {
