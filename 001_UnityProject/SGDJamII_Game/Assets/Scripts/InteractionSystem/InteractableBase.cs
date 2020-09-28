@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -24,6 +25,11 @@ public class InteractableBase : MonoBehaviour, IInteractable
     [Header("Hold Settings")]
     [SerializeField] private bool holdInteract;
     [SerializeField] private float holdDuration;
+
+    List<ParticleSystem> particles = new List<ParticleSystem>();
+
+    bool emittingParticles;
+
 
     #endregion
 
@@ -62,6 +68,35 @@ public class InteractableBase : MonoBehaviour, IInteractable
         if (!multipleUse)
         {
             isInteractable = false;
+        }
+    }
+
+    public void PlayParticles()
+    {
+        if (!emittingParticles)
+        { 
+            if(particles.Count == 0)
+            {
+                particles = transform.GetComponentsInChildren<ParticleSystem>().ToList<ParticleSystem>();
+            }
+
+            foreach (ParticleSystem p in particles)
+            {
+                p.Play();
+            }
+
+            emittingParticles = true;
+        }
+    }
+
+    public void StopParticles()
+    {
+        emittingParticles = false;
+
+        foreach (ParticleSystem p in particles)
+        {
+            p.Clear();
+            p.Stop();
         }
     }
 

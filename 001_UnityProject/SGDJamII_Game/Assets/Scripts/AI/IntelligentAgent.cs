@@ -41,7 +41,9 @@ namespace ArtificialIntelligence
         ArtificialIntelligence.Room currentRoom;
         ArtificialIntelligence.HiddingPlace currentHiddingPlace;
         ArtificialIntelligence.Locomotion locomotor;
-        ArtificialIntelligence.DecisionMaker thinker;   
+        ArtificialIntelligence.DecisionMaker thinker;
+
+        bool dead = false;
 
         MeshRenderer meshRenderer;
         CapsuleCollider collider;
@@ -148,8 +150,9 @@ namespace ArtificialIntelligence
 
         private void OnCollisionEnter(Collision other) 
         {
-            if(other.gameObject.CompareTag("Player"))
+            if(other.gameObject.CompareTag("Player") && !dead)
             {
+               dead = true;
                Death();
             }
         }

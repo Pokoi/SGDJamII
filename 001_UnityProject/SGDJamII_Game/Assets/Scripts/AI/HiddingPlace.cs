@@ -30,6 +30,8 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 namespace ArtificialIntelligence
@@ -42,6 +44,8 @@ namespace ArtificialIntelligence
         private int currentOccupation;
         private ArtificialIntelligence.Room ownerRoom;
 
+        private List<MeshRenderer> renderers;
+
         [SerializeField] private float chanceToRevealPosition;
         private float distanceToExitRoom;
 
@@ -53,7 +57,10 @@ namespace ArtificialIntelligence
                 t = t.parent;
             }
             ownerRoom = t.GetComponent<ArtificialIntelligence.Room>();
-            ownerRoom.AddHiddingPlace(this); 
+            ownerRoom.AddHiddingPlace(this);
+
+            renderers = GetComponentsInChildren<MeshRenderer>().ToList<MeshRenderer>();
+            
         }
 
         public bool IsAvailable() => currentOccupation < maxOccupation;
@@ -87,7 +94,16 @@ namespace ArtificialIntelligence
             --currentOccupation;
           }
         }
-          
+
+        private void Update()
+        {
+            foreach (var r in renderers)
+            {
+                Material mat = r.material;
+                mat.SetVector("PlayerPosition", HiveManager.singletonInstance.GetPlayerReference().position);
+            }
+        }
+
 
         public List<ArtificialIntelligence.IntelligentAgent> GetHiddenAgents() => hiddenAgents;
 

@@ -64,7 +64,9 @@ public class InteractionController : MonoBehaviour
 
         RaycastHit _hitInfo;
 
-        m_hitSomething = Physics.SphereCast(m_ray, raySphereRadius, out _hitInfo, rayDistance, interactableLayer);
+       // m_hitSomething = Physics.SphereCast(m_ray, raySphereRadius, out _hitInfo, rayDistance, interactableLayer);
+        m_hitSomething = Physics.Raycast(m_ray,out _hitInfo, rayDistance, interactableLayer);
+
 
         if (m_hitSomething)
         {
@@ -83,12 +85,23 @@ public class InteractionController : MonoBehaviour
                 else
                 {
                     if (!interactionData.IsSameInteractable(_interactable))
+                    {
+                        interactionData.Interactable.StopParticles();
                         interactionData.Interactable = _interactable;
+                    }                    
                 }
+
+                interactionData.Interactable.PlayParticles();
+
             }
         }
         else
         {
+            if (interactionData.Interactable)
+            {
+                interactionData.Interactable.StopParticles();
+            }
+
             //Reset interaction Data
             interactionData.ResetData();
         }
