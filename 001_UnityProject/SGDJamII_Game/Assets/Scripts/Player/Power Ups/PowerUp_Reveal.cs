@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUp_Reveal : PowerUp
 {
     float radius = 4.0f;
+    bool used = false;
 
     private void Awake()
     {
@@ -13,18 +14,22 @@ public class PowerUp_Reveal : PowerUp
 
     public override void OnApply()
     {
-        Vector3 center = Player.Instance.transform.position;
-        int amount = 0;
+        if (!used)
+        {         
+            Vector3 center = Player.Instance.transform.position;
+            int amount = 0;
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.TryGetComponent(out ArtificialIntelligence.IntelligentAgent agent))
+            Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+            foreach (var hitCollider in hitColliders)
             {
-                ++amount;
+                if (hitCollider.gameObject.TryGetComponent(out ArtificialIntelligence.IntelligentAgent agent))
+                {
+                    ++amount;
+                }
             }
-        }
 
-        // Amount has the value of the number of enemies inside this radius
+            used = true;
+            // Amount has the value of the number of enemies inside this radius
+        }
     }
 }

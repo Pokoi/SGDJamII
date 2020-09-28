@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
 
 
         musicEvent.start();
-        mainDoor.SetActive(false);
+        //mainDoor.SetActive(false);
     }
 
     private void Update()
