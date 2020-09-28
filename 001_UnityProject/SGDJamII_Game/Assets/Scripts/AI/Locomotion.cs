@@ -58,8 +58,8 @@ namespace ArtificialIntelligence
         public void Activate() => StartCoroutine(LocomotionTask());
         public void Inactivate() => StopCoroutine(LocomotionTask());
         
-        public void Slow() => agent.speed = 1.5f;
-        public void SpeedUp() => agent.speed = 3.5f;
+        public void Slow() => agent.speed = 0.5f;
+        public void SpeedUp() => agent.speed = 2.5f;
 
         public void Emitt() => emitter = true;
         public void Silence() => emitter = false;
