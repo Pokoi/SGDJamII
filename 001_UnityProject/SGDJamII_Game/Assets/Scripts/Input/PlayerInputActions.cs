@@ -139,17 +139,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4501a14a-6561-40b8-ba50-c78bdffdbfc2"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Use"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""70319215-5965-41de-9a81-6486888495f0"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
