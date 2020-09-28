@@ -111,7 +111,7 @@ namespace ArtificialIntelligence
             }
             else if(changeRoomHeuristic < changeHiddingPlaceHeuristic)
             {
-                return ChooseDestinyRoom();
+                return Goal();
             }
             else 
             {                    
@@ -159,7 +159,21 @@ namespace ArtificialIntelligence
         */
         public Vector3 ChooseDestinyHiddingPlace()
         {
-            var hiddingPlaces = agent.GetCurrentRoom().GetHiddingPlaces();
+
+            var rooms = ArtificialIntelligence.RoomManager.singletonInstance.GetRooms();
+            int maxRoom = rooms.Count;
+            var hiddingPlaces = new List<ArtificialIntelligence.HiddingPlace>();
+
+            int roomIndex = 0;
+            int maxHiddingPlace = 0;
+            int hiddingPlaceIndex = 0;
+
+            do
+            {
+                roomIndex = Random.Range(0, maxRoom);
+            } while (rooms[roomIndex].GetIsGoal());
+
+            hiddingPlaces = hiddingPlaces = rooms[roomIndex].GetHiddingPlaces();
             
             float bestHeuristic = float.MaxValue;
             Vector3 destiny = Vector3.zero;

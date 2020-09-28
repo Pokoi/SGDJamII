@@ -75,7 +75,7 @@ namespace ArtificialIntelligence
             meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
             collider = transform.GetComponent<CapsuleCollider>();            
 
-            psychology.changeRoomWeight = Random.Range(0.0f, 0.1f);
+            psychology.changeRoomWeight = Random.Range(0.0f, 0.3f);
             psychology.changeHiddingPlaceWeight = Random.Range(0.9f, 1.0f);
             psychology.waitingWeight = Random.Range(0.3f, 0.7f);
             psychology.searchingHiddingPlaceWeight = Random.Range(0.9f, 1.0f); 
