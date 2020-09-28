@@ -76,7 +76,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_FEE6D19F: {r: 0.5262544, g: 1, b: 0.44716978, a: 0}
+    - Color_FEE6D19F: {r: 0.40096194, g: 1, b: 0.30566037, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
