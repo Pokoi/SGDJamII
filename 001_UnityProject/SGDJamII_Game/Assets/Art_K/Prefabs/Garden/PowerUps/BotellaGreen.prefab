@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3170108005705488251}
   - component: {fileID: 683766706}
-  - component: {fileID: 683766704}
   - component: {fileID: 683766705}
   m_Layer: 8
   m_Name: BotellaGreen
@@ -50,18 +49,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.56, z: 1}
   m_Center: {x: 0, y: 0.48, z: 0}
---- !u!114 &683766704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2356979937560415681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e94ee23727c0d0649bda17d259613eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &683766705
 MonoBehaviour:
   m_ObjectHideFlags: 0
