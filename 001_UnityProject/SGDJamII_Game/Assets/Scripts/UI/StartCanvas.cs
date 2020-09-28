@@ -12,19 +12,24 @@ public class StartCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(timer());
+       StartCoroutine(disablePlayerMovement());
     }
 
-
-    IEnumerator timer()
+    IEnumerator disablePlayerMovement()
     {
         while (!player)
         {
             player = FindObjectOfType<PlayerMovement>();
             yield return null;
         }
-    
+
         player.enabled = false;
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(timer());
+    }
+
+    IEnumerator timer()
+    {
 
         while (timeToStart-- > 0)
         {

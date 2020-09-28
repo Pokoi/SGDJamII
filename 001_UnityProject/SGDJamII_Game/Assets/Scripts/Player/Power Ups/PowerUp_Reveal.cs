@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PowerUp_Reveal : PowerUp
 {
@@ -30,6 +31,14 @@ public class PowerUp_Reveal : PowerUp
 
             used = true;
             // Amount has the value of the number of enemies inside this radius
+            //TODO:
+            GameObject.FindGameObjectWithTag("RevealedCanvas").GetComponent<TextMeshProUGUI>().text = "Near Ghosts: " + amount;
+            Invoke("DisableCanvas", 5f);
+
         }
+    }
+    private void DisableCanvas()
+    {
+        GameObject.FindGameObjectWithTag("RevealedCanvas").gameObject.SetActive(false);
     }
 }

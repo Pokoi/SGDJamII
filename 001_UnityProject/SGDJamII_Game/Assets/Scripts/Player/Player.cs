@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class Player : Singleton<Player>
 {
@@ -15,6 +17,8 @@ public class Player : Singleton<Player>
     public PowerUp currentPowerUp = null;
 
     bool used = false;
+
+    public Sprite image;
 
     // public void SetPowerUp(PowerUp p) => currentPowerUp = p;
 
@@ -48,6 +52,7 @@ public class Player : Singleton<Player>
 
             powerUpEvent.start(); //fmod
             currentPowerUp.OnApply();
+            GameObject.FindGameObjectWithTag("PowerUpCanvas").GetComponent<UnityEngine.UI.Image>().sprite = image;
         }        
     }
 }

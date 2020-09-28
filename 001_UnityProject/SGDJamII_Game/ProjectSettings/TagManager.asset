@@ -8,6 +8,8 @@ TagManager:
   - Room
   - Wall
   - MainDoor
+  - PowerUpCanvas
+  - RevealedCanvas
   layers:
   - Default
   - TransparentFX
