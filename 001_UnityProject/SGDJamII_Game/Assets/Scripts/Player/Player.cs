@@ -36,6 +36,7 @@ public class Player : Singleton<Player>
     {
         powerUpEvent = FMODUnity.RuntimeManager.CreateInstance(powerUp);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(powerUpEvent, transform, GetComponent<Rigidbody>());
+        
     }
 
     public void ApplyPowerUp()
@@ -53,7 +54,9 @@ public class Player : Singleton<Player>
             powerUpEvent.start(); //fmod
             currentPowerUp.OnApply();
             GameObject.FindGameObjectWithTag("PowerUpCanvas").GetComponent<UnityEngine.UI.Image>().sprite = image;
+            
         }        
     }
+    
 }
 

@@ -13,6 +13,7 @@ public class StartCanvas : MonoBehaviour
     void Start()
     {
        StartCoroutine(disablePlayerMovement());
+       GameManager.Instance.GameScene = true;
     }
 
     IEnumerator disablePlayerMovement()
@@ -43,7 +44,9 @@ public class StartCanvas : MonoBehaviour
         yield return new WaitForSeconds(1);
         
         player.enabled = true;
-        
+
+        GameManager.Instance.startThings = true;
+
         Destroy(canvas.timeToStart);
         Destroy(this);
 

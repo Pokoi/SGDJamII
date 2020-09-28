@@ -39,6 +39,8 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject mainDoor;
 
+    public bool startThings = false;
+
     public Type powerUp { get { return powerUpType; } set { powerUpType = value; } }
     public bool GameScene = false;
 
@@ -88,14 +90,21 @@ public class GameManager : Singleton<GameManager>
             if (currentTime >= gameDuration)
                 PlayerDefeated(true);
         }
-
-        if (hiveManager && !hiveInitialized)
+        if (GameScene)
         {
             SceneFader.Instance.PlayFadeIn();
-            GameScene = true;
+            Player.Instance.gameObject.AddComponent(powerUpType);
+            GameScene = false;
+        }
+        if (hiveManager && !hiveInitialized)
+        {
+            
+        }
+        if(startThings)
+        {
             CreateEnemies();
             hiveInitialized = true;
-            Player.Instance.gameObject.AddComponent(powerUpType);
+            startThings = false;
 
 
         }
@@ -210,6 +219,7 @@ public class GameManager : Singleton<GameManager>
         GameScene = false;
         enemiesCaught = 0;
         enemiesSaved = 0;
+        startThings = false;
 
         if (PlayerPrefs.GetInt("SavedData") == 1)
         {
